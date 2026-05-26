@@ -1144,12 +1144,12 @@ body { padding-bottom: 0; }
 }
 
 /* Beat al-folio's `.cv .card .list-group-item .badge` (specificity 0,0,4,0)
-   with equally-specific overrides — the original sets solid rust fill that
-   clashes with the editorial palette. */
-.cv .card .list-group-item .badge,
-.cv .card .badge,
-.cv .left-heading .badge,
-body .cv .badge {
+   AND its later source-order. Use a duplicate class to bump specificity
+   to 0,0,5,0 so editorial outline-chip styling wins. */
+.cv.cv .card .list-group-item .badge,
+.cv.cv .card .list-group-item .badge.font-weight-bold,
+.cv.cv .card .badge,
+.cv.cv .left-heading .badge {
   font-family: "JetBrains Mono", ui-monospace, monospace !important;
   font-size: 0.66rem !important;
   letter-spacing: 0.12em !important;
@@ -1161,12 +1161,23 @@ body .cv .badge {
   padding: 0.18rem 0.55rem !important;
   border-radius: 999px !important;
   font-weight: 500 !important;
+  min-width: auto !important;
 }
 
-.cv .card .list-group-item .badge a,
-.cv .card .badge a,
-body .cv .badge a {
+.cv.cv .card .list-group-item .badge a,
+.cv.cv .card .badge a {
   color: var(--global-theme-color) !important;
+}
+
+/* Some al-folio CV pills also use `.danger-color-dark` / similar utility
+   classes for color — neutralize those when inside a CV badge so the
+   border+text color from above isn't fought by a utility color. */
+.cv.cv .badge.danger-color-dark,
+.cv.cv .badge.color-danger-dark,
+.cv.cv .badge.font-weight-bold {
+  color: var(--global-theme-color) !important;
+  background: transparent !important;
+  background-color: transparent !important;
 }
 
 /* ============================================================================
