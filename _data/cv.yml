@@ -1,189 +1,186 @@
 cv:
-  name: Albert Einstein
-  label: Scientist
-  email: einstein@example.com
-  location: Princeton, NJ
+  name: Deokhyun Ahn
+  label: Ph.D. Candidate, Brain & Cognitive Engineering
+  email: ejrgus456@gmail.com
+  phone: "+82 10 3733 3254"
+  location: Seoul, Republic of Korea
   image: ""
-  summary: A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time
+  summary: >
+    Ph.D. candidate at Korea University and student researcher at KIST AI·Robotics.
+    Research focuses on video understanding, contextual dynamics, and efficient AI
+    systems for social good, with recent emphasis on VLM-guided video anomaly
+    detection.
 
   social_networks:
-    - network: X
-      username: AlbertEinstein
     - network: GitHub
-      username: example
+      username: Deo-ahn
     - network: LinkedIn
-      username: example
-
-  address:
-    street: 2712 Broadway St
-    city: San Francisco
-    region: California
-    postalCode: CA 94115
-    countryCode: US
+      username: deokhyun-ahn
 
   sections:
     Education:
-      - institution: University of Zurich
-        location: Zurich, Switzerland
-        url: https://www.uzh.ch/
-        area: Physics
-        studyType: PhD
-        start_date: 1900
-        end_date: 1905
-        score: ""
-        courses: "Theory of Relativity"
+      - institution: Korea University
+        location: Seoul, Republic of Korea
+        url: https://bcs.korea.ac.kr/
+        area: Brain & Cognitive Engineering
+        studyType: Ph.D.
+        start_date: 2023-03
+        end_date: Present
         highlights:
-          - Description 1.
-          - Description 2.
+          - Video anomaly detection with a focus on modeling human-inspired contextual understanding in video.
 
-      - institution: Eidgenössische Technische Hochschule
-        location: Zurich, Switzerland
-        area: Physics
-        studyType: Federal teaching diploma
-        start_date: 1896
-        end_date: 1900
+      - institution: Kwangwoon University
+        location: Seoul, Republic of Korea
+        area: Electronic Engineering
+        studyType: M.Eng.
+        start_date: 2015-08
+        end_date: 2020-02
         highlights:
-          - Description 1.
-          - Description 2.
+          - "Thesis: A Study on Passive Target Tracking in Three-Dimensional Indoor Environment by Using Deep Neural Network."
+          - Completed 19 months of mandatory military service.
+
+      - institution: Kwangwoon University
+        location: Seoul, Republic of Korea
+        area: Electronic Engineering (Transfer)
+        studyType: B.Eng.
+        start_date: 2013-03
+        end_date: 2015-08
+        highlights:
+          - Transferred in Mar 2013 from the National Institute for Lifelong Education (B.Eng. in Computer Engineering coursework, 2011 – 2013).
 
     Experience:
-      - company: Institute for Advanced Study, Princeton University
-        position: Professor of Theoretical Physics
-        location: Princeton University, NJ
-        start_date: 1933
-        end_date: 1955
-        summary: Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.
+      - company: Korea Institute of Science and Technology (KIST)
+        position: Student Researcher
+        location: Seoul, Republic of Korea
+        start_date: 2023-01
+        end_date: Present
+        summary: Video anomaly understanding · Surveillance video · DNN
         highlights:
-          - Relativity
-          - Description 2.
+          - Modeled contextual dynamics by integrating RGB appearance, motion dynamics, and scene information, enabling the model to better capture anomaly concepts through their relationships.
 
-      - company: California Institute of Technology
-        position: Visiting Professor
-        location: Pasadena, California, US
-        start_date: 1933
-        end_date: 1933
-        highlights:
-          - Description 1.
-          - Description 2.
+      - company: Korea Institute of Science and Technology (KIST)
+        position: Research Intern
+        location: Seoul, Republic of Korea
+        start_date: 2022-01
+        end_date: 2023-02
+        summary: Video anomaly understanding in surveillance videos · DNN
 
-      - company: Kaiser Wilhelm Institute for Physics
-        position: Director
-        location: Berlin, Germany
-        start_date: 1917
-        end_date: 1933
-
-      - company: Karl-Ferdinand University
-        position: Professor of Theoretical Physics
-        location: Prague, Czechoslovakia
-        start_date: 1911
-        end_date: 1917
-
-      - company: University of Zurich
-        position: Associate Professor of Theoretical Physics
-        location: Zurich, Switzerland
-        start_date: 1909
-        end_date: 1911
-
-    Volunteer:
-      - company: People's Climate March
-        position: Lead Organizer
-        location: Zurich, Switzerland
-        start_date: 2014-04-01
-        end_date: 2015-07-01
-        summary: Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.
-        highlights:
-          - "Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march."
-          - "Men of the year 2014 by Time magazine"
+      - company: The Korea Transport Institute (KOTI)
+        position: Researcher
+        location: Sejong, Republic of Korea
+        start_date: 2021-10
+        end_date: 2021-12
+        summary: Autonomous bus development · Project coordination
 
     Awards:
-      - title: Nobel Prize in Physics
-        authors:
-          - "Royal Swedish Academy of Sciences"
-        date: 1921-11-01
-        awarder: Royal Swedish Academy of Sciences
-        url: https://www.nobelprize.org/prizes/physics/1921/einstein/biographical/
-        summary: The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'
+      - title: AIR Outstanding Research Award
+        date: 2025-12-01
+        awarder: KIST AI·Robotics Institute
+        summary: In recognition of outstanding research achievements during 2025.
 
-      - title: Max Planck Medal
-        authors:
-          - "German Physical Society"
-        date: 2029
-        awarder: German Physical Society
-        summary: Awarded for outstanding scientific achievement
+      - title: Excellent Paper Award — Graduate School
+        date: 2025-02-01
+        awarder: Korea University
+        summary: For outstanding research performance and publication of an excellent paper during doctoral studies.
+
+      - title: Outstanding Oral Presentation Award
+        date: 2024-11-01
+        awarder: KIST Academia–Research Convergence Conference
+        summary: For the presentation "Multi-Aspect Contextual Dynamics for Anomaly Detection in Surveillance Videos."
+
+      - title: Division Commander's Commendation
+        date: 2021-07-01
+        awarder: Capital Mechanized Infantry Division
+        summary: For a combat-development proposal on reconnaissance drone AI improvement and AI/big-data-based acoustic detection.
 
     Publications:
-      - title: Zur Elektrodynamik bewegter Körper
+      - title: Learning Robust Representations for Few-Shot Action Recognition with Frame-Level Ambiguities
         authors:
-          - Albert Einstein
-        publisher: Annalen der Physik
-        releaseDate: 1905-06-30
-        url: https://en.wikisource.org/wiki/Translation:On_the_Electrodynamics_of_Moving_Bodies
-        summary: It concerned an interpretation of the Michelson–Morley experiment and the properties of light and time. Special relativity incorporates the principle that the speed of light is the same for all inertial observers regardless of the state of motion of the source.
+          - Deokhyun Ahn
+        publisher: BMVC 2026 (Under Review)
+        releaseDate: 2026
 
-      - title: Über einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt
+      - title: "BUSTER: Adaptive Sampling for VLM-Guided Unsupervised Video Anomaly Detection"
         authors:
-          - Albert Einstein
-        publisher: Annalen der Physik
-        releaseDate: 1905-03-18
-        url: https://de.wikisource.org/wiki/Über_einen_die_Erzeugung_und_Verwandlung_des_Lichtes_betreffenden_heuristischen_Gesichtspunkt
-        summary: In the second paper, he applied the quantum theory to light to explain the photoelectric effect. In particular, he used the idea of light quanta (photons) to explain experimental results, but stressed the importance of the experimental results. The importance of his work on the photoelectric effect earned him the Nobel Prize in Physics in 1921.
+          - Deokhyun Ahn
+        publisher: BMVC 2026 (Under Review)
+        releaseDate: 2026
 
-      - title: Die Grundlage der allgemeinen Relativitätstheorie
+      - title: Where and What — Contextual Dynamics-Aware Anomaly Detection in Surveillance Videos
         authors:
-          - Albert Einstein
-        publisher: Annalen der Physik
-        releaseDate: 1916-03-20
-        url: https://de.wikisource.org/wiki/Die_Grundlage_der_allgemeinen_Relativitätstheorie
-        summary: The publication of the theory of general relativity made him internationally famous. He was professor of physics at the universities of Zurich (1909–1911) and Prague (1911–1912), before he returned to ETH Zurich (1912–1914).
+          - Deokhyun Ahn
+        publisher: IEEE Transactions on Image Processing
+        releaseDate: 2025
+        summary: IF 13.7 · top 2.2% in Electrical & Electronic Engineering.
+
+      - title: "A Foundational Research Framework for Real-World Abandoned Object Detection: Train-Free Baseline and a Standardized Benchmark"
+        authors:
+          - Doyeon Kim
+          - Deokhyun Ahn
+        publisher: Expert Systems with Applications
+        releaseDate: 2025
+
+      - title: A Passive Tracking System Based on Geometric Constraints in Adaptive Wireless Sensor Networks
+        authors:
+          - Bing Zhou
+          - Deokhyun Ahn
+        publisher: Sensors, 18(10), 3276
+        releaseDate: 2018
+
+      - title: 2D Indoor Map Building Scheme Using Ultrasonic Module
+        authors:
+          - Deokhyun Ahn
+        publisher: J. Korean Inst. Comm. and Info. Sci., 41(8), 986–994
+        releaseDate: 2016
+
+    Teaching:
+      - company: Kwangwoon University
+        position: Teaching Assistant — Senior Capstone Project
+        location: Seoul, Republic of Korea
+        start_date: 2018-09
+        end_date: 2018-12
+        summary: "Instructor: Prof. Youngok Kim"
+        highlights:
+          - Assisted in managing and supporting the Capstone Design Project as a TA for 50+ students.
+
+      - company: Kwangwoon University
+        position: Teaching Assistant — Computer Architecture
+        location: Seoul, Republic of Korea
+        start_date: 2017-03
+        end_date: 2017-06
+        summary: "Instructor: Prof. Youngok Kim"
+        highlights:
+          - Graded assignments and provided feedback for 30+ students with Q&A sessions.
 
     Skills:
-      - name: Physics
-        level: Master
-        icon: fa-solid fa-hashtag
-        keywords: "Quantum Mechanics, Quantum Computing, Quantum Information, Quantum Cryptography, Quantum Communication, Quantum Teleportation"
+      - name: Programming
+        level: Advanced
+        icon: fa-solid fa-code
+        keywords: "Python, C, Java, Git, Linux"
+
+      - name: Machine Learning
+        level: Advanced
+        icon: fa-solid fa-brain
+        keywords: "PyTorch, TensorFlow, Keras, NumPy, Pandas, Matplotlib"
+
+      - name: Sensing
+        level: Intermediate
+        icon: fa-solid fa-satellite-dish
+        keywords: "Ultrasonic, Beacon, RF, Wi-Fi, 3-axis Accelerometer"
+
+      - name: Embedded & IoT
+        level: Intermediate
+        icon: fa-solid fa-microchip
+        keywords: "Raspberry Pi, Arduino"
 
     Languages:
-      - name: German
+      - name: Korean
         summary: "Native speaker"
 
       - name: English
-        summary: "Fluent"
+        summary: "Professional working proficiency"
 
     Interests:
-      - name: Physics
-        icon: fa-solid fa-tag
-        keywords: "Quantum Mechanics, Quantum Computing, Quantum Information, Quantum Cryptography, Quantum Communication, Quantum Teleportation"
-
-    Certificates:
-      - name: Machine Learning
-        date: 2018-01-01
-        issuer: Stanford University
-        icon: fa-solid fa-location-dot
-
-      - name: Quantum Computing
-        date: 2018-01-01
-        issuer: Stanford University
-        icon: fa-solid fa-tag
-
-      - name: Quantum Information
-        date: 2018-01-01
-        issuer: Stanford University
-        icon: fa-solid fa-envelope
-
-    Projects:
-      - name: Quantum Computing
-        summary: Quantum computing is the use of quantum-mechanical phenomena such as superposition and entanglement to perform computation. Computers that perform quantum computations are known as quantum computers.
-        highlights:
-          - Quantum Teleportation
-          - Quantum Cryptography
-        start_date: 2018-01-01
-        end_date: 2018-01-01
-
-    References:
-      - name: Professor John Doe
-        icon: fa-solid fa-laptop
-        reference: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit.
-
-      - name: Professor Jane Smith
-        icon: fa-solid fa-thumbtack
-        reference: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit.
+      - name: Video Intelligence
+        icon: fa-solid fa-video
+        keywords: "Video Understanding, Video Anomaly Detection, Video Action Recognition, Contextual Dynamics, Efficient AI Systems"
