@@ -8,7 +8,7 @@ category: work
 related_publications: true
 ---
 
-At **KIST AI·Robotics**, I study **video anomaly detection** in surveillance scenarios with a focus on modeling **contextual dynamics** — integrating RGB appearance, motion dynamics, and scene information so that the model better captures *anomaly concepts through their relationships*.
+At **KIST AI·Robotics**, I study **video anomaly detection** in surveillance scenarios with a focus on modeling **contextual dynamics** — integrating RGB appearance, motion dynamics, and scene information so that the model better captures _anomaly concepts through their relationships_.
 
 Recent work explores VLM-guided unsupervised approaches with adaptive sampling for efficiency and target-domain transfer.
 

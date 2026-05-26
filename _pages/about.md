@@ -34,4 +34,3 @@ Starting from sensing-based applications — including a SLAM-based smart helmet
 **Research keywords:** Video Intelligence · Video Understanding · Video Anomaly Detection · Video Action Recognition.
 
 Feel free to reach out via email for research collaborations or questions.
-
