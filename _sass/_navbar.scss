@@ -14,12 +14,20 @@
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
 
+  /* Tailwind v4's .container utility doesn't auto-center; al-folio's
+     components layer adds margin-inline:auto but in the navbar context
+     it gets stripped, so force centering explicitly here. */
   > .container {
-    display: flex;
+    display: flex !important;
     flex-wrap: inherit;
     justify-content: space-between;
     align-items: center;
-    max-width: var(--max-content-width);
+    width: 100% !important;
+    max-width: var(--max-content-width) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .navbar-brand {
