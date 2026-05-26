@@ -1,0 +1,10 @@
+# this file contains the social media links and usernames of the author
+# the socials will be displayed in the order they are defined here
+# for more information, please refer to the documentation of jekyll-socials plugin: https://github.com/george-gca/jekyll-socials
+# cv_pdf: /assets/pdf/cv.pdf # 본인 CV PDF를 넣은 후 주석 해제
+email: ejrgus456@gmail.com
+github_username: Deo-ahn
+linkedin_username: deokhyun-ahn
+scholar_userid: 5VDH7PgAAAAJ
+# orcid_id: 0000-0000-0000-0000 # ORCID 등록 후 입력
+rss_icon: true
