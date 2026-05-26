@@ -27,10 +27,16 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am a Ph.D. candidate in **Brain & Cognitive Engineering at Korea University** and a student researcher at **KIST AI·Robotics**. My research focuses on **video understanding, contextual dynamics, and efficient AI systems for social good**.
+I am a Ph.D. candidate in **Brain & Cognitive Engineering at Korea University** and a student researcher at **KIST AI·Robotics**. My research focuses on _video understanding, contextual dynamics, and efficient AI systems for social good_.
 
-Starting from sensing-based applications — including a SLAM-based smart helmet for firefighters and indoor drone trajectory tracking — I became interested in reliable real-world systems. I now study how video models can move beyond RGB and motion cues to capture contextual interactions, with recent focus on **VLM-guided video anomaly detection** for surveillance, especially target-domain transfer and efficient sampling.
+Starting from sensing-based applications — including a SLAM-based smart helmet for firefighters and indoor drone trajectory tracking — I became interested in reliable real-world systems. I now study how video models can move beyond RGB and motion cues to capture contextual interactions, with recent focus on VLM-guided video anomaly detection for surveillance, especially target-domain transfer and efficient sampling.
 
-**Research keywords:** Video Intelligence · Video Understanding · Video Anomaly Detection · Video Action Recognition.
-
-Feel free to reach out via email for research collaborations or questions.
+<div class="ed-keywords">
+  <div class="ed-keywords-label">Research keywords</div>
+  <div class="ed-keywords-chips">
+    <span>Video Intelligence</span>
+    <span>Video Understanding</span>
+    <span>Video Anomaly Detection</span>
+    <span>Video Action Recognition</span>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+{% comment %}
+  Editorial footer override.
+  - About page (layout: about) renders its own footer inline — skip here.
+  - Other pages get a slim flowing footer (no fixed-bottom overlap).
+{% endcomment %}
+
+{% unless page.layout == 'about' %}
+  <footer class="ed-page-footer" role="contentinfo">
+    <div class="container">
+      <span class="ed-page-footer-text">
+        © {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.last_name }}
+        {%- if site.last_updated %} · Last updated {{ site.time | date: '%b %Y' }}{% endif -%}
+      </span>
+    </div>
+  </footer>
+{% endunless %}

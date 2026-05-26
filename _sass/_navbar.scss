@@ -1,5 +1,7 @@
 /*******************************************************************************
- * Navigation bar and header customization
+ * Navigation bar — Editorial Classic
+ * PDF design: brand left, nav links right, current item italic+underlined,
+ * ctrl+k chip + dark mode toggle on far right. Subtle divider below.
  ******************************************************************************/
 
 @use "variables" as v;
@@ -8,34 +10,119 @@
   box-shadow: none;
   border-bottom: 1px solid var(--global-divider-color);
   background-color: var(--global-bg-color);
-  opacity: 0.95;
+  opacity: 0.97;
+  padding-top: 1.1rem;
+  padding-bottom: 1.1rem;
+
+  > .container {
+    display: flex;
+    flex-wrap: inherit;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    font-family: "Newsreader", Georgia, serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+    color: var(--global-text-color);
+    padding-top: 0;
+    padding-bottom: 0;
+
+    &:hover {
+      text-decoration: none;
+      color: var(--global-text-color);
+    }
+
+    .font-weight-bold {
+      font-weight: 500; /* override default bold for editorial tone */
+    }
+  }
 
   .navbar-collapse-main {
     flex-grow: 1;
-    justify-content: center;
-    text-align: center;
+    justify-content: flex-end;
+    text-align: right;
   }
 
   .navbar-menu-list {
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 0;
+    align-items: center;
+    gap: 0.1rem;
+  }
+
+  .navbar-menu-list .nav-item {
+    margin-left: 1rem;
+  }
+
+  .navbar-menu-list .nav-item:first-child {
+    margin-left: 0;
   }
 }
 
-@media (max-width: 575.98px) {
-  .navbar {
-    .navbar-toggler-main {
-      margin-left: auto;
-    }
+.navbar.navbar-light {
+  a:hover {
+    text-decoration: none;
+  }
 
-    .navbar-collapse-main {
-      text-align: left;
-    }
+  .navbar-brand {
+    color: var(--global-text-color);
+  }
 
-    .navbar-menu-list {
-      margin-left: 0;
-      align-items: flex-start;
-      width: 100%;
+  .navbar-nav .nav-item .nav-link {
+    color: var(--global-text-color-light);
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    padding: 0.25rem 0.1rem;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+
+    &:hover {
+      color: var(--global-text-color);
+    }
+  }
+
+  .navbar-nav .nav-item.active > .nav-link {
+    background-color: inherit;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--global-text-color);
+    border-bottom: 1px solid var(--global-text-color);
+  }
+
+  .navbar-nav .nav-item.active > .nav-link:hover {
+    color: var(--global-text-color);
+  }
+
+  .navbar-brand.social {
+    padding-bottom: 0;
+    padding-top: 0;
+    font-size: 1.7rem;
+
+    a {
+      img,
+      svg {
+        width: 1.7rem;
+        height: 1.7rem;
+        margin-bottom: 0.5rem;
+      }
+
+      svg image {
+        width: 1.7rem;
+        height: 1.7rem;
+      }
+
+      i::before {
+        color: var(--global-text-color);
+        transition-property: all 0.2s ease-in-out;
+      }
+
+      &:hover i::before {
+        color: var(--global-theme-color);
+      }
     }
   }
 }
@@ -77,69 +164,82 @@
   }
 }
 
-.navbar.navbar-light {
-  a {
-    &:hover {
-      text-decoration: none;
+/* ctrl+k search chip styled like the design. */
+#search-toggle {
+  padding: 0;
+  border: 0;
+  background-color: inherit;
+  color: var(--global-text-color);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--global-hover-color);
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.55rem;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--global-text-color-light);
+    background: var(--global-card-bg-color);
+    border: 1px solid var(--global-divider-color);
+    border-radius: 6px;
+    text-transform: lowercase;
+
+    i {
+      font-size: 0.65rem;
+      opacity: 0.7;
     }
   }
+}
 
-  .navbar-brand {
-    color: var(--global-text-color);
+#light-toggle {
+  padding: 0;
+  border: 0;
+  background-color: inherit;
+  color: var(--global-text-color);
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: var(--global-hover-color);
   }
+}
 
-  .navbar-nav .nav-item .nav-link {
-    color: var(--global-text-color);
+@media (min-width: 576px) {
+  #light-toggle {
+    transform: translateY(0);
+  }
+}
 
-    &:hover {
-      color: var(--global-hover-color);
+@media (max-width: 575.98px) {
+  .navbar {
+    .navbar-toggler-main {
+      margin-left: auto;
     }
-  }
 
-  .navbar-nav .nav-item.active > .nav-link {
-    background-color: inherit;
-    font-weight: bolder;
-    color: var(--global-theme-color);
-
-    &:hover {
-      color: var(--global-hover-color);
+    .navbar-collapse-main {
+      text-align: left;
     }
-  }
 
-  .navbar-brand.social {
-    padding-bottom: 0;
-    padding-top: 0;
-    font-size: 1.7rem;
+    .navbar-menu-list {
+      flex-direction: column;
+      margin-left: 0;
+      align-items: flex-start;
+      width: 100%;
+      gap: 0;
+    }
 
-    a {
-      img {
-        width: 1.7rem;
-        height: 1.7rem;
-        margin-bottom: 0.5rem;
-        // margin: 0.5rem;
-      }
-
-      svg {
-        width: 1.7rem;
-        height: 1.7rem;
-        margin-bottom: 0.5rem;
-
-        image {
-          width: 1.7rem;
-          height: 1.7rem;
-        }
-      }
-
-      i::before {
-        color: var(--global-text-color);
-        transition-property: all 0.2s ease-in-out;
-      }
-
-      &:hover {
-        i::before {
-          color: var(--global-theme-color);
-        }
-      }
+    .navbar-menu-list .nav-item {
+      margin-left: 0;
     }
   }
 }
@@ -181,41 +281,5 @@
 
   .bottom-bar {
     transform: rotate(0);
-  }
-}
-
-#light-toggle {
-  padding: 0;
-  border: 0;
-  background-color: inherit;
-  color: var(--global-text-color);
-  cursor: pointer;
-  /* Fix footprint to prevent navbar shifting when icon changes */
-  width: 2rem;
-  height: 2rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    color: var(--global-hover-color);
-  }
-}
-
-@media (min-width: 576px) {
-  #light-toggle {
-    transform: translateY(4px);
-  }
-}
-
-#search-toggle {
-  padding: 0;
-  border: 0;
-  background-color: inherit;
-  color: var(--global-text-color);
-  cursor: pointer;
-
-  &:hover {
-    color: var(--global-hover-color);
   }
 }
