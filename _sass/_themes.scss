@@ -1131,18 +1131,6 @@ body { padding-bottom: 0; }
     padding: 0.85rem 1rem;
   }
 
-  .badge {
-    font-family: "JetBrains Mono", ui-monospace, monospace !important;
-    font-size: 0.66rem !important;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    background-color: transparent !important;
-    color: var(--global-theme-color) !important;
-    border: 1px solid var(--global-theme-color);
-    padding: 0.18rem 0.55rem !important;
-    border-radius: 999px;
-  }
-
   /* TOC sidebar */
   #toc-sidebar {
     font-family: "JetBrains Mono", ui-monospace, monospace;
@@ -1153,6 +1141,32 @@ body { padding-bottom: 0; }
       text-transform: lowercase;
     }
   }
+}
+
+/* Beat al-folio's `.cv .card .list-group-item .badge` (specificity 0,0,4,0)
+   with equally-specific overrides — the original sets solid rust fill that
+   clashes with the editorial palette. */
+.cv .card .list-group-item .badge,
+.cv .card .badge,
+.cv .left-heading .badge,
+body .cv .badge {
+  font-family: "JetBrains Mono", ui-monospace, monospace !important;
+  font-size: 0.66rem !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--global-theme-color) !important;
+  border: 1px solid var(--global-theme-color) !important;
+  padding: 0.18rem 0.55rem !important;
+  border-radius: 999px !important;
+  font-weight: 500 !important;
+}
+
+.cv .card .list-group-item .badge a,
+.cv .card .badge a,
+body .cv .badge a {
+  color: var(--global-theme-color) !important;
 }
 
 /* ============================================================================
