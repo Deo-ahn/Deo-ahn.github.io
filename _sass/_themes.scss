@@ -1,0 +1,254 @@
+/*******************************************************************************
+ * Themes — Editorial Classic
+ * Warm cream + dark warm gray palette with rust accent.
+ * Newsreader serif body + JetBrains Mono for labels/meta.
+ * Local override of al_folio_core/_sass/_themes.scss
+ ******************************************************************************/
+@use "variables" as v;
+@use "sass:color";
+
+/* Editorial palette tokens — keep here so light/dark blocks can both reference them. */
+$ed-bg:        #f5f1ea;
+$ed-bg2:       #ebe5d8;
+$ed-fg:        #29241e;
+$ed-fg-soft:   #443c33;
+$ed-fg-muted:  #756853;
+$ed-border:    #d9d0c0;
+$ed-rule:      #c4b9a4;
+$ed-accent:    #9a4f2e;
+$ed-accent-hi: #b85d36;
+
+$ed-dk-bg:        #1c1814;
+$ed-dk-bg2:       #26201a;
+$ed-dk-fg:        #ede5d5;
+$ed-dk-fg-soft:   #ccc1ad;
+$ed-dk-fg-muted:  #8a7d68;
+$ed-dk-border:    #3a3128;
+$ed-dk-rule:      #4a3f33;
+$ed-dk-accent:    #d68a5e;
+$ed-dk-accent-hi: #e7a37e;
+
+:root {
+  color-scheme: light;
+
+  /* Editorial design tokens — also used by local extensions. */
+  --ed-bg:        #{$ed-bg};
+  --ed-bg2:       #{$ed-bg2};
+  --ed-fg:        #{$ed-fg};
+  --ed-fg-soft:   #{$ed-fg-soft};
+  --ed-fg-muted:  #{$ed-fg-muted};
+  --ed-border:    #{$ed-border};
+  --ed-rule:      #{$ed-rule};
+  --ed-accent:    #{$ed-accent};
+  --ed-accent-hi: #{$ed-accent-hi};
+
+  /* al-folio core CSS variables — mapped to the editorial palette. */
+  --global-bg-color: #{$ed-bg};
+  --global-code-bg-color: #{$ed-bg2};
+  --global-text-color: #{$ed-fg};
+  --global-text-color-light: #{$ed-fg-muted};
+  --global-theme-color: #{$ed-accent};
+  --global-hover-color: #{$ed-accent-hi};
+  --global-hover-text-color: #{$ed-bg};
+  --global-footer-bg-color: #{$ed-bg2};
+  --global-footer-text-color: #{$ed-fg-muted};
+  --global-footer-link-color: #{$ed-fg};
+  --global-distill-app-color: #{$ed-fg-muted};
+  --global-divider-color: #{$ed-border};
+  --global-card-bg-color: #{$ed-bg2};
+  --global-highlight-color: #{$ed-accent};
+  --global-back-to-top-bg-color: rgba(
+    #{color.channel($ed-fg, "red", v.$space: rgb)},
+    #{color.channel($ed-fg, "green", v.$space: rgb)},
+    #{color.channel($ed-fg, "blue", v.$space: rgb)},
+    0.4
+  );
+  --global-back-to-top-text-color: #{$ed-bg};
+  --global-newsletter-bg-color: #{$ed-bg2};
+  --global-newsletter-text-color: #{$ed-fg};
+
+  --global-tip-block: #5b8a6b;
+  --global-tip-block-bg: #e4ecd9;
+  --global-tip-block-text: #2c4a35;
+  --global-tip-block-title: #3d6a4a;
+  --global-warning-block: #b08a3e;
+  --global-warning-block-bg: #f3e9cf;
+  --global-warning-block-text: #5b4717;
+  --global-warning-block-title: #87691f;
+  --global-danger-block: #9a4f2e;
+  --global-danger-block-bg: #f1d9cc;
+  --global-danger-block-text: #4d2614;
+  --global-danger-block-title: #9a4f2e;
+
+  #light-toggle-system { display: inline-block; }
+  #light-toggle-dark   { display: none; }
+  #light-toggle-light  { display: none; }
+  .only-light { display: block; }
+  .only-dark  { display: none; }
+
+  #back-to-top {
+    color: var(--global-back-to-top-text-color);
+    background: var(--global-back-to-top-bg-color);
+    bottom: v.$back-to-top-bottom;
+    right: v.$back-to-top-right;
+    height: v.$back-to-top-height;
+    width: v.$back-to-top-width;
+    z-index: v.$back-to-top-z-index;
+  }
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --ed-bg:        #{$ed-dk-bg};
+  --ed-bg2:       #{$ed-dk-bg2};
+  --ed-fg:        #{$ed-dk-fg};
+  --ed-fg-soft:   #{$ed-dk-fg-soft};
+  --ed-fg-muted:  #{$ed-dk-fg-muted};
+  --ed-border:    #{$ed-dk-border};
+  --ed-rule:      #{$ed-dk-rule};
+  --ed-accent:    #{$ed-dk-accent};
+  --ed-accent-hi: #{$ed-dk-accent-hi};
+
+  --global-bg-color: #{$ed-dk-bg};
+  --global-code-bg-color: #{$ed-dk-bg2};
+  --global-text-color: #{$ed-dk-fg};
+  --global-text-color-light: #{$ed-dk-fg-muted};
+  --global-theme-color: #{$ed-dk-accent};
+  --global-hover-color: #{$ed-dk-accent-hi};
+  --global-hover-text-color: #{$ed-dk-bg};
+  --global-footer-bg-color: #{$ed-dk-bg2};
+  --global-footer-text-color: #{$ed-dk-fg-muted};
+  --global-footer-link-color: #{$ed-dk-fg};
+  --global-distill-app-color: #{$ed-dk-fg-muted};
+  --global-divider-color: #{$ed-dk-border};
+  --global-card-bg-color: #{$ed-dk-bg2};
+  --global-highlight-color: #{$ed-dk-accent};
+  --global-back-to-top-bg-color: rgba(
+    #{color.channel($ed-dk-fg, "red", v.$space: rgb)},
+    #{color.channel($ed-dk-fg, "green", v.$space: rgb)},
+    #{color.channel($ed-dk-fg, "blue", v.$space: rgb)},
+    0.5
+  );
+  --global-back-to-top-text-color: #{$ed-dk-bg};
+  --global-newsletter-bg-color: #{$ed-dk-bg2};
+  --global-newsletter-text-color: #{$ed-dk-fg};
+
+  --global-tip-block: #87a890;
+  --global-tip-block-bg: #2c4a35;
+  --global-tip-block-text: #e4ecd9;
+  --global-tip-block-title: #c8d8b9;
+  --global-warning-block: #d6b56b;
+  --global-warning-block-bg: #5b4717;
+  --global-warning-block-text: #f3e9cf;
+  --global-warning-block-title: #fff2cf;
+  --global-danger-block: #e07a4a;
+  --global-danger-block-bg: #4d2614;
+  --global-danger-block-text: #f1d9cc;
+  --global-danger-block-title: #f5b894;
+
+  .only-light { display: none; }
+  .only-dark  { display: block; }
+}
+
+html[data-theme-setting="dark"] {
+  #light-toggle-system { display: none; }
+  #light-toggle-dark   { display: inline-block; }
+  #light-toggle-light  { display: none; }
+
+  #back-to-top {
+    color: var(--global-back-to-top-text-color);
+    background: var(--global-back-to-top-bg-color);
+  }
+}
+
+html[data-theme-setting="light"] {
+  #light-toggle-system { display: none; }
+  #light-toggle-dark   { display: none; }
+  #light-toggle-light  { display: inline-block; }
+}
+
+/* Editorial typography — warm serif body, mono for meta/labels. */
+html {
+  font-family: "Newsreader", "Source Serif Pro", Georgia, "Times New Roman", serif;
+}
+
+body {
+  font-family: "Newsreader", "Source Serif Pro", Georgia, "Times New Roman", serif;
+  font-feature-settings: "liga", "kern", "onum";
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Newsreader", "Source Serif Pro", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+h1 { letter-spacing: -0.025em; }
+
+code, pre, kbd, samp, tt,
+.font-mono, .post-meta, .post-tags,
+.publications .periodical, .publications .author,
+.bibliography .periodical, .bibliography .author,
+.profile .more-info, .news .date {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* Subtle rust underline on body links (skip nav/buttons/icons). */
+.post-content a:not(.btn):not(.no-underline),
+.profile + .clearfix a,
+#about a:not(.btn) {
+  text-decoration: underline;
+  text-decoration-color: var(--ed-accent);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+/* Half sun/moon glyph used by light-toggle (kept from upstream). */
+.fa-half-sun-moon {
+  position: relative;
+  display: inline-block;
+  --fa-font: var(--fa-font-solid);
+  speak: none;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 1em;
+  height: 1em;
+}
+
+.fa-half-sun-moon::before,
+.fa-half-sun-moon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  top: -0.5px;
+  bottom: -0.5px;
+  text-align: center;
+  line-height: 1em;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  font: var(--fa-font);
+}
+
+.fa-half-sun-moon::before {
+  content: "\f111";
+  color: var(--global-text-color);
+  clip-path: polygon(0 0, calc(50% - 0.5px) 0, calc(50% - 0.5px) 100%, 0 100%);
+}
+
+.fa-half-sun-moon::after {
+  content: "\f185";
+  color: var(--global-text-color);
+  clip-path: polygon(calc(50% + 0.5px) 0, 100% 0, 100% 100%, calc(50% + 0.5px) 100%);
+  right: -1.5px;
+  transform: translateX(-1px);
+}
+
+#light-toggle:hover .fa-half-sun-moon::before,
+#light-toggle:hover .fa-half-sun-moon::after {
+  color: var(--global-theme-color);
+}
