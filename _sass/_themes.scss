@@ -761,3 +761,421 @@ code, pre, kbd, samp, tt,
    since we override the include to render nothing for layout: about. */
 body { padding-bottom: 0; }
 
+/* ============================================================================
+ * Editorial styling for OTHER pages (publications, projects, repositories, cv)
+ * which use al-folio's page.liquid layout: <div class="post">.post-header h1.
+ * Mirrors the .editorial-about treatment so the whole site reads consistently.
+ * ========================================================================= */
+
+.post {
+  color: var(--global-text-color);
+  font-family: "Newsreader", Georgia, serif;
+  letter-spacing: -0.005em;
+  padding-top: 2.4rem;
+
+  /* page header (acts like the section heads on the about page) */
+  .post-header {
+    padding-top: 1.2rem;
+    padding-bottom: 1.4rem;
+    margin-bottom: 2.2rem;
+    border-bottom: 1px solid var(--global-divider-color);
+    text-align: left;
+  }
+
+  .post-title {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--global-text-color);
+    text-transform: lowercase;
+    margin: 0 0 0.6rem 0;
+  }
+
+  .post-description {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--global-text-color-light);
+    margin: 0;
+    max-width: 760px;
+  }
+
+  /* generic body type inside articles */
+  article {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--global-text-color);
+
+    a {
+      color: var(--global-text-color);
+      text-decoration: underline;
+      text-decoration-color: var(--global-theme-color);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    h2 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      color: var(--global-text-color);
+      margin-top: 2.6rem;
+      margin-bottom: 1.1rem;
+      text-transform: lowercase;
+    }
+
+    h3 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-top: 2rem;
+      margin-bottom: 0.8rem;
+    }
+  }
+}
+
+/* ---------- publications page (full bibliography) ---------- */
+
+.post .publications {
+  margin-top: 0;
+
+  h1,
+  h2.bibliography {
+    /* hide jekyll-scholar's default year h2/h1 — we render styled year markers */
+    color: transparent;
+    border: none;
+    margin: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  /* re-style the year heading via a separate eyebrow-style block */
+  h2.bibliography {
+    position: relative;
+    height: auto;
+    margin: 2.4rem 0 0.4rem 0;
+    text-align: left;
+    color: var(--global-text-color-light) !important;
+
+    &::before {
+      content: attr(id);
+      display: block;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--global-theme-color);
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  ol.bibliography {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ol.bibliography > li {
+    padding: 1.4rem 0;
+    border-top: 1px solid var(--global-divider-color);
+    margin-bottom: 0;
+  }
+
+  ol.bibliography > li:last-child {
+    border-bottom: 1px solid var(--global-divider-color);
+  }
+
+  /* same 2-col grid as the about page section */
+  ol.bibliography > li > .row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1.8rem;
+    margin: 0;
+    align-items: start;
+  }
+
+  ol.bibliography > li > .row > [class*="col"] {
+    width: auto;
+    max-width: none;
+    flex: initial;
+    padding: 0;
+    min-height: 0;
+  }
+
+  ol.bibliography > li .abbr abbr,
+  ol.bibliography > li .abbr abbr.badge {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: auto !important;
+    background: transparent !important;
+    color: var(--global-theme-color) !important;
+    font-family: "JetBrains Mono", ui-monospace, monospace !important;
+    font-size: 0.72rem !important;
+    letter-spacing: 0.18em !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  ol.bibliography > li .abbr abbr a {
+    color: var(--global-theme-color) !important;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--global-hover-color) !important;
+    }
+  }
+
+  ol.bibliography > li .title {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 1.1rem;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    font-weight: 500;
+    color: var(--global-text-color);
+    margin-bottom: 0.4rem;
+  }
+
+  ol.bibliography > li .author {
+    font-size: 0.92rem;
+    color: var(--global-text-color);
+    margin-bottom: 0.3rem;
+    font-style: italic;
+
+    em {
+      border-bottom: none;
+      font-style: normal;
+      font-weight: 600;
+      color: var(--global-text-color);
+    }
+
+    a {
+      color: var(--global-text-color);
+      border-bottom: none;
+
+      &:hover {
+        color: var(--global-theme-color);
+      }
+    }
+  }
+
+  ol.bibliography > li .periodical {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 0.88rem;
+    font-style: italic;
+    color: var(--global-text-color-light);
+    margin: 0.15rem 0;
+  }
+
+  ol.bibliography > li .periodical + .periodical {
+    font-family: "JetBrains Mono", ui-monospace, monospace !important;
+    font-style: normal;
+    font-size: 0.68rem;
+    letter-spacing: 0.02em;
+    color: var(--global-text-color-light);
+    margin-top: 0.35rem;
+  }
+
+  ol.bibliography > li .links {
+    margin-top: 0.5rem;
+  }
+
+  ol.bibliography > li .links a.btn {
+    font-size: 0.68rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 4px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0.2rem 0.4rem 0 0;
+    color: var(--global-text-color);
+    border-color: var(--global-divider-color);
+
+    &:hover {
+      color: var(--global-theme-color);
+      border-color: var(--global-theme-color);
+      background: transparent;
+    }
+  }
+}
+
+/* bib search input */
+.post .bibsearch-form-input,
+.post .newsletter-form-input {
+  border: 1px solid var(--global-divider-color) !important;
+  background: var(--global-card-bg-color) !important;
+  color: var(--global-text-color) !important;
+  font-family: "JetBrains Mono", ui-monospace, monospace !important;
+  font-size: 0.78rem !important;
+  border-radius: 6px !important;
+  padding: 0.5rem 0.8rem !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  margin-bottom: 1.2rem !important;
+
+  &:focus {
+    outline: 1px solid var(--global-theme-color);
+    outline-offset: -1px;
+  }
+}
+
+/* ---------- projects page (card grid) ---------- */
+
+.post .projects {
+  margin-top: 0;
+
+  h2.category {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--global-text-color);
+    text-align: left;
+    text-transform: lowercase;
+    border-bottom: 1px solid var(--global-divider-color);
+    padding-bottom: 0.6rem;
+    margin: 2rem 0 1.4rem;
+  }
+
+  .card {
+    background: var(--global-card-bg-color);
+    border: 1px solid var(--global-divider-color) !important;
+    border-radius: 6px;
+    box-shadow: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  .card-body {
+    padding: 1.1rem 1.2rem 1.3rem;
+  }
+
+  .card-title {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+    color: var(--global-text-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .card-text {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--global-text-color-light);
+  }
+
+  a:hover .card-title {
+    color: var(--global-theme-color);
+  }
+}
+
+/* ---------- repositories page ---------- */
+
+.post .repositories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
+  margin-bottom: 1.4rem;
+
+  img {
+    border: 1px solid var(--global-divider-color);
+    border-radius: 6px;
+  }
+}
+
+/* ---------- CV page ---------- */
+
+.cv {
+  color: var(--global-text-color);
+  font-family: "Newsreader", Georgia, serif;
+
+  .card {
+    background: var(--global-card-bg-color);
+    border: 1px solid var(--global-divider-color);
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  .card-title {
+    font-family: "Newsreader", Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    font-size: 1.25rem;
+    color: var(--global-text-color);
+    text-transform: lowercase;
+  }
+
+  .list-group {
+    background: transparent;
+  }
+
+  .list-group-item {
+    background-color: transparent !important;
+    border-color: var(--global-divider-color) !important;
+    padding: 0.85rem 1rem;
+  }
+
+  .badge {
+    font-family: "JetBrains Mono", ui-monospace, monospace !important;
+    font-size: 0.66rem !important;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background-color: transparent !important;
+    color: var(--global-theme-color) !important;
+    border: 1px solid var(--global-theme-color);
+    padding: 0.18rem 0.55rem !important;
+    border-radius: 999px;
+  }
+
+  /* TOC sidebar */
+  #toc-sidebar {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+
+    .toc-link {
+      font-size: 0.74rem;
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+    }
+  }
+}
+
+/* ============================================================================
+ * Minor about-page polish (PDF micro-tuning)
+ * ========================================================================= */
+
+.editorial-about {
+  /* tighten Korean subscript a touch — PDF shows it sitting closer */
+  .ed-name-ko {
+    font-size: 0.3em;
+    vertical-align: 0.85em;
+    margin-left: 0.55rem;
+    opacity: 0.85;
+  }
+
+  /* slightly larger 01/02 eyebrow color contrast in dark mode */
+  .ed-num {
+    font-weight: 600;
+  }
+
+  /* publications inside about — slightly tighter venue column */
+  .ed-pubs-wrap ol.bibliography > li > .row {
+    grid-template-columns: 95px 1fr;
+  }
+}
+
