@@ -8,38 +8,38 @@
 @use "sass:color";
 
 /* Editorial palette tokens — keep here so light/dark blocks can both reference them. */
-$ed-bg:        #f5f1ea;
-$ed-bg2:       #ebe5d8;
-$ed-fg:        #29241e;
-$ed-fg-soft:   #443c33;
-$ed-fg-muted:  #756853;
-$ed-border:    #d9d0c0;
-$ed-rule:      #c4b9a4;
-$ed-accent:    #9a4f2e;
+$ed-bg: #f5f1ea;
+$ed-bg2: #ebe5d8;
+$ed-fg: #29241e;
+$ed-fg-soft: #443c33;
+$ed-fg-muted: #756853;
+$ed-border: #d9d0c0;
+$ed-rule: #c4b9a4;
+$ed-accent: #9a4f2e;
 $ed-accent-hi: #b85d36;
 
-$ed-dk-bg:        #1c1814;
-$ed-dk-bg2:       #26201a;
-$ed-dk-fg:        #ede5d5;
-$ed-dk-fg-soft:   #ccc1ad;
-$ed-dk-fg-muted:  #8a7d68;
-$ed-dk-border:    #3a3128;
-$ed-dk-rule:      #4a3f33;
-$ed-dk-accent:    #d68a5e;
+$ed-dk-bg: #1c1814;
+$ed-dk-bg2: #26201a;
+$ed-dk-fg: #ede5d5;
+$ed-dk-fg-soft: #ccc1ad;
+$ed-dk-fg-muted: #8a7d68;
+$ed-dk-border: #3a3128;
+$ed-dk-rule: #4a3f33;
+$ed-dk-accent: #d68a5e;
 $ed-dk-accent-hi: #e7a37e;
 
 :root {
   color-scheme: light;
 
   /* Editorial design tokens — also used by local extensions. */
-  --ed-bg:        #{$ed-bg};
-  --ed-bg2:       #{$ed-bg2};
-  --ed-fg:        #{$ed-fg};
-  --ed-fg-soft:   #{$ed-fg-soft};
-  --ed-fg-muted:  #{$ed-fg-muted};
-  --ed-border:    #{$ed-border};
-  --ed-rule:      #{$ed-rule};
-  --ed-accent:    #{$ed-accent};
+  --ed-bg: #{$ed-bg};
+  --ed-bg2: #{$ed-bg2};
+  --ed-fg: #{$ed-fg};
+  --ed-fg-soft: #{$ed-fg-soft};
+  --ed-fg-muted: #{$ed-fg-muted};
+  --ed-border: #{$ed-border};
+  --ed-rule: #{$ed-rule};
+  --ed-accent: #{$ed-accent};
   --ed-accent-hi: #{$ed-accent-hi};
 
   /* al-folio core CSS variables — mapped to the editorial palette. */
@@ -80,11 +80,21 @@ $ed-dk-accent-hi: #e7a37e;
   --global-danger-block-text: #4d2614;
   --global-danger-block-title: #9a4f2e;
 
-  #light-toggle-system { display: inline-block; }
-  #light-toggle-dark   { display: none; }
-  #light-toggle-light  { display: none; }
-  .only-light { display: block; }
-  .only-dark  { display: none; }
+  #light-toggle-system {
+    display: inline-block;
+  }
+  #light-toggle-dark {
+    display: none;
+  }
+  #light-toggle-light {
+    display: none;
+  }
+  .only-light {
+    display: block;
+  }
+  .only-dark {
+    display: none;
+  }
 
   #back-to-top {
     color: var(--global-back-to-top-text-color);
@@ -100,14 +110,14 @@ $ed-dk-accent-hi: #e7a37e;
 html[data-theme="dark"] {
   color-scheme: dark;
 
-  --ed-bg:        #{$ed-dk-bg};
-  --ed-bg2:       #{$ed-dk-bg2};
-  --ed-fg:        #{$ed-dk-fg};
-  --ed-fg-soft:   #{$ed-dk-fg-soft};
-  --ed-fg-muted:  #{$ed-dk-fg-muted};
-  --ed-border:    #{$ed-dk-border};
-  --ed-rule:      #{$ed-dk-rule};
-  --ed-accent:    #{$ed-dk-accent};
+  --ed-bg: #{$ed-dk-bg};
+  --ed-bg2: #{$ed-dk-bg2};
+  --ed-fg: #{$ed-dk-fg};
+  --ed-fg-soft: #{$ed-dk-fg-soft};
+  --ed-fg-muted: #{$ed-dk-fg-muted};
+  --ed-border: #{$ed-dk-border};
+  --ed-rule: #{$ed-dk-rule};
+  --ed-accent: #{$ed-dk-accent};
   --ed-accent-hi: #{$ed-dk-accent-hi};
 
   --global-bg-color: #{$ed-dk-bg};
@@ -147,14 +157,24 @@ html[data-theme="dark"] {
   --global-danger-block-text: #f1d9cc;
   --global-danger-block-title: #f5b894;
 
-  .only-light { display: none; }
-  .only-dark  { display: block; }
+  .only-light {
+    display: none;
+  }
+  .only-dark {
+    display: block;
+  }
 }
 
 html[data-theme-setting="dark"] {
-  #light-toggle-system { display: none; }
-  #light-toggle-dark   { display: inline-block; }
-  #light-toggle-light  { display: none; }
+  #light-toggle-system {
+    display: none;
+  }
+  #light-toggle-dark {
+    display: inline-block;
+  }
+  #light-toggle-light {
+    display: none;
+  }
 
   #back-to-top {
     color: var(--global-back-to-top-text-color);
@@ -163,9 +183,15 @@ html[data-theme-setting="dark"] {
 }
 
 html[data-theme-setting="light"] {
-  #light-toggle-system { display: none; }
-  #light-toggle-dark   { display: none; }
-  #light-toggle-light  { display: inline-block; }
+  #light-toggle-system {
+    display: none;
+  }
+  #light-toggle-dark {
+    display: none;
+  }
+  #light-toggle-light {
+    display: inline-block;
+  }
 }
 
 /* Editorial typography — warm serif body, mono for meta/labels. */
@@ -180,19 +206,35 @@ body {
   letter-spacing: -0.005em;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Newsreader", "Source Serif Pro", Georgia, serif;
   font-weight: 500;
   letter-spacing: -0.015em;
 }
 
-h1 { letter-spacing: -0.025em; }
+h1 {
+  letter-spacing: -0.025em;
+}
 
-code, pre, kbd, samp, tt,
-.font-mono, .post-meta, .post-tags,
-.publications .periodical, .publications .author,
-.bibliography .periodical, .bibliography .author,
-.profile .more-info, .news .date {
+code,
+pre,
+kbd,
+samp,
+tt,
+.font-mono,
+.post-meta,
+.post-tags,
+.publications .periodical,
+.publications .author,
+.bibliography .periodical,
+.bibliography .author,
+.profile .more-info,
+.news .date {
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
@@ -723,7 +765,9 @@ code, pre, kbd, samp, tt,
       font-size: 0.95rem;
       line-height: 0;
       opacity: 0.85;
-      transition: opacity 0.15s ease, color 0.15s ease;
+      transition:
+        opacity 0.15s ease,
+        color 0.15s ease;
 
       &:hover {
         color: var(--global-text-color);
@@ -759,7 +803,9 @@ code, pre, kbd, samp, tt,
 
 /* About page no longer needs the global fixed-bottom padding hack
    since we override the include to render nothing for layout: about. */
-body { padding-bottom: 0; }
+body {
+  padding-bottom: 0;
+}
 
 /* ============================================================================
  * Editorial styling for OTHER pages (publications, projects, repositories, cv)
@@ -1050,7 +1096,9 @@ body { padding-bottom: 0; }
     border: 1px solid var(--global-divider-color) !important;
     border-radius: 6px;
     box-shadow: none;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease;
 
     &:hover {
       transform: translateY(-2px);
@@ -1228,4 +1276,3 @@ body { padding-bottom: 0; }
     max-width: 78%;
   }
 }
-

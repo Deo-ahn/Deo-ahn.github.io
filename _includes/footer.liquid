@@ -8,7 +8,9 @@
   <footer class="ed-page-footer" role="contentinfo">
     <div class="container">
       <span class="ed-page-footer-text">
-        © {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.last_name }}
+        © {{ site.time | date: '%Y' }}
+        {{ site.first_name }}
+        {{ site.last_name }}
         {%- if site.last_updated %} · Last updated {{ site.time | date: '%b %Y' }}{% endif -%}
       </span>
     </div>

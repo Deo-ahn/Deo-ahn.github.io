@@ -1,14 +1,11 @@
 name: Render a CV
 on:
-  push:
-    branches:
-      - main
-      - master
-    paths:
-      - "_data/cv.yml"
-      - "assets/rendercv/design.yaml"
-      - "assets/rendercv/locale.yaml"
-      - "assets/rendercv/settings.yaml"
+  # Push trigger intentionally disabled. al-folio's _data/cv.yml uses fields
+  # (cv.label, cv.image, cv.summary, awards' "awarder", end_date: Present) that
+  # the unpinned latest rendercv rejects, so auto-render fails on every push.
+  # This is an upstream al-folio incompatibility, not a content problem; the
+  # downloadable CV is maintained at assets/pdf/cv.pdf. Run manually from the
+  # Actions tab (workflow_dispatch) if rendercv compatibility is restored.
   workflow_call:
   workflow_dispatch:
 permissions:

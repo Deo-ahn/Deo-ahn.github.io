@@ -1,14 +1,17 @@
 ---
 layout: default
 ---
-
 <div class="editorial-about">
   <section class="ed-hero">
     <div class="ed-eyebrow">About</div>
     <h1 class="ed-hero-title">
-      {{ site.first_name }} <em>{{ site.last_name }}</em>
+      {{ site.first_name }}
+      <em>{{ site.last_name }}</em>
       {% if site.first_name_ko or site.last_name_ko %}
-        <span class="ed-name-ko">{{ site.first_name_ko }}{{ site.last_name_ko }}</span>
+        <span class="ed-name-ko">
+          {{- site.first_name_ko -}}
+          {{- site.last_name_ko -}}
+        </span>
       {% else %}
         <span class="ed-name-ko">안덕현</span>
       {% endif %}
@@ -25,12 +28,12 @@ layout: default
         {% capture sizes %}(min-width: 1024px) 180px, (min-width: 576px) 30vw, 60vw{% endcapture %}
         {%
           include figure.liquid
-            loading="eager"
-            path=profile_image_path
-            class="ed-profile-img"
-            sizes=sizes
-            alt=page.profile.image
-            cache_bust=true
+          loading="eager"
+          path=profile_image_path
+          class="ed-profile-img"
+          sizes=sizes
+          alt=page.profile.image
+          cache_bust=true
         %}
       {% endif %}
       {% if page.profile.more_info %}
@@ -46,9 +49,7 @@ layout: default
     <section class="ed-section ed-section-news">
       <header class="ed-section-head">
         <span class="ed-num">01</span>
-        <a href="{{ '/news/' | relative_url }}" class="ed-section-title">
-          News <span class="ed-arrow">→</span>
-        </a>
+        <a href="{{ '/news/' | relative_url }}" class="ed-section-title"> News <span class="ed-arrow">→</span> </a>
       </header>
       <div class="ed-news-list">
         {% assign news = site.news | reverse %}
@@ -73,9 +74,7 @@ layout: default
     <section class="ed-section ed-section-pubs">
       <header class="ed-section-head">
         <span class="ed-num">02</span>
-        <a href="{{ '/publications/' | relative_url }}" class="ed-section-title">
-          Selected publications <span class="ed-arrow">→</span>
-        </a>
+        <a href="{{ '/publications/' | relative_url }}" class="ed-section-title"> Selected publications <span class="ed-arrow">→</span> </a>
       </header>
       <div class="ed-pubs-wrap">
         {% bibliography --group_by none --query @*[selected=true]* %}
@@ -85,7 +84,9 @@ layout: default
 
   <footer class="ed-footer">
     <div class="ed-copyright">
-      © {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.last_name }}
+      © {{ site.time | date: '%Y' }}
+      {{ site.first_name }}
+      {{ site.last_name }}
       {%- if site.last_updated %} · Last updated {{ site.time | date: '%b %Y' }}{% endif -%}
     </div>
     {% if page.social %}
