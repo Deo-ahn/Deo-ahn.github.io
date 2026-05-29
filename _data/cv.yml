@@ -96,61 +96,77 @@ cv:
     Publications:
       - title: "Look Closer: Action-Guided Dense Visual Dynamics for Proficiency Estimation"
         authors:
-          - Deokhyun Ahn
-          - Hyukjin Kim
-          - Jae-Ho Han
-          - Bumsub Ham
-          - Heeseung Choi
-          - Ig-Jae Kim
-          - Haksub Kim
+          - Ahn Deokhyun
+          - Kim Hyukjin
+          - Han Jae-Ho
+          - Ham Bumsub
+          - Choi Heeseung
+          - Kim Ig-Jae
+          - Kim Haksub
         publisher: CVPR 2026 Workshop on Multimodal Human Motion Analysis (Accepted — Pitch & Poster)
         releaseDate: 2026
 
       - title: Learning Robust Representations for Few-Shot Action Recognition with Frame-Level Ambiguities
         authors:
-          - Deokhyun Ahn
-          - Yongjin Jo
-          - Ui-Seok Lee
-          - Haesol Park
-          - Jae-Ho Han
-          - Haksub Kim
+          - Ahn Deokhyun
+          - Jo Yongjin
+          - Lee Ui-Seok
+          - Park Haesol
+          - Han Jae-Ho
+          - Kim Haksub
         publisher: BMVC 2026 (Under Review)
         releaseDate: 2026
 
       - title: "BUSTER: Adaptive Sampling for VLM-Guided Unsupervised Video Anomaly Detection"
         authors:
-          - Deokhyun Ahn
-          - Yonghun Choi
-          - Jae-Ho Han
-          - Ig-Jae Kim
-          - Haksub Kim
+          - Ahn Deokhyun
+          - Choi Yonghun
+          - Han Jae-Ho
+          - Kim Ig-Jae
+          - Kim Haksub
         publisher: BMVC 2026 (Under Review)
         releaseDate: 2026
 
       - title: Where and What — Contextual Dynamics-Aware Anomaly Detection in Surveillance Videos
         authors:
-          - Deokhyun Ahn
+          - Ahn Deokhyun
+          - Jo Yongjin
+          - Kim Doyeon
+          - Nam Gi Pyo
+          - Han Jae-Ho
+          - Kim Haksub
         publisher: IEEE Transactions on Image Processing
         releaseDate: 2025
         summary: IF 13.7 · top 2.2% in Electrical & Electronic Engineering.
 
       - title: "A Foundational Research Framework for Real-World Abandoned Object Detection: Train-Free Baseline and a Standardized Benchmark"
         authors:
-          - Doyeon Kim
-          - Deokhyun Ahn
+          - Kim Doyeon
+          - Ahn Deokhyun
+          - Jo Yongjin
+          - Park Haesol
+          - Lee S.
+          - Kim Haksub
         publisher: Expert Systems with Applications
         releaseDate: 2025
 
       - title: A Passive Tracking System Based on Geometric Constraints in Adaptive Wireless Sensor Networks
         authors:
-          - Bing Zhou
-          - Deokhyun Ahn
+          - Zhou Biao
+          - Ahn Deokhyun
+          - Lee J.
+          - Sun C.
+          - Ahmed S.
+          - Kim Youngok
         publisher: Sensors, 18(10), 3276
         releaseDate: 2018
 
       - title: 2D Indoor Map Building Scheme Using Ultrasonic Module
         authors:
-          - Deokhyun Ahn
+          - Ahn Deokhyun
+          - Kim N. M.
+          - Park J. H.
+          - Kim Youngok
         publisher: J. Korean Inst. Comm. and Info. Sci., 41(8), 986–994
         releaseDate: 2016
 
