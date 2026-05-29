@@ -1204,3 +1204,28 @@ body { padding-bottom: 0; }
   }
 }
 
+/* ============================================================================
+ * CV date/location column — al_folio_cv ships .location with
+ * white-space: nowrap, which lets long strings like "Seoul, Republic of
+ * Korea" overflow the narrow Bootstrap col-md-2 into the content column.
+ * Allow wrap and widen the date column on md+ screens.
+ * ========================================================================= */
+
+.cv.cv .date-column .location {
+  white-space: normal;
+  word-break: keep-all;
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .cv.cv .row > .date-column {
+    flex: 0 0 22%;
+    max-width: 22%;
+    padding-right: 0.75rem;
+  }
+  .cv.cv .row > .date-column + [class*="col-"] {
+    flex: 0 0 78%;
+    max-width: 78%;
+  }
+}
+
