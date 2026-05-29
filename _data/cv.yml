@@ -94,15 +94,36 @@ cv:
         summary: For a combat-development proposal on reconnaissance drone AI improvement and AI/big-data-based acoustic detection.
 
     Publications:
+      - title: "Look Closer: Action-Guided Dense Visual Dynamics for Proficiency Estimation"
+        authors:
+          - Deokhyun Ahn
+          - Hyukjin Kim
+          - Jae-Ho Han
+          - Bumsub Ham
+          - Heeseung Choi
+          - Ig-Jae Kim
+          - Haksub Kim
+        publisher: CVPR 2026 Workshop on Multimodal Human Motion Analysis (Accepted — Pitch & Poster)
+        releaseDate: 2026
+
       - title: Learning Robust Representations for Few-Shot Action Recognition with Frame-Level Ambiguities
         authors:
           - Deokhyun Ahn
+          - Yongjin Jo
+          - Ui-Seok Lee
+          - Haesol Park
+          - Jae-Ho Han
+          - Haksub Kim
         publisher: BMVC 2026 (Under Review)
         releaseDate: 2026
 
       - title: "BUSTER: Adaptive Sampling for VLM-Guided Unsupervised Video Anomaly Detection"
         authors:
           - Deokhyun Ahn
+          - Yonghun Choi
+          - Jae-Ho Han
+          - Ig-Jae Kim
+          - Haksub Kim
         publisher: BMVC 2026 (Under Review)
         releaseDate: 2026
 
