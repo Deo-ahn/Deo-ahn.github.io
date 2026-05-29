@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Deokhyun Ahn — CV</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #faf9f6;
+    --paper: #ffffff;
+    --ink: #14130f;
+    --muted: #6b6a64;
+    --hair: #e4e2db;
+    --hair-strong: #c9c6bd;
+    --accent: #2a4a7f;
+    --serif: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+    --sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .stage {
+    min-height: 100vh;
+    padding: 56px 24px 96px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 860px;
+    background: var(--paper);
+    border: 1px solid var(--hair);
+    border-radius: 2px;
+    padding: 72px 80px 80px;
+    box-shadow:
+      0 1px 0 rgba(0,0,0,0.02),
+      0 24px 60px -28px rgba(20,19,15,0.18),
+      0 8px 24px -16px rgba(20,19,15,0.10);
+    position: relative;
+  }
+
+  /* ───────── Header ───────── */
+  header.masthead {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--hair-strong);
+    margin-bottom: 36px;
+  }
+  .name {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+    font-variation-settings: "opsz" 60;
+  }
+  .name em {
+    font-style: italic;
+    font-weight: 300;
+    color: inherit;
+  }
+  .role {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+  .role .dot {
+    display: inline-block;
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--hair-strong);
+    margin: 0 8px;
+    vertical-align: middle;
+    transform: translateY(-2px);
+  }
+  .contact {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: var(--muted);
+    text-align: right;
+    letter-spacing: 0.01em;
+  }
+  .contact a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--hair-strong);
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .contact a:hover { color: var(--accent); border-color: var(--accent); }
+  .role .social {
+    display: inline-flex;
+    gap: 6px;
+    margin-left: 10px;
+    vertical-align: middle;
+    transform: translateY(-1px);
+  }
+  .role .social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--hair-strong);
+    border-radius: 2px;
+    color: var(--muted);
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .role .social a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
+  }
+
+  .contact .label {
+    color: var(--muted);
+    text-transform: uppercase;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    margin-right: 6px;
+  }
+  .contact .social {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 6px;
+  }
+  .contact .social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border: 1px solid var(--hair-strong);
+    border-radius: 2px;
+    color: var(--ink);
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .contact .social a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
+  }
+
+  /* ───────── Sections ───────── */
+  section.block {
+    margin-bottom: 36px;
+  }
+  section.block:last-child { margin-bottom: 0; }
+
+  h2.section-title {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--hair);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  h2.section-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: transparent;
+  }
+  h2.section-title .num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+
+  /* Research interests intro */
+  .interest-line {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 0 0 14px;
+    letter-spacing: -0.005em;
+  }
+  .interest-body {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #2a2924;
+    margin: 0;
+    max-width: 64ch;
+    text-wrap: pretty;
+  }
+
+  .keywords {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 6px;
+  }
+  .keywords li {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border: 1px solid var(--hair-strong);
+    padding: 4px 10px;
+    border-radius: 2px;
+    background: var(--paper);
+  }
+  .keywords li::before {
+    content: "•";
+    color: var(--accent);
+    margin-right: 6px;
+    font-size: 12px;
+    line-height: 1;
+    vertical-align: middle;
+  }
+
+  /* Two-column row layout */
+  .row {
+    display: grid;
+    grid-template-columns: 152px 1fr;
+    gap: 28px;
+    padding: 14px 0;
+    border-top: 1px dashed var(--hair);
+  }
+  .row:first-of-type { border-top: none; padding-top: 4px; }
+
+  .date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-top: 3px;
+    letter-spacing: 0.01em;
+  }
+  .date strong {
+    display: block;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 1px;
+  }
+
+  .row-body h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 17px;
+    margin: 0 0 2px;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .row-body .org {
+    font-size: 13.5px;
+    color: var(--ink);
+    margin: 0 0 2px;
+  }
+  .row-body .meta {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0 0 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+  }
+  .row-body .meta .pipe { color: var(--hair-strong); }
+  .row-body ul {
+    margin: 6px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .row-body li {
+    font-size: 13px;
+    line-height: 1.55;
+    color: #34322c;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 3px;
+  }
+  .row-body li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 9px;
+    width: 5px; height: 1px;
+    background: var(--hair-strong);
+  }
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    border: 1px solid var(--hair-strong);
+    padding: 1px 6px;
+    border-radius: 2px;
+    margin-left: 6px;
+    vertical-align: middle;
+    transform: translateY(-1px);
+  }
+  .tag.accent { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 30%, var(--hair-strong)); }
+
+  /* Publications */
+  .pubs { list-style: none; padding: 0; margin: 0; counter-reset: pub; }
+  .pubs li {
+    display: grid;
+    grid-template-columns: 32px 1fr auto;
+    gap: 16px;
+    padding: 12px 0;
+    border-top: 1px dashed var(--hair);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .pubs li:first-child { border-top: none; }
+  .pub-idx {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    padding-top: 2px;
+  }
+  .pub-body { color: #2a2924; }
+  .pub-body .authors { color: var(--ink); }
+  .pub-body .authors .me { font-weight: 600; }
+  .pub-body .title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink);
+    display: block;
+    margin: 2px 0;
+    line-height: 1.4;
+  }
+  .pub-body .venue {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .pub-body .venue strong { color: var(--ink); font-weight: 500; }
+  .pub-status {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    border: 1px solid var(--hair-strong);
+    padding: 2px 7px;
+    border-radius: 2px;
+    height: fit-content;
+    margin-top: 4px;
+    white-space: nowrap;
+  }
+  .pub-status.accent { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 30%, var(--hair-strong)); }
+  .pub-status.published { color: #2a6b3a; border-color: color-mix(in srgb, #2a6b3a 25%, var(--hair-strong)); }
+
+  /* Skills */
+  .skills {
+    display: grid;
+    grid-template-columns: 152px 1fr;
+    gap: 28px 28px;
+  }
+  .skills .skill-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    padding-top: 3px;
+    letter-spacing: 0.01em;
+  }
+  .skills .skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    border-top: 1px dashed var(--hair);
+    padding-top: 14px;
+  }
+  .skills > div:nth-child(-n+2) {
+    /* first row no border via .skill-items, handled below */
+  }
+  .skills .skill-label.first { border-top: none; padding-top: 4px; }
+  .skills .skill-items.first { border-top: none; padding-top: 4px; }
+  .chip {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ink);
+    border: 1px solid var(--hair-strong);
+    padding: 3px 9px;
+    border-radius: 2px;
+    background: var(--paper);
+  }
+
+  /* Awards */
+  .awards .row-body h3 { font-size: 15.5px; }
+  .awards .row-body .quote {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 13px;
+    margin: 4px 0 0;
+    padding-left: 10px;
+    border-left: 1px solid var(--hair);
+  }
+
+  /* Footer */
+  footer.foot {
+    margin-top: 48px;
+    padding-top: 18px;
+    border-top: 1px solid var(--hair);
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ───────── Print ───────── */
+  @media print {
+    @page { size: A4; margin: 14mm; }
+    html, body { background: white; font-size: 10.5pt; }
+    .stage { padding: 0; min-height: auto; }
+    .page {
+      max-width: none;
+      padding: 0;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+    }
+    .name { font-size: 38pt; }
+    .row { break-inside: avoid; }
+    .pubs li { break-inside: avoid; }
+  }
+
+  @media (max-width: 720px) {
+    .page { padding: 36px 24px; }
+    header.masthead { grid-template-columns: 1fr; }
+    .contact { text-align: left; }
+    .name { font-size: 40px; }
+    .row, .skills { grid-template-columns: 1fr; gap: 6px; }
+    .row { padding: 14px 0; }
+    .pubs li { grid-template-columns: 24px 1fr; }
+    .pub-status { grid-column: 2; justify-self: start; margin-top: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <article class="page" data-screen-label="CV">
+
+    <!-- ───────── Masthead ───────── -->
+    <header class="masthead">
+      <div>
+        <h1 class="name">Deokhyun <em>Ahn</em></h1>
+        <p class="role">
+          Ph.D. Candidate · Brain &amp; Cognitive Engineering
+        </p>
+        <p class="role" style="margin-top: 4px;">
+          Korea University
+          <span class="dot"></span>
+          KIST AI·Robotics
+          <span class="social">
+            <a href="https://www.linkedin.com/in/deokhyun-ahn/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+            <a href="https://scholar.google.com/citations?user=5VDH7PgAAAAJ&amp;hl=ko" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M12 2L1 9l4 2.6V19h2v-6.1l5 3.3 11-7.2L12 2zm0 14.5c-2.9 0-5.3 1.9-5.9 4.4-.1.6.4 1.1 1 1.1h9.8c.6 0 1.1-.5 1-1.1-.6-2.5-3-4.4-5.9-4.4z"/></svg>
+            </a>
+          </span>
+        </p>
+      </div>
+      <address class="contact">
+        <div><span class="label">Tel</span>+82 10 3733 3254</div>
+        <div><span class="label">Lab</span><a href="/cdn-cgi/l/email-protection#a0c4c8c1cee0cbc9d3d48ed2c58ecbd2"><span class="__cf_email__" data-cfemail="86e2eee7e8c6edeff5f2a8f4e3a8edf4">[email&#160;protected]</span></a></div>
+        <div><span class="label">Univ</span><a href="/cdn-cgi/l/email-protection#1f7b777e77715f74706d7a7e317e7c31746d"><span class="__cf_email__" data-cfemail="94f0fcf5fcfad4fffbe6f1f5baf5f7baffe6">[email&#160;protected]</span></a></div>
+        <div><span class="label">Loc</span>Seoul, Republic of Korea</div>
+        <div><span class="label">Loc</span>Seoul, Republic of Korea</div>
+      </address>
+    </header>
+
+    <!-- ───────── Research Interests ───────── -->
+    <section class="block">
+      <h2 class="section-title"><span class="num">01</span>Research Interests</h2>
+      <p class="interest-line">Video understanding, contextual dynamics, and efficient AI systems for social good.</p>
+      <p class="interest-body">
+        My research focuses on video understanding, contextual dynamics, and efficient AI systems for social good. Starting from sensing-based applications, including a SLAM-based smart helmet for firefighters and indoor drone trajectory tracking, I became interested in reliable real-world systems. I now study how video models can move beyond RGB and motion cues to capture contextual interactions, and recently I have focused on VLM-guided video anomaly detection for surveillance, with emphasis on target-domain transfer and efficient sampling.
+      </p>
+      <ul class="keywords" aria-label="Research keywords">
+        <li>Video Intelligence</li>
+        <li>Video Understanding</li>
+        <li>Video Anomaly Detection</li>
+        <li>Video Action Recognition</li>
+      </ul>
+    </section>
+
+    <!-- ───────── Education ───────── -->
+    <section class="block">
+      <h2 class="section-title"><span class="num">02</span>Education</h2>
+
+      <div class="row">
+        <div class="date"><strong>Mar 2023 — Present</strong>Seoul, KR</div>
+        <div class="row-body">
+          <h3>Ph.D., Brain &amp; Cognitive Engineering</h3>
+          <p class="org">Korea University</p>
+          <ul>
+            <li>Video anomaly detection with a focus on modeling human-inspired contextual understanding in video.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="date"><strong>Aug 2015 — Feb 2020</strong>Seoul, KR</div>
+        <div class="row-body">
+          <h3>M.Eng., Electronic Engineering</h3>
+          <p class="org">Kwangwoon University</p>
+          <ul>
+            <li>Thesis — <em>A Study on Passive Target Tracking in Three-Dimensional Indoor Environment by Using Deep Neural Network</em>.</li>
+            <li>Completed 19 months of mandatory military service.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="date"><strong>Mar 2013 — Aug 2015</strong>Seoul, KR</div>
+        <div class="row-body">
+          <h3>B.Eng., Electronic Engineering <span class="tag">Transfer</span></h3>
+          <p class="org">Kwangwoon University</p>
+          <ul>
+            <li>Transferred in Mar 2013 from National Institute for Lifelong Education, Ministry of Education — B.Eng. in Computer Engineering coursework, Mar 2011 – Feb 2013.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────── Work ───────── -->
+    <section class="block">
+      <h2 class="section-title"><span class="num">03</span>Research &amp; Work Experience</h2>
+
+      <div class="row">
+        <div class="date"><strong>Jan 2023 — Present</strong>Seoul, KR</div>
+        <div class="row-body">
+          <h3>Student Researcher <span class="tag accent">Current</span></h3>
+          <p class="org">Korea Institute of Science and Technology (KIST)</p>
+          <p class="meta">Video anomaly understanding · Surveillance video · DNN</p>
+          <ul>
+            <li>Modeled contextual dynamics by integrating RGB appearance, motion dynamics, and scene information — enabling the model to better capture anomaly concepts through their relationships. <span style="color:var(--muted)">[1] [2] [3] [4]</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="date"><strong>Jan 2022 — Feb 2023</strong>Seoul, KR</div>
+        <div class="row-body">
+          <h3>Research Intern</h3>
+          <p class="org">Korea Institute of Science and Technology (KIST)</p>
+          <p class="meta">Video anomaly understanding in surveillance videos &amp; DNN</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="date"><strong>Oct 2021 — Dec 2021</strong>Sejong, KR</div>
+        <div class="row-body">
+          <h3>Researcher</h3>
+          <p class="org">The Korea Transport Institute</p>
+          <p class="meta">Autonomous bus development · Project coordination</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────── Publications ───────── -->
+    <section class="block">
+      <h2 class="section-title"><span class="num">04</span>Selected Publications</h2>
+      <ol class="pubs">
+        <li>
+          <span class="pub-idx">[1]</span>
+          <div class="pub-body">
+            <span class="authors"><span class="me">D. Ahn</span>, et al.</span>
+            <span class="title">Learning Robust Representations for Few-Shot Action Recognition with Frame-Level Ambiguities.</span>
+            <span class="venue"><strong>BMVC 2026</strong></span>
+          </div>
+          <span class="pub-status accent">Under Review</span>
+        </li>
+        <li>
+          <span class="pub-idx">[2]</span>
+          <div class="pub-body">
+            <span class="authors"><span class="me">D. Ahn</span>, et al.</span>
+            <span class="title">BUSTER: Adaptive Sampling for VLM-Guided Unsupervised Video Anomaly Detection.</span>
+            <span class="venue"><strong>BMVC 2026</strong></span>
+          </div>
+          <span class="pub-status accent">Under Review</span>
+        </li>
+        <li>
+          <span class="pub-idx">[3]</span>
+          <div class="pub-body">
+            <span class="authors"><span class="me">D. Ahn</span>, et al.</span>
+            <span class="title">Where and What: Contextual Dynamics-Aware Anomaly Detection in Surveillance Videos.</span>
+            <span class="venue"><strong>IEEE Transactions on Image Processing</strong>, 2025 · IF 13.7 · top 2.2% in E.E. Eng.</span>
+          </div>
+          <span class="pub-status published">Published</span>
+        </li>
+        <li>
+          <span class="pub-idx">[4]</span>
+          <div class="pub-body">
+            <span class="authors">D. Kim, <span class="me">D. Ahn</span>, et al.</span>
+            <span class="title">A Foundational Research Framework for Real-World Abandoned Object Detection: Train-Free Baseline and a Standardized Benchmark.</span>
+            <span class="venue"><strong>Expert Systems with Applications</strong>, 2025 · 130658</span>
+          </div>
+          <span class="pub-status published">Published</span>
+        </li>
+        <li>
+          <span class="pub-idx">[5]</span>
+          <div class="pub-body">
+            <span class="authors">B. Zhou, <span class="me">D. Ahn</span>, et al.</span>
+            <span class="title">A Passive Tracking System Based on Geometric Constraints in Adaptive Wireless Sensor Networks.</span>
+            <span class="venue"><strong>Sensors</strong>, 18(10), 3276, 2018</span>
+          </div>
+          <span class="pub-status published">Published</span>
+        </li>
+        <li>
+          <span class="pub-idx">[6]</span>
+          <div class="pub-body">
+            <span class="authors"><span class="me">D. Ahn</span>, et al.</span>
+            <span class="title">2D Indoor Map Building Scheme Using Ultrasonic Module.</span>
+            <span class="venue"><strong>J. Korean Inst. Comm. and Info. Sci.</strong>, 41(8), 986–994, 2016</span>
+          </div>
+          <span class="pub-status published">Published</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ───────── Awards ───────── -->
+    <section class="block awards">
+      <h2 class="section-title"><span class="num">05</span>Awards &amp; Honors</h2>
+
+      <div class="row">
+        <div class="date"><strong>Dec 2025</strong></div>
+        <div class="row-body">
+          <h3>AIR Outstanding Research Award</h3>
+          <p class="org">KIST AI·Robotics Institute</p>
+          <p class="quote">In recognition of outstanding research achievements during 2025.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="date"><strong>Feb 2025</strong></div>
+        <div class="row-body">
+          <h3>Excellent Paper Award — Graduate School</h3>
+          <p class="org">Korea University</p>
+          <p class="quote">For outstanding research performance and publication of an excellent paper during doctoral studies.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="date"><strong>Nov 2024</strong></div>
+        <div class="row-body">
+          <h3>Outstanding Oral Presentation Award</h3>
+          <p class="org">KIST Academia-Research Convergence Conference</p>
+          <p class="quote">For the presentation “Multi-Aspect Contextual Dynamics for Anomaly Detection in Surveillance Videos.”</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="date"><strong>Jul 2021</strong></div>
+        <div class="row-body">
+          <h3>Division Commander's Commendation</h3>
+          <p class="org">Capital Mechanized Infantry Division</p>
+          <p class="quote">For a combat development proposal on reconnaissance drone AI improvement and AI/big-data-based acoustic detection.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────── Teaching ───────── -->
+    <section class="block">
+      <h2 class="section-title"><span class="num">06</span>Teaching</h2>
+
+      <div class="row">
+        <div class="date"><strong>Sep — Dec 2018</strong></div>
+        <div class="row-body">
+          <h3>Senior Capstone Project</h3>
+          <p class="org">Kwangwoon University · Instructor: Prof. Youngok Kim</p>
+          <ul>
+            <li>Assisted in managing and supporting the Capstone Design Project as a TA for 50+ students.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="date"><strong>Mar — Jun 2017</strong></div>
+        <div class="row-body">
+          <h3>Computer Architecture</h3>
+          <p class="org">Kwangwoon University · Instructor: Prof. Youngok Kim</p>
+          <ul>
+            <li>Graded assignments and provided feedback for 30+ students with Q&amp;A sessions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────── Skills ───────── -->
+    <section class="block">
+      <h2 class="section-title"><span class="num">07</span>Technical Skills</h2>
+      <div class="skills">
+        <div class="skill-label first">Programming</div>
+        <div class="skill-items first">
+          <span class="chip">Python</span>
+          <span class="chip">C</span>
+          <span class="chip">Java</span>
+          <span class="chip">Git</span>
+          <span class="chip">Linux</span>
+        </div>
+
+        <div class="skill-label">Machine Learning</div>
+        <div class="skill-items">
+          <span class="chip">PyTorch</span>
+          <span class="chip">TensorFlow</span>
+          <span class="chip">Keras</span>
+          <span class="chip">NumPy</span>
+          <span class="chip">Pandas</span>
+          <span class="chip">Matplotlib</span>
+        </div>
+
+        <div class="skill-label">Sensors</div>
+        <div class="skill-items">
+          <span class="chip">Ultrasonic</span>
+          <span class="chip">Beacon</span>
+          <span class="chip">RF</span>
+          <span class="chip">Wi-Fi</span>
+          <span class="chip">3-axis Accelerometer</span>
+        </div>
+
+        <div class="skill-label">Embedded &amp; IoT</div>
+        <div class="skill-items">
+          <span class="chip">Raspberry Pi</span>
+          <span class="chip">Arduino</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span>Deokhyun Ahn · Curriculum Vitae</span>
+      <span>Updated May 2026</span>
+    </footer>
+
+  </article>
+</div>
+
+<!-- ───────────────────────────────────────────────── Tweaks ───────────────────────────────────────────────── -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<div id="tweaks-root"></div>
+
+<script type="text/babel">
+  const CV_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "palette": "warm",
+    "accent": "#2a4a7f",
+    "serif": "Newsreader",
+    "showNumbers": true,
+    "density": "comfortable"
+  }/*EDITMODE-END*/;
+
+  const PALETTES = {
+    warm:    { bg: '#faf9f6', paper: '#ffffff', ink: '#14130f', muted: '#6b6a64', hair: '#e4e2db', hairStrong: '#c9c6bd' },
+    cool:    { bg: '#f6f7fa', paper: '#ffffff', ink: '#0f131a', muted: '#5d6675', hair: '#dfe3eb', hairStrong: '#c2c8d3' },
+    mono:    { bg: '#f5f5f5', paper: '#ffffff', ink: '#0a0a0a', muted: '#666666', hair: '#e5e5e5', hairStrong: '#c9c9c9' },
+    cream:   { bg: '#f3ede0', paper: '#fdfbf4', ink: '#1f1a10', muted: '#7a6f54', hair: '#e2d8c2', hairStrong: '#c8bb9d' },
+    midnight:{ bg: '#13151a', paper: '#1c1f26', ink: '#ecedf0', muted: '#8a8f9b', hair: '#2a2e37', hairStrong: '#3b414d' },
+  };
+
+  const ACCENTS = ['#2a4a7f', '#9a3324', '#2f6b3a', '#7a5400', '#000000'];
+  const SERIFS = ['Newsreader', 'Source Serif 4', 'Cormorant Garamond', 'EB Garamond'];
+
+  function App() {
+    const [t, setTweak] = window.useTweaks(CV_DEFAULTS);
+
+    React.useEffect(() => {
+      const p = PALETTES[t.palette] || PALETTES.warm;
+      const r = document.documentElement.style;
+      r.setProperty('--bg', p.bg);
+      r.setProperty('--paper', p.paper);
+      r.setProperty('--ink', p.ink);
+      r.setProperty('--muted', p.muted);
+      r.setProperty('--hair', p.hair);
+      r.setProperty('--hair-strong', p.hairStrong);
+      r.setProperty('--accent', t.accent);
+      r.setProperty('--serif', `'${t.serif}', Georgia, serif`);
+    }, [t.palette, t.accent, t.serif]);
+
+    React.useEffect(() => {
+      document.querySelectorAll('.section-title .num').forEach(n => {
+        n.style.display = t.showNumbers ? '' : 'none';
+      });
+    }, [t.showNumbers]);
+
+    React.useEffect(() => {
+      const root = document.documentElement.style;
+      if (t.density === 'compact') {
+        root.setProperty('--row-pad', '10px');
+      } else {
+        root.setProperty('--row-pad', '14px');
+      }
+      document.querySelectorAll('.row').forEach(el => {
+        el.style.paddingTop = t.density === 'compact' ? '10px' : '14px';
+        el.style.paddingBottom = t.density === 'compact' ? '10px' : '14px';
+      });
+    }, [t.density]);
+
+    // Load font dynamically if needed
+    React.useEffect(() => {
+      const id = 'tweak-serif-font';
+      let link = document.getElementById(id);
+      if (!link) {
+        link = document.createElement('link');
+        link.id = id;
+        link.rel = 'stylesheet';
+        document.head.appendChild(link);
+      }
+      const family = t.serif.replace(/ /g, '+');
+      link.href = `https://fonts.googleapis.com/css2?family=${family}:ital,wght@0,300..700;1,300..600&display=swap`;
+    }, [t.serif]);
+
+    const { TweaksPanel, TweakSection, TweakRadio, TweakSelect, TweakColor, TweakToggle } = window;
+
+    return (
+      <TweaksPanel title="Tweaks">
+        <TweakSection title="Palette">
+          <TweakRadio value={t.palette} onChange={v => setTweak('palette', v)}
+            options={[
+              { value: 'warm', label: 'Warm' },
+              { value: 'cool', label: 'Cool' },
+              { value: 'mono', label: 'Mono' },
+            ]} />
+          <TweakSelect label="More palettes" value={t.palette} onChange={v => setTweak('palette', v)}
+            options={[
+              { value: 'warm', label: 'Warm paper' },
+              { value: 'cool', label: 'Cool gray' },
+              { value: 'mono', label: 'Pure mono' },
+              { value: 'cream', label: 'Cream / vintage' },
+              { value: 'midnight', label: 'Midnight (dark)' },
+            ]} />
+        </TweakSection>
+
+        <TweakSection title="Accent">
+          <TweakColor value={t.accent} onChange={v => setTweak('accent', v)} options={ACCENTS} />
+        </TweakSection>
+
+        <TweakSection title="Display serif">
+          <TweakSelect value={t.serif} onChange={v => setTweak('serif', v)}
+            options={SERIFS.map(s => ({ value: s, label: s }))} />
+        </TweakSection>
+
+        <TweakSection title="Layout">
+          <TweakToggle label="Show section numbers" value={t.showNumbers} onChange={v => setTweak('showNumbers', v)} />
+          <TweakRadio label="Density" value={t.density} onChange={v => setTweak('density', v)}
+            options={[
+              { value: 'comfortable', label: 'Comfortable' },
+              { value: 'compact', label: 'Compact' },
+            ]} />
+        </TweakSection>
+
+        <TweakSection title="Export">
+          <button onClick={() => window.print()}
+            style={{
+              width: '100%',
+              padding: '8px 12px',
+              fontFamily: 'Geist Mono, monospace',
+              fontSize: 11,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              background: 'transparent',
+              border: '1px solid currentColor',
+              borderRadius: 2,
+              color: 'inherit',
+              cursor: 'pointer',
+            }}>Print / Save as PDF</button>
+        </TweakSection>
+      </TweaksPanel>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<App />);
+</script>
+
+</body>
+</html>
