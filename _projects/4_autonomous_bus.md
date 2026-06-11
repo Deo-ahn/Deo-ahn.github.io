@@ -2,7 +2,7 @@
 layout: page
 title: Autonomous Bus Development
 description: Project coordination at The Korea Transport Institute (KOTI)
-img: assets/img/4.jpg
+img: assets/img/proj_bus.png
 importance: 7
 category: work
 ---

@@ -2,7 +2,7 @@
 layout: page
 title: Video Anomaly Detection
 description: VLM-guided unsupervised VAD with contextual dynamics — KIST AI·Robotics
-img: assets/img/1.jpg
+img: assets/img/proj_vad.png
 importance: 1
 category: work
 related_publications: true
