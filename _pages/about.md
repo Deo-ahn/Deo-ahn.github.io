@@ -40,3 +40,10 @@ Starting from sensing-based applications — including a SLAM-based smart helmet
     <span>Video Action Recognition</span>
   </div>
 </div>
+
+<div class="ed-now">
+  <div class="ed-now-label"><span class="ed-now-dot"></span>Currently researching</div>
+  <div class="ed-now-body">
+    Why <strong>vision–language models (VLMs) hallucinate</strong> in video anomaly <em>understanding</em> — why they produce weak, unfaithful explanations of anomalous events — and how to make those explanations reliable. A paper is in progress, targeted for submission to an upcoming AI conference.
+  </div>
+</div>

@@ -3,7 +3,7 @@ layout: page
 title: Indoor Tracking with Sensor Networks
 description: Passive target tracking in 3D indoor environments using DNNs and wireless sensors — M.Eng. thesis
 img: assets/img/2.jpg
-importance: 2
+importance: 5
 category: work
 related_publications: true
 ---

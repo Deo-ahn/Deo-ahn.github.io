@@ -3,7 +3,7 @@ layout: page
 title: SLAM-Based Smart Helmet for Firefighters
 description: Reliable real-world sensing system for emergency responders
 img: assets/img/3.jpg
-importance: 3
+importance: 6
 category: work
 ---
 

@@ -478,6 +478,56 @@ tt,
     }
   }
 
+  /* ---- "currently researching" callout (above the News section) ---- */
+  .ed-now {
+    margin-top: 1.4rem;
+    margin-bottom: 0.2rem;
+    padding: 0.85rem 1.05rem;
+    border: 1px solid var(--global-divider-color);
+    border-left: 3px solid var(--global-theme-color);
+    border-radius: 6px;
+    background: var(--global-card-bg-color);
+  }
+
+  .ed-now-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--global-theme-color);
+    margin-bottom: 0.55rem;
+  }
+
+  .ed-now-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--global-theme-color);
+    --ed-now-rgb: 154, 79, 46; // matches $ed-accent (#9a4f2e)
+    animation: ed-now-pulse 2s infinite;
+  }
+
+  @keyframes ed-now-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(var(--ed-now-rgb), 0.5);
+    }
+    70% {
+      box-shadow: 0 0 0 0.4rem rgba(var(--ed-now-rgb), 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(var(--ed-now-rgb), 0);
+    }
+  }
+
+  .ed-now-body {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--global-text-color);
+  }
+
   /* ---- section header (eyebrow number + serif title + arrow) ---- */
   .ed-section {
     padding-top: 1rem;
