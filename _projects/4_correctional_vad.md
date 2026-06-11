@@ -2,7 +2,7 @@
 layout: page
 title: Anomaly Detection in Correctional Facilities
 description: New initiative on detecting inmate anomalous behavior in custodial environments
-img: assets/img/7.jpg
+img: assets/img/proj_correctional.png
 importance: 4
 category: work
 ---

@@ -75,14 +75,14 @@ cv:
     Research Grants & Projects:
       - company: Real-Time Intelligent Surveillance for Public Safety
         position: National R&D · context-aware video anomaly detection
-        location: "~₩32B · 5-year program"
+        location: "~$24M · 5-year program"
         summary: MSIT & MOTIE · with Yonsei University and the Korean National Police Agency
         highlights:
           - Analyzes ~1,000 cameras from city-scale CCTV control centers for crime-related anomalies; field-validated in Anyang City, Korea.
 
       - company: Mobile Platform for Active Safety Services
         position: Government R&D · mobile-platform safety solution
-        location: "~₩12.8B · 5-year program"
+        location: "~$9.5M · 5-year program"
         summary: Korean National Police Agency & MOTIE
 
       - company: Anomaly Detection in Correctional Facilities
