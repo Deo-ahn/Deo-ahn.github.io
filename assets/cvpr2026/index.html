@@ -344,11 +344,12 @@ html.light .lite .drawer{background:rgba(251,248,241,.96)}
     <span class="ftl">filter</span>
     <label class="fopt"><input type="checkbox" data-f="2"/>📢 oral</label>
     <label class="fopt"><input type="checkbox" data-f="1"/>🔥 highlight</label>
-    <label class="fopt tba" title="winners are announced at the conference"><input type="checkbox" disabled/>🏆 award · TBA</label>
+    <label class="fopt"><input type="checkbox" data-f="3"/>🏆 award</label>
   </div>
   <div class="modesw" id="modesw">
     <span class="mso on" data-m="0">Constellation</span>
     <span class="mso" data-m="1">CVPR Topics</span>
+    <span class="mso" data-m="3">Findings</span>
     <span class="mso" data-m="2">Workshops</span>
   </div>
   <div class="lt" id="lt">Star Systems · click to enter</div>
@@ -464,7 +465,9 @@ const gfull=i=>MODE===0?COMM.names[i]:TOPICS[i].full;
 const color=i=>i>=0
   ?(MODE===0?PAL[LIGHT?"light":"dark"][i%6]:(LIGHT?TOPICS[i].colorL:TOPICS[i].color))
   :(LIGHT?"#8a8a92":"#566");
-const CVF=s=>`https://openaccess.thecvf.com/content/CVPR2026/html/${s}_CVPR_2026_paper.html`;
+const CVF=s=>DS===1
+  ?`https://openaccess.thecvf.com/content/CVPR2026F/html/${s}_CVPRF_2026_paper.html`
+  :`https://openaccess.thecvf.com/content/CVPR2026/html/${s}_CVPR_2026_paper.html`;
 
 const svg=d3.select("#graph"), root=svg.select(".zoomroot"), starG=svg.select(".stars");
 let W=innerWidth,H=innerHeight;
@@ -579,21 +582,22 @@ sim.on("tick",()=>{
 const zoom=d3.zoom().scaleExtent([.3,5]).on("zoom",e=>root.attr("transform",e.transform));
 svg.call(zoom).on("dblclick.zoom",null);
 
-/* ---------- papers (lazy) ---------- */
-let PAPERS=null;
-fetch("papers.json").then(r=>r.json()).then(p=>{PAPERS=p;}).catch(()=>{PAPERS=[];});
+/* ---------- papers (lazy) + datasets ---------- */
+let PAPERS=null, FINDINGS=null, DS=0;          /* DS: 0 = main conference, 1 = findings */
+fetch("papers.json?v=3").then(r=>r.json()).then(p=>{PAPERS=p;}).catch(()=>{PAPERS=[];});
+const SRC=()=>DS===1?(FINDINGS||[]):(PAPERS||[]);
 
-/* ---------- presentation-type filter (📢 oral / 🔥 highlight) ---------- */
+/* ---------- presentation-type filter (📢 oral / 🔥 highlight / 🏆 award) ---------- */
 let FILTER=new Set(), fcnt=null, fw=null, fLabelMin=0;
-const passes=p=>!FILTER.size||FILTER.has(p[5]||0);
-const PP=()=>(PAPERS||[]).filter(passes);
+/* award papers are also orals — oral filter includes them */
+const passes=p=>{const f=p[5]||0;
+  return !FILTER.size||FILTER.has(f)||(f===3&&FILTER.has(2));};
+const PP=()=>SRC().filter(passes);
 const linkKey=l=>{const a=nodeIndex.get(l.source.id??l.source),b=nodeIndex.get(l.target.id??l.target);
   return Math.min(a,b)*1000+Math.max(a,b);};
-function applyFilter(){
-  if(typeof WS_ON!=="undefined"&&WS_ON)switchMode(MODE);
-  FILTER=new Set([...document.querySelectorAll("#pfilter input:checked")].map(c=>+c.dataset.f));
-  clearFocus();
-  if(!FILTER.size||!PAPERS||!PAPERS.length){
+/* re-weigh node sizes, link widths and the readout from the current dataset+filter */
+function recount(){
+  if(DS===0&&!FILTER.size||!SRC().length&&DS===0){
     fcnt=null;fw=null;
     node.transition().duration(500).attr("r",d=>rScale(d.count)).style("opacity",1);
     label.style("opacity",d=>d.count>=LABEL_MIN?.92:0);
@@ -617,9 +621,31 @@ function applyFilter(){
   link.attr("stroke-width",l=>{const w2=fw.get(linkKey(l));return w2?Math.max(.4,lW(Math.min(w2,cExt[1]))):.3;})
       .style("stroke-opacity",l=>fw.get(linkKey(l))?null:.015);
   document.getElementById("r-papers").textContent=ps.length.toLocaleString();
-  document.getElementById("match").textContent=ps.length.toLocaleString()+" papers in filter";
+  document.getElementById("match").textContent=ps.length.toLocaleString()+(FILTER.size?" papers in filter":" findings papers");
+}
+function applyFilter(){
+  if(typeof WS_ON!=="undefined"&&WS_ON)switchMode(DS?3:MODE);
+  FILTER=new Set([...document.querySelectorAll("#pfilter input:checked")].map(c=>+c.dataset.f));
+  clearFocus();
+  recount();
 }
 document.querySelectorAll("#pfilter input:not(:disabled)").forEach(cb=>cb.onchange=applyFilter);
+/* dataset switch: main conference ⇄ findings (same keyword sky, re-weighted) */
+function setDataset(ds){
+  DS=ds;clearFocus();
+  document.getElementById("pfilter").style.display=ds?"none":"";
+  if(ds&&FILTER.size){
+    document.querySelectorAll("#pfilter input").forEach(c=>c.checked=false);FILTER=new Set();}
+  if(ds===1&&FINDINGS===null){
+    fetch("findings.json?v=1").then(r=>r.json())
+      .then(f=>{FINDINGS=f;if(DS===1)recount();})
+      .catch(()=>{FINDINGS=[];});
+  }
+  recount();
+  if(ds)showHUD("CVPR 2026 Findings","var(--c2)",
+    "941 findings papers · same keyword sky, re-weighted · esc to leave","galaxy");
+  else hideHUD();
+}
 
 /* ---------- highlight ---------- */
 let focused=false, curKeep=null, curAccent=null;
@@ -674,7 +700,7 @@ const pGrp=p=>MODE===0?p[3]:(p[2].length?grp(nodes[p[2][0]]):-1);
 function paperRow(p){
   const [t,s,ks,c,au]=p;
   const pc=color(pGrp(p));
-  const badge=p[5]===2?"📢 ":p[5]===1?"🔥 ":"";
+  const badge=p[5]===3?"🏆 ":p[5]===2?"📢 ":p[5]===1?"🔥 ":"";
   const chips=ks.map(ix=>{const n=nodes[ix],col=color(grp(n));
     return `<span class="pk" style="color:${col};border-color:${col}40" data-kw="${n.id}">${n.id}</span>`;}).join("");
   return `<div class="pp" data-ks="${ks.join(",")}"><span class="pd" style="background:${pc};color:${pc}"></span>
@@ -717,22 +743,28 @@ function wsRow(w){const col=wcolor(w[2]);
     <div class="ppb"><a href="${w[1]}" target="_blank" rel="noopener">${w[0]}</a>
     ${w[3]?`<div class="pa">${w[3]}</div>`:""}</div></div>`;
 }
-let drWs=false;
+function wspRow(p){const [t,path,au]=p;
+  return `<div class="pp"><span class="pd" style="background:var(--c2);color:var(--c2)"></span>
+    <div class="ppb"><a href="https://openaccess.thecvf.com/${path}" target="_blank" rel="noopener">${t}</a>
+    ${au?`<div class="pa" title="${au.replace(/"/g,"&quot;")}">${au}</div>`:""}</div></div>`;
+}
+let drRowFn=null;
 function renderMore(){
   const chunk=drPapers.slice(drShown,drShown+STEP);
-  drList.insertAdjacentHTML("beforeend",chunk.map(drWs?wsRow:paperRow).join(""));
+  drList.insertAdjacentHTML("beforeend",chunk.map(drRowFn||paperRow).join(""));
   drShown+=chunk.length;
   drMore.style.display=drShown<drPapers.length?"block":"none";
   drMore.textContent=`show ${Math.min(STEP,drPapers.length-drShown)} more (${drPapers.length-drShown} left)`;
 }
-function openDrawer(title,col,papers,subHtml,isWs){
-  drWs=!!isWs;
+function openDrawer(title,col,papers,subHtml,rowFn){
+  drRowFn=rowFn||null;
   drPapers=papers;drShown=0;drList.innerHTML="";
   drTitle.textContent=title;drTitle.style.color=col;
   drSub.innerHTML=subHtml||`<b>${papers.length}</b> papers · click a title to open on CVF`;
   drawer.classList.add("on");document.body.classList.add("drawer-open");
-  if(PAPERS===null&&!drWs){drList.innerHTML='<div class="pp"><a>loading papers…</a></div>';
-    const t=setInterval(()=>{if(PAPERS!==null){clearInterval(t);drList.innerHTML="";renderMore();}},120);}
+  const waiting=!drRowFn&&(DS===1?FINDINGS===null:PAPERS===null);
+  if(waiting){drList.innerHTML='<div class="pp"><a>loading papers…</a></div>';
+    const t=setInterval(()=>{if(DS===1?FINDINGS!==null:PAPERS!==null){clearInterval(t);drList.innerHTML="";renderMore();}},120);}
   else renderMore();
 }
 function closeDrawer(){drawer.classList.remove("on");document.body.classList.remove("drawer-open");
@@ -935,13 +967,15 @@ function buildGroups(){
 }
 buildGroups();
 
-/* ---------- mode toggle (0/1 = paper groupings, 2 = workshops) ---------- */
+/* ---------- mode toggle (0/1 = groupings, 3 = findings dataset, 2 = workshops) ---------- */
 let WS_ON=false;
 function switchMode(m){
   document.querySelectorAll(".mso").forEach(el=>el.classList.toggle("on",+el.dataset.m===m));
   if(m===2){if(!WS_ON)enterWorkshops();return;}
   const was=WS_ON;
   if(WS_ON)exitWorkshops();
+  if(m===3){if(DS!==1)setDataset(1);else if(was)buildGroups();return;}
+  if(DS!==0)setDataset(0);
   if(m!==MODE){
     MODE=m;clearFocus();buildGroups();
     node.transition().duration(650).attr("fill",d=>color(grp(d)));
@@ -998,7 +1032,7 @@ function buildWorkshops(){
     .on("click",(e,i)=>{e.stopPropagation();openWsCat(i);});
   wNodeSel=wG.selectAll("circle").data(wnodes).join("circle")
     .attr("class","wnode").attr("r",7).attr("stroke-width",.7)
-    .on("click",(e,d)=>{e.stopPropagation();window.open(d.u,"_blank","noopener");});
+    .on("click",(e,d)=>{e.stopPropagation();openWorkshop(d);});
   wNodeSel.append("title").text(d=>d.t+(d.day?" · "+d.day:"")+"\n"+d.u);
   wLabSel=wLabG.selectAll("g").data(d3.range(WS.cats.length)).join(
       enter=>{const g=enter.append("g");
@@ -1015,12 +1049,36 @@ function buildWorkshops(){
     .force("col",d3.forceCollide(13))
     .force("ch",d3.forceManyBody().strength(-30).distanceMax(240));
   wsim.on("tick",drawWs);
-  styleWs();
   wBuilt=true;
+  styleWs();
+}
+/* OA proceedings per workshop (lazy): node click lists its papers if published */
+let WSP=null;
+function wsPapers(d){
+  if(!WSP||!WSP.map)return null;
+  const slug=WSP.map[d.i];
+  return slug?(WSP.slugs[slug]||null):null;
+}
+function sizeWsNodes(){
+  if(!wBuilt||!WSP)return;
+  wNodeSel.attr("r",d=>{const ps=wsPapers(d);return ps&&ps.length?Math.min(14,7+Math.sqrt(ps.length)):7;})
+    .select("title").text(d=>{const ps=wsPapers(d);
+      return d.t+(d.day?" · "+d.day:"")+(ps&&ps.length?` · ${ps.length} papers`:"")+"\n"+d.u;});
+}
+function openWorkshop(d){
+  const ps=wsPapers(d);
+  if(!ps||!ps.length){window.open(d.u,"_blank","noopener");return;}
+  markFocused(d.t);
+  drKick.textContent="Workshop Proceedings";
+  openDrawer(d.t.length>42?d.t.slice(0,41)+"…":d.t,wcolor(d.c),ps,
+    `<b>${ps.length}</b> papers · <a href="${d.u}" target="_blank" rel="noopener" style="color:var(--c1)">workshop page ↗</a>`,
+    wspRow);
 }
 function enterWorkshops(){
   WS_ON=true;clearFocus();sim.stop();
   if(!wBuilt)buildWorkshops();
+  if(WSP===null){WSP=false;
+    fetch("ws_papers.json?v=1").then(r=>r.json()).then(w=>{WSP=w;sizeWsNodes();}).catch(()=>{WSP=false;});}
   mainGroups().forEach(g=>g.style("display","none"));
   [wHullG,wG,wLabG].forEach(g=>g.style("display",null));
   wsim.alpha(.9).restart();
@@ -1065,7 +1123,7 @@ function openWsCat(i){
   markFocused(WS.cats[i]);
   drKick.textContent="Workshop Category";
   openDrawer(WS.cats[i],wcolor(i),ws,
-    `<b>${ws.length}</b> workshops · click to open its page`,true);
+    `<b>${ws.length}</b> workshops · click to open its page`,wsRow);
 }
 
 /* ---------- theme toggle (defaults to system scheme) ---------- */
