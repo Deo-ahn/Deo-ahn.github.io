@@ -64,8 +64,17 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
   border:1px solid var(--line);border-radius:20px;padding:4px 10px;transition:.18s;background:rgba(255,255,255,.02)}
 .chip:hover{color:var(--ink);border-color:rgba(255,255,255,.3)}
 
-.legend{left:30px;bottom:28px;padding:15px 17px 16px;border-radius:3px;min-width:215px}
+.legend{left:30px;bottom:28px;padding:15px 17px 16px;border-radius:3px;min-width:235px;max-width:280px}
 .legend .lt{font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--dim);margin-bottom:11px}
+.modesw{display:flex;border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:12px}
+.mso{flex:1;text-align:center;font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;
+  padding:6px 2px;cursor:pointer;color:var(--dim);transition:.18s;background:rgba(255,255,255,.02)}
+.mso:hover{color:var(--muted)}
+.mso.on{color:var(--ink);background:rgba(255,255,255,.10)}
+#legend-rows{max-height:32vh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--dim) transparent;
+  margin-right:-8px;padding-right:8px}
+#legend-rows::-webkit-scrollbar{width:4px}
+#legend-rows::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:3px}
 .lrow{display:flex;align-items:center;gap:10px;padding:4px 0;cursor:pointer;opacity:.92;transition:.16s}
 .lrow:hover{opacity:1;transform:translateX(2px)}
 .dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 9px currentColor}
@@ -101,12 +110,23 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
 .dr-list{overflow-y:auto;padding:6px 4px 10px 16px;scrollbar-width:thin;scrollbar-color:var(--dim) transparent}
 .dr-list::-webkit-scrollbar{width:5px}
 .dr-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:3px}
-.pp{display:flex;gap:10px;padding:8px 10px 8px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.pp{display:flex;gap:10px;padding:9px 10px 9px 6px;border-bottom:1px solid rgba(255,255,255,.05);
+  border-radius:4px;transition:background .15s}
+.pp:hover{background:rgba(255,255,255,.05)}
+.pp:hover .pk{opacity:1}
 .pp:last-child{border-bottom:none}
 .pp .pd{width:7px;height:7px;border-radius:50%;flex:0 0 auto;margin-top:5px;box-shadow:0 0 7px currentColor}
+.pp .ppb{flex:1;min-width:0}
 .pp a{color:var(--ink);text-decoration:none;font-size:11.5px;line-height:1.5;letter-spacing:.005em;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:.15s}
 .pp a:hover{color:var(--c1)}
+.pp .pa{margin-top:3px;font-size:9.5px;color:var(--dim);letter-spacing:.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pks{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.pk{font-size:8.5px;letter-spacing:.05em;text-transform:uppercase;line-height:1;
+  border:1px solid;border-radius:3px;padding:3px 6px 2px;opacity:.8;cursor:pointer;transition:.15s;
+  background:rgba(255,255,255,.02)}
+.pk:hover{opacity:1;background:rgba(255,255,255,.07)}
 .dr-more{margin:8px 16px 14px;padding:8px;border:1px solid var(--line);border-radius:3px;background:none;
   color:var(--muted);font-family:inherit;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
 .dr-more:hover{color:var(--ink);border-color:rgba(255,255,255,.3)}
@@ -119,7 +139,41 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
   backdrop-filter:blur(11px);transition:.18s;opacity:0;pointer-events:none}
 .reset.on{opacity:1;pointer-events:auto}
 .reset:hover{color:var(--ink);border-color:rgba(255,255,255,.32)}
-@media(max-width:860px){.search,.drawer,.detail{display:none}.masthead{max-width:80vw}}
+
+/* star-system constellation names on hulls */
+.hn-name{font-family:"Fraunces",serif;font-style:italic;font-size:17px;font-weight:400;
+  paint-order:stroke;stroke:rgba(7,9,16,.9);stroke-width:4px;letter-spacing:.01em;
+  font-variation-settings:"opsz" 40,"WONK" 1}
+.hn-kick{font-size:7.5px;letter-spacing:.38em;text-transform:uppercase;fill:var(--muted);
+  paint-order:stroke;stroke:rgba(7,9,16,.9);stroke-width:3px}
+.hullname{cursor:pointer;transition:opacity .25s}
+.hullname:hover .hn-name{text-decoration:underline}
+
+/* orbit rings (system mode) */
+.orbits circle{fill:none;stroke:rgba(236,234,223,.10);stroke-dasharray:2 7}
+.orbits circle.core{stroke-dasharray:none}
+
+/* paper-location pings (hovering a paper row) */
+.pings circle{fill:none;pointer-events:none}
+.pings .halo{stroke-opacity:.55;stroke-width:1.3}
+.pings .ring{transform-box:fill-box;transform-origin:center;
+  animation:ping 1.5s cubic-bezier(.2,.7,.3,1) infinite}
+@keyframes ping{0%{transform:scale(.55);stroke-opacity:.9;stroke-width:1.6}
+  80%,100%{transform:scale(1.9);stroke-opacity:0;stroke-width:.6}}
+
+/* "now entering" HUD */
+.syshud{position:fixed;z-index:23;top:26px;left:50%;transform:translateX(-50%);
+  text-align:center;pointer-events:none;opacity:0;transition:opacity .35s}
+.syshud.on{opacity:1;animation:hudin .9s cubic-bezier(.16,.8,.26,1)}
+@keyframes hudin{0%{opacity:0;transform:translateX(-50%) translateY(-10px);filter:blur(5px)}
+  100%{opacity:1;transform:translateX(-50%) translateY(0);filter:blur(0)}}
+.sh-k{font-size:8.5px;letter-spacing:.52em;text-transform:uppercase;color:var(--c2);margin-bottom:5px}
+.sh-k::before,.sh-k::after{content:"·";margin:0 12px;color:var(--dim)}
+.sh-n{font-family:"Fraunces",serif;font-size:29px;line-height:1;letter-spacing:-.01em;
+  font-variation-settings:"opsz" 70,"WONK" 1;text-shadow:0 2px 18px rgba(0,0,0,.7)}
+.sh-n em{font-style:italic;font-weight:300;color:var(--muted);font-size:21px}
+.sh-s{margin-top:7px;font-size:9.5px;color:var(--muted);letter-spacing:.08em}
+@media(max-width:860px){.search,.drawer,.detail,.syshud{display:none}.masthead{max-width:80vw}}
 </style>
 </head>
 <body>
@@ -135,13 +189,17 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
 <div class="panel search">
   <div class="search-row">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-    <input id="q" autocomplete="off" spellcheck="false" placeholder="search keywords & paper titles…"/>
+    <input id="q" autocomplete="off" spellcheck="false" placeholder="search keywords · titles · authors…"/>
   </div>
   <div class="search-hint"><span>NODE SIZE = PAPER FREQUENCY</span><span id="match">89 visible</span></div>
 </div>
 
 <div class="panel legend">
-  <div class="lt">Research Clusters · click to open</div>
+  <div class="modesw" id="modesw">
+    <span class="mso on" data-m="0">Constellation</span>
+    <span class="mso" data-m="1">CVPR Topics</span>
+  </div>
+  <div class="lt" id="lt">Star Systems · click to enter</div>
   <div id="legend-rows"></div>
   <div class="chips" id="chips"></div>
 </div>
@@ -158,15 +216,86 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
   <button class="dr-more" id="dr-more" style="display:none">show 150 more</button>
 </div>
 
+<div class="syshud" id="syshud">
+  <div class="sh-k">Now Entering</div>
+  <div class="sh-n" id="sh-name">—</div>
+  <div class="sh-s" id="sh-sub"></div>
+</div>
+
 <button class="reset" id="reset">↺ reset view</button>
 
 <script>
 const DATA = {"meta":{"papers":4068,"keywords":89,"links":381,"venue":"CVPR 2026","communities":6},"nodes":[{"id":"Generation","count":629,"community":1},{"id":"Video","count":500,"community":1},{"id":"3D","count":461,"community":2},{"id":"Diffusion","count":337,"community":4},{"id":"Multimodal","count":332,"community":3},{"id":"Vision-Language","count":284,"community":3},{"id":"Efficient","count":248,"community":4},{"id":"Detection","count":230,"community":0},{"id":"Reasoning","count":226,"community":3},{"id":"Segmentation","count":201,"community":0},{"id":"Motion","count":154,"community":1},{"id":"Benchmark","count":143,"community":3},{"id":"Geometry","count":142,"community":2},{"id":"Human","count":134,"community":1},{"id":"Transformer","count":127,"community":4},{"id":"Gaussian Splatting","count":126,"community":2},{"id":"Robustness","count":125,"community":0},{"id":"LLM","count":113,"community":3},{"id":"Generalization","count":104,"community":0},{"id":"Sparse","count":103,"community":2},{"id":"Editing","count":101,"community":1},{"id":"Prompt","count":100,"community":0},{"id":"Dataset","count":96,"community":3},{"id":"Optimization","count":94,"community":1},{"id":"Matching","count":90,"community":5},{"id":"Medical","count":90,"community":0},{"id":"Agent","count":82,"community":3},{"id":"Distillation","count":80,"community":4},{"id":"Multi-View","count":80,"community":2},{"id":"Reinforcement Learning","count":79,"community":3},{"id":"Restoration","count":79,"community":4},{"id":"Open-Vocabulary","count":74,"community":0},{"id":"Pose Estimation","count":74,"community":2},{"id":"Image Generation","count":73,"community":1},{"id":"Grounding","count":73,"community":3},{"id":"Attention","count":72,"community":4},{"id":"Retrieval","count":68,"community":1},{"id":"Continual Learning","count":66,"community":0},{"id":"Test-Time","count":66,"community":0},{"id":"Zero-Shot","count":65,"community":0},{"id":"Autonomous Driving","count":61,"community":3},{"id":"Tracking","count":60,"community":4},{"id":"Autoregressive","count":59,"community":1},{"id":"Camera","count":54,"community":1},{"id":"Remote Sensing","count":53,"community":0},{"id":"Compression","count":52,"community":1},{"id":"Text-to-Image","count":51,"community":1},{"id":"Foundation Model","count":51,"community":2},{"id":"Anomaly","count":50,"community":0},{"id":"Depth","count":45,"community":0},{"id":"Super-Resolution","count":45,"community":4},{"id":"Few-Shot","count":44,"community":0},{"id":"Adversarial","count":43,"community":0},{"id":"Material/Lighting","count":42,"community":1},{"id":"Federated","count":41,"community":0},{"id":"Self-Supervised","count":40,"community":2},{"id":"Point Cloud","count":40,"community":2},{"id":"Contrastive","count":39,"community":0},{"id":"Forgery/Deepfake","count":39,"community":0},{"id":"Uncertainty","count":38,"community":2},{"id":"Navigation","count":37,"community":3},{"id":"Flow Matching","count":36,"community":5},{"id":"Event Camera","count":35,"community":1},{"id":"Face","count":35,"community":4},{"id":"Classification","count":35,"community":0},{"id":"World Model","count":34,"community":1},{"id":"Unsupervised","count":33,"community":0},{"id":"Avatar","count":30,"community":2},{"id":"Trajectory","count":30,"community":1},{"id":"Rendering","count":28,"community":1},{"id":"Hand","count":28,"community":1},{"id":"Embodied","count":27,"community":3},{"id":"Implicit/Neural Field","count":27,"community":2},{"id":"Mamba/SSM","count":27,"community":0},{"id":"CLIP","count":26,"community":0},{"id":"Stereo","count":25,"community":5},{"id":"Re-ID","count":24,"community":0},{"id":"Document/OCR","count":23,"community":0},{"id":"Quantization","count":22,"community":3},{"id":"Mesh","count":22,"community":1},{"id":"VQA","count":20,"community":3},{"id":"Registration","count":19,"community":2},{"id":"Captioning","count":17,"community":1},{"id":"Weakly-Supervised","count":17,"community":0},{"id":"In-Context","count":17,"community":1},{"id":"Texture","count":16,"community":1},{"id":"Scene Understanding","count":15,"community":2},{"id":"Action Recognition","count":14,"community":0},{"id":"Domain Adaptation","count":14,"community":0}],"links":[{"source":"3D","target":"Generalization","weight":11},{"source":"3D","target":"Matching","weight":11},{"source":"3D","target":"Tracking","weight":5},{"source":"Gaussian Splatting","target":"Optimization","weight":5},{"source":"Benchmark","target":"Editing","weight":7},{"source":"Camera","target":"Video","weight":10},{"source":"Continual Learning","target":"Distillation","weight":5},{"source":"Efficient","target":"Generation","weight":28},{"source":"Efficient","target":"Transformer","weight":19},{"source":"Efficient","target":"Video","weight":42},{"source":"Generation","target":"Transformer","weight":13},{"source":"Generation","target":"Video","weight":132},{"source":"Self-Supervised","target":"Video","weight":7},{"source":"Transformer","target":"Video","weight":11},{"source":"Autonomous Driving","target":"Reasoning","weight":7},{"source":"Autonomous Driving","target":"Vision-Language","weight":9},{"source":"Reasoning","target":"Vision-Language","weight":35},{"source":"Diffusion","target":"Efficient","weight":28},{"source":"3D","target":"Editing","weight":16},{"source":"Generation","target":"Reinforcement Learning","weight":13},{"source":"Continual Learning","target":"Few-Shot","weight":5},{"source":"Continual Learning","target":"Prompt","weight":6},{"source":"Continual Learning","target":"Vision-Language","weight":8},{"source":"Few-Shot","target":"Prompt","weight":6},{"source":"Prompt","target":"Vision-Language","weight":14},{"source":"Quantization","target":"Vision-Language","weight":5},{"source":"3D","target":"Efficient","weight":16},{"source":"3D","target":"Gaussian Splatting","weight":63},{"source":"3D","target":"Multi-View","weight":23},{"source":"Efficient","target":"Multi-View","weight":7},{"source":"Gaussian Splatting","target":"Multi-View","weight":5},{"source":"Compression","target":"Video","weight":15},{"source":"Medical","target":"Segmentation","weight":26},{"source":"Diffusion","target":"Text-to-Image","weight":12},{"source":"Reasoning","target":"Reinforcement Learning","weight":9},{"source":"Reinforcement Learning","target":"Vision-Language","weight":7},{"source":"Gaussian Splatting","target":"Geometry","weight":10},{"source":"3D","target":"Camera","weight":11},{"source":"3D","target":"Depth","weight":5},{"source":"3D","target":"Geometry","weight":43},{"source":"3D","target":"Pose Estimation","weight":22},{"source":"3D","target":"Uncertainty","weight":7},{"source":"Gaussian Splatting","target":"Pose Estimation","weight":7},{"source":"Geometry","target":"Pose Estimation","weight":5},{"source":"Anomaly","target":"Detection","weight":44},{"source":"Diffusion","target":"Super-Resolution","weight":19},{"source":"Diffusion","target":"Transformer","weight":47},{"source":"Multimodal","target":"Reasoning","weight":47},{"source":"Multimodal","target":"Test-Time","weight":5},{"source":"Diffusion","target":"Human","weight":9},{"source":"Diffusion","target":"Motion","weight":17},{"source":"Diffusion","target":"Sparse","weight":10},{"source":"Human","target":"Motion","weight":33},{"source":"Human","target":"Sparse","weight":5},{"source":"Motion","target":"Sparse","weight":5},{"source":"Motion","target":"Tracking","weight":7},{"source":"Diffusion","target":"Distillation","weight":11},{"source":"Sparse","target":"Transformer","weight":6},{"source":"LLM","target":"Multimodal","weight":68},{"source":"Attention","target":"Video","weight":11},{"source":"Optimization","target":"Video","weight":10},{"source":"Reasoning","target":"Video","weight":40},{"source":"Compression","target":"Efficient","weight":7},{"source":"Efficient","target":"Tracking","weight":8},{"source":"Benchmark","target":"Multimodal","weight":26},{"source":"Benchmark","target":"Vision-Language","weight":12},{"source":"Multimodal","target":"Vision-Language","weight":9},{"source":"Generation","target":"Motion","weight":49},{"source":"Benchmark","target":"Video","weight":26},{"source":"Multimodal","target":"Video","weight":24},{"source":"3D","target":"LLM","weight":7},{"source":"3D","target":"Reasoning","weight":14},{"source":"LLM","target":"Reasoning","weight":13},{"source":"Diffusion","target":"Generation","weight":62},{"source":"Multimodal","target":"Navigation","weight":5},{"source":"Anomaly","target":"Video","weight":8},{"source":"Detection","target":"Video","weight":22},{"source":"3D","target":"Generation","weight":83},{"source":"3D","target":"Human","weight":24},{"source":"Generation","target":"Human","weight":30},{"source":"Editing","target":"Generation","weight":17},{"source":"Generation","target":"Image Generation","weight":73},{"source":"3D","target":"Vision-Language","weight":19},{"source":"Distillation","target":"Segmentation","weight":5},{"source":"Multimodal","target":"Robustness","weight":11},{"source":"Multimodal","target":"Segmentation","weight":11},{"source":"Robustness","target":"Segmentation","weight":8},{"source":"Continual Learning","target":"Medical","weight":5},{"source":"Continual Learning","target":"Test-Time","weight":7},{"source":"Medical","target":"Prompt","weight":8},{"source":"Prompt","target":"Segmentation","weight":20},{"source":"Prompt","target":"Test-Time","weight":8},{"source":"Segmentation","target":"Test-Time","weight":6},{"source":"3D","target":"Open-Vocabulary","weight":13},{"source":"Diffusion","target":"Reinforcement Learning","weight":5},{"source":"Efficient","target":"Sparse","weight":15},{"source":"Motion","target":"Video","weight":32},{"source":"Detection","target":"Reasoning","weight":13},{"source":"Diffusion","target":"Geometry","weight":7},{"source":"Generation","target":"World Model","weight":5},{"source":"Generation","target":"Text-to-Image","weight":27},{"source":"Image Generation","target":"Text-to-Image","weight":25},{"source":"Adversarial","target":"Robustness","weight":11},{"source":"3D","target":"Robustness","weight":12},{"source":"3D","target":"Sparse","weight":21},{"source":"Gaussian Splatting","target":"Robustness","weight":7},{"source":"Gaussian Splatting","target":"Sparse","weight":14},{"source":"Optimization","target":"Vision-Language","weight":11},{"source":"Detection","target":"Distillation","weight":5},{"source":"3D","target":"Detection","weight":36},{"source":"Autoregressive","target":"Diffusion","weight":8},{"source":"Autoregressive","target":"Generation","weight":35},{"source":"Autoregressive","target":"Motion","weight":5},{"source":"Human","target":"Mesh","weight":6},{"source":"3D","target":"Scene Understanding","weight":10},{"source":"Generation","target":"Retrieval","weight":11},{"source":"Generation","target":"Tracking","weight":5},{"source":"Adversarial","target":"Vision-Language","weight":5},{"source":"Diffusion","target":"Video","weight":42},{"source":"Benchmark","target":"LLM","weight":7},{"source":"Multimodal","target":"Reinforcement Learning","weight":7},{"source":"Benchmark","target":"Dataset","weight":17},{"source":"Dataset","target":"Multimodal","weight":14},{"source":"Prompt","target":"Remote Sensing","weight":5},{"source":"Segmentation","target":"Video","weight":22},{"source":"Diffusion","target":"Vision-Language","weight":7},{"source":"Generalization","target":"Optimization","weight":5},{"source":"Point Cloud","target":"Registration","weight":5},{"source":"Agent","target":"Vision-Language","weight":6},{"source":"Attention","target":"Segmentation","weight":6},{"source":"Open-Vocabulary","target":"Remote Sensing","weight":6},{"source":"Open-Vocabulary","target":"Segmentation","weight":21},{"source":"Remote Sensing","target":"Segmentation","weight":10},{"source":"3D","target":"Multimodal","weight":18},{"source":"Generation","target":"Multimodal","weight":47},{"source":"Generation","target":"Reasoning","weight":21},{"source":"3D","target":"Video","weight":25},{"source":"Generation","target":"Pose Estimation","weight":10},{"source":"Pose Estimation","target":"Video","weight":7},{"source":"3D","target":"Test-Time","weight":6},{"source":"Video","target":"Zero-Shot","weight":5},{"source":"Efficient","target":"Restoration","weight":8},{"source":"Generation","target":"Texture","weight":5},{"source":"Test-Time","target":"Vision-Language","weight":12},{"source":"Retrieval","target":"Robustness","weight":6},{"source":"Detection","target":"Remote Sensing","weight":6},{"source":"LLM","target":"Video","weight":18},{"source":"Benchmark","target":"Detection","weight":8},{"source":"Detection","target":"Multimodal","weight":20},{"source":"3D","target":"Segmentation","weight":29},{"source":"3D","target":"Unsupervised","weight":6},{"source":"Autonomous Driving","target":"Multimodal","weight":5},{"source":"Domain Adaptation","target":"Unsupervised","weight":7},{"source":"Segmentation","target":"Unsupervised","weight":6},{"source":"Diffusion","target":"Multimodal","weight":13},{"source":"Diffusion","target":"Robustness","weight":7},{"source":"Multimodal","target":"Transformer","weight":8},{"source":"Autoregressive","target":"Video","weight":7},{"source":"Detection","target":"Sparse","weight":5},{"source":"Generation","target":"Geometry","weight":22},{"source":"Event Camera","target":"Motion","weight":6},{"source":"3D","target":"Agent","weight":6},{"source":"Detection","target":"Test-Time","weight":6},{"source":"Compression","target":"Generation","weight":9},{"source":"Human","target":"Multi-View","weight":5},{"source":"Human","target":"Video","weight":18},{"source":"Multi-View","target":"Video","weight":7},{"source":"Geometry","target":"Sparse","weight":5},{"source":"Geometry","target":"Reasoning","weight":17},{"source":"Geometry","target":"Vision-Language","weight":9},{"source":"Detection","target":"Forgery/Deepfake","weight":18},{"source":"Distillation","target":"Generation","weight":11},{"source":"Autoregressive","target":"Efficient","weight":5},{"source":"Generation","target":"LLM","weight":7},{"source":"LLM","target":"Motion","weight":5},{"source":"3D","target":"Hand","weight":11},{"source":"Hand","target":"Video","weight":6},{"source":"3D","target":"Medical","weight":8},{"source":"Generalization","target":"Medical","weight":5},{"source":"Gaussian Splatting","target":"Segmentation","weight":7},{"source":"Grounding","target":"Segmentation","weight":13},{"source":"Human","target":"Multimodal","weight":9},{"source":"Navigation","target":"Remote Sensing","weight":6},{"source":"Camera","target":"Event Camera","weight":7},{"source":"3D","target":"Motion","weight":20},{"source":"Generation","target":"Robustness","weight":8},{"source":"3D","target":"Grounding","weight":14},{"source":"Geometry","target":"Grounding","weight":5},{"source":"3D","target":"Point Cloud","weight":15},{"source":"Geometry","target":"Multi-View","weight":7},{"source":"Segmentation","target":"Vision-Language","weight":5},{"source":"Video","target":"Vision-Language","weight":10},{"source":"Generation","target":"Restoration","weight":5},{"source":"Generation","target":"Zero-Shot","weight":7},{"source":"Efficient","target":"Multimodal","weight":13},{"source":"Agent","target":"Reinforcement Learning","weight":8},{"source":"Agent","target":"Video","weight":17},{"source":"Efficient","target":"Reinforcement Learning","weight":6},{"source":"Reinforcement Learning","target":"Video","weight":14},{"source":"Generation","target":"Mesh","weight":9},{"source":"Motion","target":"Multimodal","weight":6},{"source":"3D","target":"Implicit/Neural Field","weight":8},{"source":"Generation","target":"Implicit/Neural Field","weight":5},{"source":"Anomaly","target":"Zero-Shot","weight":10},{"source":"Detection","target":"Zero-Shot","weight":13},{"source":"Camera","target":"Generation","weight":8},{"source":"Diffusion","target":"Multi-View","weight":7},{"source":"Detection","target":"Transformer","weight":7},{"source":"Multimodal","target":"Retrieval","weight":8},{"source":"Anomaly","target":"Multimodal","weight":8},{"source":"Dataset","target":"Detection","weight":6},{"source":"Detection","target":"Efficient","weight":7},{"source":"Detection","target":"Open-Vocabulary","weight":15},{"source":"Efficient","target":"Vision-Language","weight":20},{"source":"Diffusion","target":"Image Generation","weight":9},{"source":"Benchmark","target":"Reasoning","weight":17},{"source":"3D","target":"Self-Supervised","weight":7},{"source":"3D","target":"Zero-Shot","weight":10},{"source":"Matching","target":"Multi-View","weight":5},{"source":"Matching","target":"Zero-Shot","weight":6},{"source":"Detection","target":"Diffusion","weight":7},{"source":"Attention","target":"Efficient","weight":14},{"source":"Attention","target":"Diffusion","weight":9},{"source":"Attention","target":"Sparse","weight":9},{"source":"Attention","target":"Transformer","weight":10},{"source":"Trajectory","target":"Video","weight":10},{"source":"Diffusion","target":"Face","weight":7},{"source":"Robustness","target":"Vision-Language","weight":10},{"source":"Agent","target":"Generation","weight":8},{"source":"Flow Matching","target":"Matching","weight":29},{"source":"Diffusion","target":"Restoration","weight":10},{"source":"Segmentation","target":"Weakly-Supervised","weight":7},{"source":"Grounding","target":"Multimodal","weight":11},{"source":"Geometry","target":"Multimodal","weight":7},{"source":"Geometry","target":"Motion","weight":6},{"source":"Grounding","target":"Reasoning","weight":7},{"source":"Medical","target":"Reasoning","weight":10},{"source":"Reasoning","target":"Segmentation","weight":12},{"source":"Attention","target":"Generation","weight":7},{"source":"Benchmark","target":"Generation","weight":18},{"source":"Generation","target":"Prompt","weight":11},{"source":"Distillation","target":"Vision-Language","weight":6},{"source":"Editing","target":"Video","weight":22},{"source":"Editing","target":"Motion","weight":7},{"source":"Generation","target":"Optimization","weight":21},{"source":"Mamba/SSM","target":"Video","weight":6},{"source":"Generalization","target":"Generation","weight":7},{"source":"Autonomous Driving","target":"Trajectory","weight":5},{"source":"Autoregressive","target":"Image Generation","weight":5},{"source":"Gaussian Splatting","target":"Motion","weight":7},{"source":"Motion","target":"Restoration","weight":6},{"source":"Detection","target":"Vision-Language","weight":13},{"source":"Retrieval","target":"Video","weight":8},{"source":"3D","target":"Transformer","weight":8},{"source":"Geometry","target":"Transformer","weight":12},{"source":"Geometry","target":"Segmentation","weight":10},{"source":"Point Cloud","target":"Segmentation","weight":6},{"source":"Embodied","target":"Navigation","weight":5},{"source":"Generation","target":"Material/Lighting","weight":7},{"source":"Diffusion","target":"Optimization","weight":8},{"source":"Reasoning","target":"VQA","weight":5},{"source":"Generalization","target":"Reasoning","weight":5},{"source":"Few-Shot","target":"Generation","weight":5},{"source":"Editing","target":"Vision-Language","weight":5},{"source":"Dataset","target":"Diffusion","weight":6},{"source":"Dataset","target":"Distillation","weight":14},{"source":"Depth","target":"Efficient","weight":5},{"source":"Agent","target":"Reasoning","weight":14},{"source":"Flow Matching","target":"Generation","weight":13},{"source":"Generation","target":"Matching","weight":14},{"source":"Matching","target":"Multimodal","weight":5},{"source":"3D","target":"Foundation Model","weight":9},{"source":"Generation","target":"Vision-Language","weight":11},{"source":"Benchmark","target":"Human","weight":6},{"source":"Efficient","target":"LLM","weight":6},{"source":"3D","target":"Anomaly","weight":7},{"source":"Detection","target":"Geometry","weight":7},{"source":"Geometry","target":"Video","weight":9},{"source":"Video","target":"World Model","weight":7},{"source":"Grounding","target":"Vision-Language","weight":7},{"source":"Detection","target":"Generation","weight":7},{"source":"Detection","target":"Prompt","weight":12},{"source":"Generation","target":"Open-Vocabulary","weight":7},{"source":"Open-Vocabulary","target":"Prompt","weight":8},{"source":"Grounding","target":"Video","weight":18},{"source":"Human","target":"Pose Estimation","weight":10},{"source":"Grounding","target":"LLM","weight":7},{"source":"Detection","target":"Robustness","weight":11},{"source":"Stereo","target":"Video","weight":5},{"source":"Multi-View","target":"Sparse","weight":5},{"source":"Multi-View","target":"Transformer","weight":6},{"source":"Prompt","target":"Zero-Shot","weight":5},{"source":"Captioning","target":"Video","weight":6},{"source":"Compression","target":"Diffusion","weight":6},{"source":"Agent","target":"Benchmark","weight":5},{"source":"Agent","target":"Multimodal","weight":10},{"source":"Detection","target":"Unsupervised","weight":5},{"source":"Efficient","target":"Reasoning","weight":15},{"source":"Sparse","target":"Vision-Language","weight":11},{"source":"Dataset","target":"Video","weight":14},{"source":"VQA","target":"Video","weight":5},{"source":"Classification","target":"Few-Shot","weight":7},{"source":"Agent","target":"Embodied","weight":7},{"source":"Attention","target":"Vision-Language","weight":5},{"source":"Distillation","target":"Video","weight":10},{"source":"Few-Shot","target":"Segmentation","weight":5},{"source":"Detection","target":"Generalization","weight":10},{"source":"Generalization","target":"Multimodal","weight":5},{"source":"Generation","target":"Segmentation","weight":10},{"source":"3D","target":"Avatar","weight":7},{"source":"3D","target":"Distillation","weight":5},{"source":"Pose Estimation","target":"Sparse","weight":5},{"source":"Distillation","target":"Matching","weight":7},{"source":"Efficient","target":"Segmentation","weight":8},{"source":"Forgery/Deepfake","target":"Robustness","weight":13},{"source":"Continual Learning","target":"Multimodal","weight":8},{"source":"Mamba/SSM","target":"Segmentation","weight":5},{"source":"Editing","target":"Generalization","weight":6},{"source":"Generalization","target":"Segmentation","weight":8},{"source":"3D","target":"Diffusion","weight":19},{"source":"Generation","target":"Rendering","weight":5},{"source":"Adversarial","target":"Generation","weight":5},{"source":"Restoration","target":"Video","weight":9},{"source":"Embodied","target":"Reasoning","weight":5},{"source":"Medical","target":"Multimodal","weight":10},{"source":"Diffusion","target":"Matching","weight":5},{"source":"Efficient","target":"Geometry","weight":9},{"source":"Sparse","target":"Video","weight":7},{"source":"Medical","target":"Vision-Language","weight":11},{"source":"Editing","target":"Optimization","weight":5},{"source":"Generation","target":"Medical","weight":12},{"source":"Efficient","target":"Matching","weight":6},{"source":"Generation","target":"Hand","weight":9},{"source":"Super-Resolution","target":"Video","weight":10},{"source":"Gaussian Splatting","target":"Generation","weight":8},{"source":"Unsupervised","target":"Video","weight":5},{"source":"Matching","target":"Stereo","weight":6},{"source":"Autonomous Driving","target":"Generation","weight":6},{"source":"Autonomous Driving","target":"World Model","weight":6},{"source":"Benchmark","target":"Remote Sensing","weight":5},{"source":"Flow Matching","target":"Motion","weight":5},{"source":"Matching","target":"Motion","weight":6},{"source":"Efficient","target":"Medical","weight":5},{"source":"Detection","target":"Human","weight":8},{"source":"Dataset","target":"Human","weight":6},{"source":"Classification","target":"Generation","weight":5},{"source":"Generation","target":"Trajectory","weight":13},{"source":"Anomaly","target":"Weakly-Supervised","weight":5},{"source":"Detection","target":"Weakly-Supervised","weight":7},{"source":"Video","target":"Weakly-Supervised","weight":6},{"source":"Prompt","target":"Video","weight":6},{"source":"3D","target":"Embodied","weight":6},{"source":"Agent","target":"Optimization","weight":5},{"source":"Distillation","target":"Efficient","weight":8},{"source":"Face","target":"Generation","weight":9},{"source":"Navigation","target":"Vision-Language","weight":10},{"source":"Generation","target":"In-Context","weight":5},{"source":"Dataset","target":"Generation","weight":11},{"source":"Restoration","target":"Self-Supervised","weight":6},{"source":"Detection","target":"Segmentation","weight":5},{"source":"Navigation","target":"Reasoning","weight":9},{"source":"Diffusion","target":"Retrieval","weight":5},{"source":"Pose Estimation","target":"Robustness","weight":5},{"source":"Motion","target":"Reasoning","weight":5},{"source":"CLIP","target":"Detection","weight":5},{"source":"Generation","target":"Test-Time","weight":5},{"source":"Tracking","target":"Transformer","weight":5},{"source":"Generation","target":"Sparse","weight":5},{"source":"Diffusion","target":"Generalization","weight":8},{"source":"Diffusion","target":"Medical","weight":7},{"source":"Diffusion","target":"Segmentation","weight":5},{"source":"3D","target":"Material/Lighting","weight":5},{"source":"Depth","target":"Segmentation","weight":5},{"source":"Detection","target":"Few-Shot","weight":8},{"source":"Diffusion","target":"Editing","weight":8},{"source":"Efficient","target":"Optimization","weight":5},{"source":"Generalization","target":"Prompt","weight":5},{"source":"Generalization","target":"Vision-Language","weight":5},{"source":"Agent","target":"LLM","weight":5},{"source":"LLM","target":"Optimization","weight":5},{"source":"Optimization","target":"Text-to-Image","weight":5}],"legend":[{"community":0,"top":["Detection","Segmentation","Robustness","Generalization"],"size":27},{"community":1,"top":["Generation","Video","Motion","Human"],"size":22},{"community":2,"top":["3D","Geometry","Gaussian Splatting","Sparse"],"size":14},{"community":3,"top":["Multimodal","Vision-Language","Reasoning","Benchmark"],"size":14},{"community":4,"top":["Diffusion","Efficient","Transformer","Distillation"],"size":9},{"community":5,"top":["Matching","Flow Matching","Stereo"],"size":3}]};
+/* ───────── grouping modes ───────── */
 const COMM = {
   names:["Detection & Segmentation","Generation · Video · Human","3D & Rendering","Vision–Language & Reasoning","Diffusion & Efficiency","Matching & Geometry"],
   colors:["#ff8a5b","#52d3c3","#ffd166","#ad8cff","#5fb8ff","#c2e06a"]
 };
-const color=i=>i>=0?COMM.colors[i%6]:"#566";
+/* CVPR 2026 call-for-papers topics — each keyword mapped to its closest official topic */
+const TOPICS=[
+ {name:"3D from Multi-view & Sensors",full:"3D from multi-view and sensors"},
+ {name:"Synthesis & Generation",full:"Image and video synthesis and generation"},
+ {name:"Video: Action & Events",full:"Video: Action and event understanding"},
+ {name:"Video: Motion & Tracking",full:"Video: Low-level analysis, motion, and tracking"},
+ {name:"Recognition & Retrieval",full:"Recognition: Categorization, detection, retrieval"},
+ {name:"Segmentation & Shape",full:"Segmentation, grouping and shape analysis"},
+ {name:"Vision, Language & Reasoning",full:"Vision, language, and reasoning"},
+ {name:"Efficient & Scalable Vision",full:"Efficient and scalable vision"},
+ {name:"DL Architectures",full:"Deep learning architectures and techniques"},
+ {name:"Representation Learning",full:"Representation learning"},
+ {name:"Self-/Semi-/Unsupervised",full:"Self-, semi-, meta- and unsupervised learning"},
+ {name:"Transfer, Low-shot & Continual",full:"Transfer/ low-shot/ continual/ long-tail learning"},
+ {name:"Adversarial & Robustness",full:"Adversarial attack and defense"},
+ {name:"Humans: Face, Body, Pose",full:"Humans: Face, body, pose, gesture, movement"},
+ {name:"Embodied Vision & Agents",full:"Embodied vision: Active agents, simulation"},
+ {name:"Autonomous Driving",full:"Autonomous driving"},
+ {name:"Medical & Biological Vision",full:"Medical and biological vision, cell microscopy"},
+ {name:"Low-level Vision",full:"Low-level vision"},
+ {name:"Vision + Graphics",full:"Vision + graphics"},
+ {name:"Physics-based Vision",full:"Physics-based vision and shape-from-X"},
+ {name:"Remote Sensing",full:"Photogrammetry and remote sensing"},
+ {name:"Datasets & Evaluation",full:"Datasets and evaluation"},
+ {name:"Documents & OCR",full:"Document analysis and understanding"},
+ {name:"Scene Understanding",full:"Scene analysis and understanding"},
+ {name:"Ethics, Privacy & Forensics",full:"Transparency, fairness, accountability, privacy and ethics in vision"},
+ {name:"Explainable CV",full:"Explainable computer vision"},
+ {name:"Event-based Cameras",full:"Event-based cameras"}
+];
+const TOPIC_OF={"3D":0,"Geometry":0,"Matching":0,"Multi-View":0,"Camera":0,"Depth":0,"Point Cloud":0,"Stereo":0,"Registration":0,
+"Generation":1,"Diffusion":1,"Editing":1,"Image Generation":1,"Autoregressive":1,"Text-to-Image":1,"Flow Matching":1,
+"Video":2,"Action Recognition":2,
+"Motion":3,"Tracking":3,"Trajectory":3,
+"Detection":4,"Open-Vocabulary":4,"Retrieval":4,"Anomaly":4,"Classification":4,"Re-ID":4,
+"Segmentation":5,
+"Multimodal":6,"Vision-Language":6,"Reasoning":6,"LLM":6,"Prompt":6,"Reinforcement Learning":6,"Grounding":6,"CLIP":6,"VQA":6,"Captioning":6,"In-Context":6,
+"Efficient":7,"Sparse":7,"Distillation":7,"Compression":7,"Quantization":7,
+"Transformer":8,"Optimization":8,"Attention":8,"Mamba/SSM":8,
+"Foundation Model":9,"Contrastive":9,
+"Self-Supervised":10,"Unsupervised":10,"Weakly-Supervised":10,
+"Generalization":11,"Continual Learning":11,"Test-Time":11,"Zero-Shot":11,"Few-Shot":11,"Domain Adaptation":11,
+"Robustness":12,"Adversarial":12,
+"Human":13,"Pose Estimation":13,"Face":13,"Avatar":13,"Hand":13,
+"Agent":14,"Navigation":14,"World Model":14,"Embodied":14,
+"Autonomous Driving":15,
+"Medical":16,
+"Restoration":17,"Super-Resolution":17,
+"Gaussian Splatting":18,"Rendering":18,"Implicit/Neural Field":18,"Mesh":18,"Texture":18,
+"Material/Lighting":19,
+"Remote Sensing":20,
+"Benchmark":21,"Dataset":21,
+"Document/OCR":22,
+"Scene Understanding":23,
+"Federated":24,"Forgery/Deepfake":24,
+"Uncertainty":25,
+"Event Camera":26};
+TOPICS.forEach((t,i)=>{t.color=d3.hsl((i*137.508+12)%360,.60,.68).formatHex();});
+
+let MODE=0; /* 0 = constellation (co-occurrence communities) · 1 = CVPR CFP topics */
+const grp=d=>MODE===0?d.community:d.topic;
+const NG=()=>MODE===0?COMM.names.length:TOPICS.length;
+const gname=i=>MODE===0?COMM.names[i]:TOPICS[i].name;
+const gfull=i=>MODE===0?COMM.names[i]:TOPICS[i].full;
+const color=i=>i>=0?(MODE===0?COMM.colors[i%6]:TOPICS[i].color):"#566";
 const CVF=s=>`https://openaccess.thecvf.com/content/CVPR2026/html/${s}_CVPR_2026_paper.html`;
 
 const svg=d3.select("#graph"), root=svg.select(".zoomroot"), starG=svg.select(".stars");
@@ -180,6 +309,7 @@ svg.append("defs").html(`<filter id="glow" x="-90%" y="-90%" width="280%" height
   <filter id="hullblur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>`);
 
 const nodes=DATA.nodes.map(d=>Object.assign({},d));
+nodes.forEach(n=>{n.topic=TOPIC_OF[n.id]??-1;});
 const idset=new Set(nodes.map(d=>d.id));
 const links=DATA.links.filter(l=>idset.has(l.source)&&idset.has(l.target)).map(d=>Object.assign({},d));
 document.getElementById("r-papers").textContent=DATA.meta.papers.toLocaleString();
@@ -199,44 +329,33 @@ const cExt=d3.extent(links,l=>l.weight);
 const lW=d3.scaleSqrt().domain(cExt).range([.4,3.4]);
 const LABEL_MIN=d3.quantile(nodes.map(d=>d.count).sort(d3.ascending),.84);
 
-/* ---- community anchors: spatial grouping ---- */
-const NC=COMM.names.length;
-const anchor=i=>{const a=i/NC*2*Math.PI-Math.PI/2;
-  return [W*0.52+Math.cos(a)*W*0.26, H*0.55+Math.sin(a)*H*0.27];};
+/* ---- group anchors: spatial separation ---- */
+const anchor=i=>{const n=NG(),a=i/n*2*Math.PI-Math.PI/2,
+  rx=MODE===0?.26:.31, ry=MODE===0?.27:.32;
+  return [W*0.52+Math.cos(a)*W*rx, H*0.55+Math.sin(a)*H*ry];};
 
-const sim=d3.forceSimulation(nodes).alphaDecay(.017).velocityDecay(.42)
-  .force("link",d3.forceLink(links).id(d=>d.id).distance(l=>80+230/Math.sqrt(l.weight)).strength(l=>Math.min(.36,l.weight/58)))
-  .force("charge",d3.forceManyBody().strength(d=>-340-rScale(d.count)*13).distanceMax(1200))
-  .force("collide",d3.forceCollide(d=>rScale(d.count)+14).strength(.95))
-  .force("ax",d3.forceX(d=>anchor(d.community)[0]).strength(.085))
-  .force("ay",d3.forceY(d=>anchor(d.community)[1]).strength(.095));
-
-/* ---- hulls (group blobs) ---- */
-const hullG=root.append("g");
-const hullLine=d3.line().curve(d3.curveCatmullRomClosed.alpha(.8));
-const hullSel=hullG.selectAll("path").data(d3.range(NC)).join("path")
-  .attr("class","hull").attr("filter","url(#hullblur)")
-  .attr("fill",i=>color(i)).attr("fill-opacity",.05)
-  .attr("stroke",i=>color(i)).attr("stroke-opacity",.16).attr("stroke-width",1.2)
-  .on("click",(e,i)=>{e.stopPropagation();openCluster(i);});
-function pad(points,c,m){return points.map(p=>[c[0]+(p[0]-c[0])*1.0+ (p[0]-c[0])/(Math.hypot(p[0]-c[0],p[1]-c[1])||1)*m, c[1]+(p[1]-c[1])*1.0+(p[1]-c[1])/(Math.hypot(p[0]-c[0],p[1]-c[1])||1)*m]);}
-function drawHulls(){
-  hullSel.attr("d",i=>{
-    const pts=nodes.filter(n=>n.community===i).map(n=>[n.x,n.y]);
-    if(pts.length<3)return null;
-    let h=d3.polygonHull(pts); if(!h)return null;
-    const c=d3.polygonCentroid(h);
-    h=h.map(p=>{const dx=p[0]-c[0],dy=p[1]-c[1],L=Math.hypot(dx,dy)||1;return [p[0]+dx/L*38,p[1]+dy/L*38];});
-    return hullLine(h);
-  });
+const sim=d3.forceSimulation(nodes).alphaDecay(.017).velocityDecay(.42);
+function baseForces(){
+  const ls=MODE===0?1:.45, ax=MODE===0?.085:.17, ay=MODE===0?.095:.18;
+  sim.force("link",d3.forceLink(links).id(d=>d.id).distance(l=>80+230/Math.sqrt(l.weight)).strength(l=>Math.min(.36,l.weight/58)*ls))
+     .force("charge",d3.forceManyBody().strength(d=>-340-rScale(d.count)*13).distanceMax(1200))
+     .force("collide",d3.forceCollide(d=>rScale(d.count)+14).strength(.95))
+     .force("ax",d3.forceX(d=>anchor(grp(d))[0]).strength(ax))
+     .force("ay",d3.forceY(d=>anchor(grp(d))[1]).strength(ay));
 }
+baseForces();
+
+/* ---- containers (z-order: hulls < orbits < links < nodes < labels < name plates) ---- */
+const hullG=root.append("g");
+const orbitG=root.append("g").attr("class","orbits");
+const hullLine=d3.line().curve(d3.curveCatmullRomClosed.alpha(.8));
 
 const link=root.append("g").attr("stroke-linecap","round").selectAll("line")
   .data(links).join("line").attr("class","link").attr("stroke-width",d=>lW(d.weight));
 
 const node=root.append("g").attr("filter","url(#glow)").selectAll("circle")
   .data(nodes).join("circle").attr("class","node")
-  .attr("r",0).attr("fill",d=>color(d.community))
+  .attr("r",0).attr("fill",d=>color(grp(d)))
   .attr("stroke","rgba(255,255,255,.18)").attr("stroke-width",.6)
   .call(drag(sim));
 
@@ -245,13 +364,39 @@ const label=root.append("g").selectAll("text")
   .attr("dx",d=>rScale(d.count)+5).attr("dy",4).text(d=>d.id)
   .style("opacity",d=>d.count>=LABEL_MIN?.92:0);
 
+const hullLabG=root.append("g");
+const pingG=root.append("g").attr("class","pings");
+let hullSel=hullG.selectAll("path"), hullLab=hullLabG.selectAll("g");
+const commSize=i=>nodes.filter(n=>grp(n)===i).length;
+
 node.transition().duration(900).delay((d,i)=>200+i*9).attr("r",d=>rScale(d.count));
 link.style("stroke-opacity",0).transition().duration(800).delay(900).style("stroke-opacity",null);
+
+function drawHulls(){
+  hullSel.attr("d",i=>{
+    const pts=nodes.filter(n=>grp(n)===i).map(n=>[n.x,n.y]);
+    if(!pts.length)return null;
+    let pset=pts;
+    if(pts.length<3){pset=[];pts.forEach(p=>{for(let k=0;k<6;k++){const a=k/6*2*Math.PI;
+      pset.push([p[0]+Math.cos(a)*26,p[1]+Math.sin(a)*26]);}});}
+    let h=d3.polygonHull(pset); if(!h)return null;
+    const c=d3.polygonCentroid(h);
+    h=h.map(p=>{const dx=p[0]-c[0],dy=p[1]-c[1],L=Math.hypot(dx,dy)||1;return [p[0]+dx/L*38,p[1]+dy/L*38];});
+    return hullLine(h);
+  });
+  hullLab.attr("transform",i=>{
+    const pts=nodes.filter(n=>grp(n)===i);
+    if(!pts.length)return "translate(-9999,-9999)";
+    const cx=d3.mean(pts,n=>n.x), topY=d3.min(pts,n=>n.y-rScale(n.count));
+    return `translate(${cx},${topY-46})`;
+  });
+}
 
 sim.on("tick",()=>{
   link.attr("x1",d=>d.source.x).attr("y1",d=>d.source.y).attr("x2",d=>d.target.x).attr("y2",d=>d.target.y);
   node.attr("cx",d=>d.x).attr("cy",d=>d.y);
   label.attr("x",d=>d.x).attr("y",d=>d.y);
+  pingG.selectAll("circle").attr("cx",d=>d.n.x).attr("cy",d=>d.n.y);
   drawHulls();
 });
 
@@ -263,33 +408,36 @@ let PAPERS=null;
 fetch("papers.json").then(r=>r.json()).then(p=>{PAPERS=p;}).catch(()=>{PAPERS=[];});
 
 /* ---------- highlight ---------- */
-let focused=false;
-function setHighlight(keep,accent){
+let focused=false, curKeep=null, curAccent=null;
+function setHighlight(keep,accent){curKeep=keep;curAccent=accent;applyHL(keep,accent);}
+function applyHL(keep,accent){
   if(!keep){node.style("opacity",1);label.style("opacity",d=>d.count>=LABEL_MIN?.92:0);
     link.style("stroke",null).style("stroke-opacity",null);
     node.attr("stroke","rgba(255,255,255,.18)").attr("stroke-width",.6);
-    hullSel.attr("fill-opacity",.05).attr("stroke-opacity",.16);return;}
+    hullSel.attr("fill-opacity",.05).attr("stroke-opacity",.16);
+    hullLab.style("opacity",1).style("pointer-events","auto");return;}
   node.style("opacity",d=>keep.has(d.id)?1:.07);
   node.attr("stroke",d=>d.id===accent?"#fff":"rgba(255,255,255,.18)").attr("stroke-width",d=>d.id===accent?1.6:.6);
   label.style("opacity",d=>keep.has(d.id)?.96:0);
-  link.style("stroke",l=>(keep.has(l.source.id)&&keep.has(l.target.id))?color(byId.get(l.source.id).community):null)
+  link.style("stroke",l=>(keep.has(l.source.id)&&keep.has(l.target.id))?color(grp(byId.get(l.source.id))):null)
       .style("stroke-opacity",l=>(keep.has(l.source.id)&&keep.has(l.target.id))?.42:.02);
   hullSel.attr("fill-opacity",.025).attr("stroke-opacity",.07);
+  hullLab.style("opacity",.06).style("pointer-events","none");
 }
 function hoverNode(d){ if(focused)return; const k=nbrIds(d.id); k.add(d.id); setHighlight(k,d.id); showDetail(d); }
 function unhover(){ if(focused)return; setHighlight(null); hideDetail(); }
 node.on("mouseenter",(e,d)=>hoverNode(d)).on("mouseleave",unhover)
-    .on("click",(e,d)=>{e.stopPropagation();openKeyword(d);});
+    .on("click",(e,d)=>{e.stopPropagation();enterSystem(d);});
 svg.on("click",()=>{if(focused)clearFocus();});
 
 /* ---------- hover detail ---------- */
 const detail=document.getElementById("detail");
 function showDetail(d){
-  const top=adj.get(d.id).slice(0,5), max=top.length?top[0].w:1, col=color(d.community);
+  const top=adj.get(d.id).slice(0,5), max=top.length?top[0].w:1, col=color(grp(d));
   detail.innerHTML=`<div class="dk" style="color:${col}">${d.id}</div>
-    <div class="dmeta"><b>${d.count}</b> papers · ${COMM.names[d.community]} · click for paper list</div>
+    <div class="dmeta"><b>${d.count}</b> papers · ${gname(grp(d))} · click to enter its system</div>
     <div class="dl">Strongest co-occurrences</div>
-    ${top.map(o=>`<div class="nbr" style="color:${color(byId.get(o.id).community)}">
+    ${top.map(o=>`<div class="nbr" style="color:${color(grp(byId.get(o.id)))}">
        <span class="bar" style="width:${8+o.w/max*110}px"></span>
        <span class="nn">${o.id}</span><span class="nw">${o.w}</span></div>`).join("")}`;
   detail.classList.add("on");
@@ -302,11 +450,47 @@ const drawer=document.getElementById("drawer"), drTitle=document.getElementById(
       drMore=document.getElementById("dr-more"), drKick=document.getElementById("dr-kick");
 let drPapers=[], drShown=0;
 const STEP=150;
+const pGrp=p=>MODE===0?p[3]:(p[2].length?grp(nodes[p[2][0]]):-1);
 function paperRow(p){
-  const [t,s,ks,c]=p;
-  return `<div class="pp"><span class="pd" style="background:${color(c)};color:${color(c)}"></span>
-    <a href="${CVF(s)}" target="_blank" rel="noopener" title="${t.replace(/"/g,"&quot;")}">${t}</a></div>`;
+  const [t,s,ks,c,au]=p;
+  const pc=color(pGrp(p));
+  const chips=ks.map(ix=>{const n=nodes[ix],col=color(grp(n));
+    return `<span class="pk" style="color:${col};border-color:${col}40" data-kw="${n.id}">${n.id}</span>`;}).join("");
+  return `<div class="pp" data-ks="${ks.join(",")}"><span class="pd" style="background:${pc};color:${pc}"></span>
+    <div class="ppb"><a href="${CVF(s)}" target="_blank" rel="noopener" title="${t.replace(/"/g,"&quot;")}">${t}</a>
+    ${au?`<div class="pa" title="${au.replace(/"/g,"&quot;")}">${au}</div>`:""}
+    ${chips?`<div class="pks">${chips}</div>`:""}</div></div>`;
 }
+/* clicking a keyword chip inside the drawer jumps into that keyword's system */
+drList.addEventListener("click",e=>{
+  const kw=e.target.closest(".pk"); if(!kw)return;
+  const n=byId.get(kw.dataset.kw); if(n)enterSystem(n);
+});
+/* hovering a paper row pings its keywords on the topology */
+let hoverRow=null;
+function showPaperLoc(ks){
+  const kwNodes=ks.map(ix=>nodes[ix]).filter(Boolean);
+  if(!kwNodes.length)return;
+  applyHL(new Set(kwNodes.map(n=>n.id)),null);
+  pingG.selectAll("circle")
+    .data(kwNodes.flatMap(n=>[{n,ring:false},{n,ring:true}]))
+    .join("circle")
+    .attr("class",d=>d.ring?"ring":"halo")
+    .attr("cx",d=>d.n.x).attr("cy",d=>d.n.y)
+    .attr("r",d=>rScale(d.n.count)+(d.ring?9:6))
+    .attr("stroke",d=>color(grp(d.n)));
+}
+function hidePaperLoc(){
+  pingG.selectAll("circle").remove();
+  applyHL(curKeep,curAccent);
+}
+drList.addEventListener("mouseover",e=>{
+  const row=e.target.closest(".pp"); if(!row||row===hoverRow)return;
+  hoverRow=row;
+  const ks=(row.dataset.ks||"").split(",").filter(s=>s!=="").map(Number);
+  if(ks.length)showPaperLoc(ks);else hidePaperLoc();
+});
+drList.addEventListener("mouseleave",()=>{hoverRow=null;hidePaperLoc();});
 function renderMore(){
   const chunk=drPapers.slice(drShown,drShown+STEP);
   drList.insertAdjacentHTML("beforeend",chunk.map(paperRow).join(""));
@@ -323,7 +507,7 @@ function openDrawer(title,col,papers,subHtml){
     const t=setInterval(()=>{if(PAPERS!==null){clearInterval(t);drList.innerHTML="";renderMore();}},120);}
   else renderMore();
 }
-function closeDrawer(){drawer.classList.remove("on");}
+function closeDrawer(){drawer.classList.remove("on");pingG.selectAll("circle").remove();hoverRow=null;}
 document.getElementById("dr-close").onclick=e=>{e.stopPropagation();clearFocus();};
 drMore.onclick=renderMore;
 
@@ -340,42 +524,100 @@ function fit(keepIds){
 function markFocused(n){focused=true;resetBtn.classList.add("on");matchEl.textContent=n;}
 function papersWithKw(idx){return (PAPERS||[]).filter(p=>p[2].includes(idx));}
 
-function openKeyword(d){
-  const k=nbrIds(d.id);k.add(d.id);
-  setHighlight(k,d.id);showDetail(d);
-  markFocused(k.size+" in focus");fit(k);
-  drKick.textContent="Keyword";
-  openDrawer(d.id,color(d.community),papersWithKw(nodeIndex.get(d.id)));
+/* ---------- "now entering" HUD ---------- */
+const hud=document.getElementById("syshud"), hudName=document.getElementById("sh-name"),
+      hudSub=document.getElementById("sh-sub");
+function showHUD(name,col,sub,sfx){
+  hudName.innerHTML=`<span style="color:${col}">${name}</span> <em>${sfx||"star system"}</em>`;
+  hudSub.textContent=sub;
+  hud.classList.remove("on");void hud.offsetWidth;hud.classList.add("on");
 }
+function hideHUD(){hud.classList.remove("on");}
+
+/* ---------- system mode: radial re-layout around a keyword ---------- */
+let systemNode=null;
+const GOLD=Math.PI*(3-Math.sqrt(5));
+function exitSystem(){
+  if(!systemNode)return;
+  systemNode.fx=null;systemNode.fy=null;systemNode=null;
+  orbitG.selectAll("*").interrupt().remove();
+  baseForces();sim.alpha(.55).restart();
+}
+function enterSystem(d){
+  exitSystem();
+  systemNode=d;
+  const nb=adj.get(d.id);                       /* sorted by weight desc */
+  const keep=new Set(nb.map(o=>o.id));keep.add(d.id);
+  const CX=(W-390)/2, CY=H*0.55;
+  const R=Math.max(250,Math.min((W-440)/2,H/2-90));
+  const wmax=nb.length?nb[0].w:1, wmin=nb.length?nb[nb.length-1].w:1;
+  const rr=d3.scaleSqrt().domain([wmax,wmin===wmax?wmin-.01:wmin]).range([Math.min(170,R*.5),R]);
+  const TGT=new Map();
+  nb.forEach((o,i)=>{const a=i*GOLD-Math.PI/2,r=rr(o.w);
+    TGT.set(o.id,[CX+Math.cos(a)*r,CY+Math.sin(a)*r]);});
+  d.fx=CX;d.fy=CY;
+  sim.force("link",null)
+     .force("charge",d3.forceManyBody().strength(n=>keep.has(n.id)?-70:0).distanceMax(420))
+     .force("ax",d3.forceX(n=>TGT.has(n.id)?TGT.get(n.id)[0]:anchor(grp(n))[0]).strength(n=>TGT.has(n.id)?.5:.03))
+     .force("ay",d3.forceY(n=>TGT.has(n.id)?TGT.get(n.id)[1]:anchor(grp(n))[1]).strength(n=>TGT.has(n.id)?.5:.03));
+  sim.alpha(.9).restart();
+  /* orbit rings */
+  const col=color(grp(d));
+  orbitG.selectAll("*").interrupt().remove();
+  const radii=nb.length?[...new Set([.3,.62,.95].map(q=>Math.round(d3.quantile(nb.map(o=>rr(o.w)).sort(d3.ascending),q))))]:[];
+  radii.forEach((r,i)=>orbitG.append("circle").attr("cx",CX).attr("cy",CY).attr("r",0)
+    .transition().duration(800).delay(120+i*110).attr("r",r));
+  orbitG.append("circle").attr("class","core").attr("cx",CX).attr("cy",CY)
+    .style("stroke",col).style("stroke-opacity",0).attr("r",rScale(d.count)+30)
+    .transition().duration(700).delay(80).attr("r",rScale(d.count)+13).style("stroke-opacity",.35);
+  /* visuals + drawer */
+  setHighlight(keep,d.id);showDetail(d);
+  markFocused(nb.length+" linked keywords");
+  svg.transition().duration(750).call(zoom.transform,d3.zoomIdentity);
+  showHUD(d.id,col,`${nb.length} connected keywords · ${d.count.toLocaleString()} papers · esc to leave`);
+  drKick.textContent="Star System";
+  openDrawer(d.id,col,papersWithKw(nodeIndex.get(d.id)));
+}
+
 function openCluster(i){
-  const ids=nodes.filter(n=>n.community===i).map(n=>n.id);
+  exitSystem();
+  const ids=nodes.filter(n=>grp(n)===i).map(n=>n.id);
   const keep=new Set(ids);
   setHighlight(keep,null);hideDetail();
-  markFocused(COMM.names[i]);fit(keep);
-  drKick.textContent="Cluster";
-  const ps=(PAPERS||[]).filter(p=>p[3]===i);
-  openDrawer(COMM.names[i],color(i),ps);
+  markFocused(gname(i));fit(keep);
+  drKick.textContent=MODE===0?"Star System":"CVPR Topic";
+  const ps=(PAPERS||[]).filter(p=>MODE===0?p[3]===i:p[2].some(ix=>grp(nodes[ix])===i));
+  showHUD(gname(i),color(i),`${ids.length} keyword${ids.length>1?"s":""} · ${ps.length.toLocaleString()} papers · esc to leave`,
+    MODE===0?"star system":"cvpr topic");
+  openDrawer(gname(i),color(i),ps,
+    MODE===1?`<b>${ps.length}</b> papers · ${gfull(i)}`:null);
 }
 function runSearch(v){
   v=v.trim().toLowerCase();
   if(!v){clearFocus();return;}
   const kw=nodes.filter(n=>n.id.toLowerCase().includes(v));
+  /* exact single keyword → fly into its star system */
+  if(kw.length===1&&kw[0].id.toLowerCase()===v){enterSystem(kw[0]);return;}
+  exitSystem();hideHUD();
   const pm=PAPERS?PAPERS.filter(p=>p[0].toLowerCase().includes(v)):[];
+  const pa=PAPERS?PAPERS.filter(p=>(p[4]||"").toLowerCase().includes(v)):[];
+  const seen=new Set(pm.map(p=>p[1])), direct=pm.concat(pa.filter(p=>!seen.has(p[1])));
   let keep;
   if(kw.length){keep=new Set(kw.map(n=>n.id));kw.forEach(n=>nbrIds(n.id).forEach(x=>keep.add(x)));}
-  else if(pm.length){keep=new Set();pm.forEach(p=>p[2].forEach(ix=>keep.add(nodes[ix].id)));}
+  else if(direct.length){keep=new Set();direct.forEach(p=>p[2].forEach(ix=>keep.add(nodes[ix].id)));}
   else{setHighlight(new Set(),null);markFocused("no match");closeDrawer();hideDetail();return;}
   setHighlight(keep,kw.length===1?kw[0].id:null);hideDetail();
-  markFocused((pm.length||kw.length)+" matches");fit(keep);
-  // papers: title-substring matches first, else union of keyword papers
-  let ps=pm;
-  if(!ps.length){const seen=new Set();ps=[];
-    kw.forEach(n=>papersWithKw(nodeIndex.get(n.id)).forEach(p=>{if(!seen.has(p[1])){seen.add(p[1]);ps.push(p);}}));}
+  markFocused((direct.length||kw.length)+" matches");fit(keep);
+  /* papers: direct title/author matches first, else union of keyword papers */
+  let ps=direct, how;
+  if(ps.length){how=[pm.length?`${pm.length} title`:null,pa.length?`${pa.length} author`:null].filter(Boolean).join(" · ")+" matches";}
+  else{const s2=new Set();ps=[];
+    kw.forEach(n=>papersWithKw(nodeIndex.get(n.id)).forEach(p=>{if(!s2.has(p[1])){s2.add(p[1]);ps.push(p);}}));
+    how="tagged with matched keywords";}
   drKick.textContent="Search";
-  openDrawer(`“${v}”`,"var(--ink)",ps,
-    `<b>${ps.length}</b> papers ${pm.length?"matching title":"tagged with matched keywords"}`);
+  openDrawer(`“${v}”`,"var(--ink)",ps,`<b>${ps.length}</b> papers · ${how}`);
 }
-function clearFocus(){focused=false;setHighlight(null);hideDetail();closeDrawer();
+function clearFocus(){exitSystem();hideHUD();focused=false;setHighlight(null);hideDetail();closeDrawer();
   resetBtn.classList.remove("on");matchEl.textContent=nodes.length+" visible";
   document.getElementById("q").value="";}
 function resetView(){clearFocus();svg.transition().duration(700).call(zoom.transform,d3.zoomIdentity);}
@@ -386,25 +628,60 @@ addEventListener("keydown",e=>{if(e.key==="Escape")resetView();});
 const q=document.getElementById("q");
 let deb;q.addEventListener("input",()=>{clearTimeout(deb);deb=setTimeout(()=>runSearch(q.value),180);});
 
-/* ---------- legend + chips ---------- */
-const counts=d3.rollup(nodes,v=>v.length,d=>d.community);
+/* ---------- legend + group plates (rebuilt per mode) ---------- */
 const lr=d3.select("#legend-rows");
-COMM.names.forEach((nm,i)=>{
-  const row=lr.append("div").attr("class","lrow").on("click",()=>openCluster(i));
-  row.append("span").attr("class","dot").style("background",color(i)).style("color",color(i));
-  row.append("span").attr("class","lname").text(nm);
-  row.append("span").attr("class","lcount").text(counts.get(i)||0);
-});
+function buildLegend(){
+  lr.html("");
+  d3.range(NG()).forEach(i=>{
+    const row=lr.append("div").attr("class","lrow").attr("title",gfull(i)).on("click",()=>openCluster(i));
+    row.append("span").attr("class","dot").style("background",color(i)).style("color",color(i));
+    row.append("span").attr("class","lname").text(gname(i));
+    row.append("span").attr("class","lcount").text(commSize(i));
+  });
+  document.getElementById("lt").textContent=MODE===0?"Star Systems · click to enter":"CVPR Topics · click to enter";
+}
+function buildGroups(){
+  hullSel=hullG.selectAll("path").data(d3.range(NG())).join("path")
+    .attr("class","hull").attr("filter","url(#hullblur)")
+    .attr("fill",i=>color(i)).attr("fill-opacity",.05)
+    .attr("stroke",i=>color(i)).attr("stroke-opacity",.16).attr("stroke-width",1.2)
+    .on("click",(e,i)=>{e.stopPropagation();openCluster(i);});
+  hullLab=hullLabG.selectAll("g").data(d3.range(NG())).join(
+      enter=>{const g=enter.append("g");
+        g.append("text").attr("class","hn-name").attr("text-anchor","middle");
+        g.append("text").attr("class","hn-kick").attr("text-anchor","middle").attr("dy",15);
+        return g;})
+    .attr("class","hullname")
+    .on("click",(e,i)=>{e.stopPropagation();openCluster(i);});
+  hullLab.select(".hn-name").attr("fill",i=>color(i)).text(i=>gname(i));
+  hullLab.select(".hn-kick")
+    .text(i=>`${MODE===0?"Star System":"CVPR Topic"} ${String(i+1).padStart(2,"0")} · ${commSize(i)} keyword${commSize(i)>1?"s":""}`);
+  buildLegend();
+}
+buildGroups();
+
+/* ---------- mode toggle ---------- */
+function switchMode(m){
+  if(m===MODE)return;MODE=m;
+  document.querySelectorAll(".mso").forEach(el=>el.classList.toggle("on",+el.dataset.m===m));
+  clearFocus();
+  buildGroups();
+  node.transition().duration(650).attr("fill",d=>color(grp(d)));
+  baseForces();sim.alpha(.85).restart();
+}
+document.querySelectorAll(".mso").forEach(el=>el.onclick=()=>switchMode(+el.dataset.m));
+
 const featured=["Diffusion","Gaussian Splatting","Vision-Language","Video","3D"];
 const chips=d3.select("#chips");
 featured.forEach(f=>chips.append("span").attr("class","chip").text(f).on("click",()=>{q.value=f;runSearch(f);}));
 
 function drag(sim){function s(e,d){if(!e.active)sim.alphaTarget(.3).restart();d.fx=d.x;d.fy=d.y;}
-  function m(e,d){d.fx=e.x;d.fy=e.y;}function en(e,d){if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null;}
+  function m(e,d){d.fx=e.x;d.fy=e.y;}
+  function en(e,d){if(!e.active)sim.alphaTarget(0);if(d!==systemNode){d.fx=null;d.fy=null;}}
   return d3.drag().on("start",s).on("drag",m).on("end",en);}
 
 addEventListener("resize",()=>{W=innerWidth;H=innerHeight;svg.attr("viewBox",[0,0,W,H]);
-  sim.force("ax").x(d=>anchor(d.community)[0]);sim.force("ay").y(d=>anchor(d.community)[1]);
+  if(!systemNode)baseForces();
   sim.alpha(.3).restart();});
 </script>
 </body>
