@@ -184,12 +184,12 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
 .sh-s{margin-top:7px;font-size:9.5px;color:var(--muted);letter-spacing:.08em}
 /* responsive layout: phones & small tablets */
 @media(max-width:860px){
-  .masthead{top:12px;left:14px;max-width:58vw}
-  h1{font-size:22px}
-  .eyebrow{font-size:8px;letter-spacing:.28em;margin-bottom:6px}
-  .readout{font-size:9px;margin-top:7px}
+  .masthead{top:10px;left:14px;max-width:74vw}
+  h1{font-size:19px}
+  .eyebrow{font-size:7.5px;letter-spacing:.26em;margin-bottom:5px}
+  .readout{font-size:8.5px;margin-top:5px;line-height:1.5}
   .detail{display:none}
-  .search{top:96px;left:12px;right:12px;width:auto}
+  .search{top:104px;left:12px;right:12px;width:auto}
   .search-row{padding:10px 13px}
   #q{font-size:12px}
   .search-hint{display:none}
@@ -215,6 +215,17 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
   .sh-n em{font-size:12px}
   .sh-s{display:none}
   .reset{left:auto;right:10px;bottom:14px;transform:none;padding:8px 14px;font-size:9.5px}
+  /* keyboard open: results move up under the search bar so they stay visible */
+  body.kb .masthead,body.kb .legend,body.kb .reset{opacity:.15;pointer-events:none}
+  body.kb .drawer{top:152px;bottom:auto;max-height:36vh;border-radius:10px}
+  body.kb .syshud{display:none}
+}
+@media(max-width:420px){
+  .eyebrow{display:none}
+  .masthead{top:12px;max-width:80vw}
+  h1{font-size:17px}
+  .search{top:92px}
+  body.kb .drawer{top:140px}
 }
 </style>
 </head>
@@ -687,6 +698,9 @@ addEventListener("keydown",e=>{if(e.key==="Escape")resetView();});
 /* ---------- search ---------- */
 const q=document.getElementById("q");
 let deb;q.addEventListener("input",()=>{clearTimeout(deb);deb=setTimeout(()=>runSearch(q.value),180);});
+/* on-screen keyboard: keep results visible above it (mobile CSS hooks) */
+q.addEventListener("focus",()=>document.body.classList.add("kb"));
+q.addEventListener("blur",()=>document.body.classList.remove("kb"));
 
 /* ---------- legend + group plates (rebuilt per mode) ---------- */
 const lr=d3.select("#legend-rows");
@@ -740,7 +754,11 @@ function drag(sim){function s(e,d){if(!e.active)sim.alphaTarget(.3).restart();d.
   function en(e,d){if(!e.active)sim.alphaTarget(0);if(d!==systemNode){d.fx=null;d.fy=null;}}
   return d3.drag().on("start",s).on("drag",m).on("end",en);}
 
-addEventListener("resize",()=>{W=innerWidth;H=innerHeight;svg.attr("viewBox",[0,0,W,H]);
+addEventListener("resize",()=>{
+  const wChanged=Math.abs(innerWidth-W)>40;
+  W=innerWidth;H=innerHeight;svg.attr("viewBox",[0,0,W,H]);
+  /* height-only changes on touch devices = on-screen keyboard — don't re-simulate */
+  if(!wChanged&&(navigator.maxTouchPoints||0)>0)return;
   if(!systemNode)baseForces();
   sim.alpha(.3).restart();});
 </script>
