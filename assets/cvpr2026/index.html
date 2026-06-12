@@ -94,10 +94,12 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
 .fopt.tba input{cursor:default}
 .wnode{cursor:pointer}
 .wn-name{font-size:12.5px}
-.modesw{display:flex;border:1px solid rgba(255,209,102,.38);border-radius:22px;overflow:hidden;
-  margin-bottom:13px;box-shadow:0 0 16px rgba(255,209,102,.12), inset 0 0 10px rgba(255,209,102,.05)}
-.mso{flex:1;text-align:center;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
-  padding:9px 4px;cursor:pointer;color:var(--muted);transition:.18s;background:rgba(255,255,255,.02)}
+.modesw{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(255,209,102,.38);
+  border-radius:14px;overflow:hidden;margin-bottom:13px;
+  box-shadow:0 0 16px rgba(255,209,102,.12), inset 0 0 10px rgba(255,209,102,.05)}
+.mso{text-align:center;font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  white-space:nowrap;padding:8px 2px;cursor:pointer;color:var(--muted);transition:.18s;
+  background:rgba(255,255,255,.02)}
 .mso:hover{color:var(--ink)}
 .mso.on{color:#070910;background:var(--c2);font-weight:700;
   box-shadow:0 0 18px rgba(255,209,102,.5)}
@@ -989,8 +991,14 @@ const WCOL=[],WCOLL=[];
 WS.cats.forEach((c,i)=>{const h=(i*137.508+40)%360;
   WCOL.push(d3.hsl(h,.55,.66).formatHex());WCOLL.push(d3.hsl(h,.62,.38).formatHex());});
 function wcolor(i){return LIGHT?WCOLL[i]:WCOL[i];}
-const wsAnchor=i=>{const n=WS.cats.length,a=i/n*2*Math.PI-Math.PI/2;
-  return [W*0.52+Math.cos(a)*W*0.33,H*0.55+Math.sin(a)*H*0.34];};
+/* categories on a loose grid (a single ring read as 'just an ellipse') */
+const wsAnchor=i=>{
+  const n=WS.cats.length;
+  const cols=Math.max(4,Math.round(Math.sqrt(n*W/Math.max(H,1))));
+  const rows=Math.ceil(n/cols);
+  return [W*(0.5+(((i%cols)+0.5)-cols/2)/cols*0.9),
+          H*(0.56+((Math.floor(i/cols)+0.5)-rows/2)/rows*0.76)];
+};
 let wBuilt=false,wsim=null,wnodes=null,wG=null,wHullG=null,wLabG=null,
     wNodeSel=null,wHullSel=null,wLabSel=null;
 const mainGroups=()=>[hullG,orbitG,hullLabG,pingG,
@@ -1022,7 +1030,9 @@ function styleWs(){
   wLabSel.select(".wn-name").attr("fill",i=>wcolor(i));
 }
 function buildWorkshops(){
-  wnodes=WS.list.map((w,i)=>({i,t:w[0],u:w[1],c:w[2],day:w[3]}));
+  wnodes=WS.list.map((w,i)=>{const a=wsAnchor(w[2]);
+    return {i,t:w[0],u:w[1],c:w[2],day:w[3],
+      x:a[0]+(Math.random()-.5)*70,y:a[1]+(Math.random()-.5)*70};});
   wHullG=root.append("g").style("display","none");
   wG=root.append("g").style("display","none").attr("filter",LITE?null:"url(#glow)");
   wLabG=root.append("g").style("display","none");
@@ -1041,7 +1051,10 @@ function buildWorkshops(){
         return g;})
     .attr("class","hullname")
     .on("click",(e,i)=>{e.stopPropagation();openWsCat(i);});
-  wLabSel.select(".wn-name").text(i=>WS.cats[i]);
+  wLabSel.select(".wn-name")
+    .text(i=>WS.cats[i].length>26?WS.cats[i].slice(0,25)+"…":WS.cats[i])
+    .each(function(i){d3.select(this).selectAll("title").remove();
+      d3.select(this).append("title").text(WS.cats[i]);});
   wLabSel.select(".hn-kick").text(i=>`${WS.list.filter(w=>w[2]===i).length} workshops`);
   wsim=d3.forceSimulation(wnodes)
     .force("x",d3.forceX(d=>wsAnchor(d.c)[0]).strength(.22))
@@ -1081,6 +1094,8 @@ function enterWorkshops(){
     fetch("ws_papers.json?v=1").then(r=>r.json()).then(w=>{WSP=w;sizeWsNodes();}).catch(()=>{WSP=false;});}
   mainGroups().forEach(g=>g.style("display","none"));
   [wHullG,wG,wLabG].forEach(g=>g.style("display",null));
+  styleWs();                       /* belt & braces: never enter uncoloured */
+  wsim.force("x").x(d=>wsAnchor(d.c)[0]);wsim.force("y").y(d=>wsAnchor(d.c)[1]);
   wsim.alpha(.9).restart();
   buildWsLegend();
   document.getElementById("r-papers").textContent=WS.list.length;
