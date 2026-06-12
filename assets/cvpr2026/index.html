@@ -66,11 +66,13 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
 
 .legend{left:30px;bottom:28px;padding:15px 17px 16px;border-radius:3px;min-width:235px;max-width:280px}
 .legend .lt{font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--dim);margin-bottom:11px}
-.modesw{display:flex;border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:12px}
-.mso{flex:1;text-align:center;font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;
-  padding:6px 2px;cursor:pointer;color:var(--dim);transition:.18s;background:rgba(255,255,255,.02)}
-.mso:hover{color:var(--muted)}
-.mso.on{color:var(--ink);background:rgba(255,255,255,.10)}
+.modesw{display:flex;border:1px solid rgba(255,209,102,.38);border-radius:22px;overflow:hidden;
+  margin-bottom:13px;box-shadow:0 0 16px rgba(255,209,102,.12), inset 0 0 10px rgba(255,209,102,.05)}
+.mso{flex:1;text-align:center;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  padding:9px 4px;cursor:pointer;color:var(--muted);transition:.18s;background:rgba(255,255,255,.02)}
+.mso:hover{color:var(--ink)}
+.mso.on{color:#070910;background:var(--c2);font-weight:700;
+  box-shadow:0 0 18px rgba(255,209,102,.5)}
 #legend-rows{max-height:32vh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--dim) transparent;
   margin-right:-8px;padding-right:8px}
 #legend-rows::-webkit-scrollbar{width:4px}
@@ -140,6 +142,13 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
 .reset.on{opacity:1;pointer-events:auto}
 .reset:hover{color:var(--ink);border-color:rgba(255,255,255,.32)}
 
+/* lite tier: phones/tablets — SVG filters & blend modes are the perf killers */
+.lite .grain{display:none}
+.lite .panel{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(10,13,21,.93)}
+.lite .label{font-size:10px}
+.lite .hn-name{font-size:13px}
+.lite .hn-kick{font-size:6.5px;letter-spacing:.3em}
+
 /* star-system constellation names on hulls */
 .hn-name{font-family:"Fraunces",serif;font-style:italic;font-size:17px;font-weight:400;
   paint-order:stroke;stroke:rgba(7,9,16,.9);stroke-width:4px;letter-spacing:.01em;
@@ -173,7 +182,40 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
   font-variation-settings:"opsz" 70,"WONK" 1;text-shadow:0 2px 18px rgba(0,0,0,.7)}
 .sh-n em{font-style:italic;font-weight:300;color:var(--muted);font-size:21px}
 .sh-s{margin-top:7px;font-size:9.5px;color:var(--muted);letter-spacing:.08em}
-@media(max-width:860px){.search,.drawer,.detail,.syshud{display:none}.masthead{max-width:80vw}}
+/* responsive layout: phones & small tablets */
+@media(max-width:860px){
+  .masthead{top:12px;left:14px;max-width:58vw}
+  h1{font-size:22px}
+  .eyebrow{font-size:8px;letter-spacing:.28em;margin-bottom:6px}
+  .readout{font-size:9px;margin-top:7px}
+  .detail{display:none}
+  .search{top:96px;left:12px;right:12px;width:auto}
+  .search-row{padding:10px 13px}
+  #q{font-size:12px}
+  .search-hint{display:none}
+  .legend{left:10px;bottom:10px;min-width:0;max-width:62vw;padding:10px 12px 11px}
+  .legend .lt{font-size:8px;letter-spacing:.22em;margin-bottom:7px}
+  #legend-rows{max-height:17vh}
+  .lrow{padding:3px 0}
+  .lname{font-size:9.5px}.lcount{font-size:8.5px}
+  .mso{font-size:8.5px;padding:7px 2px}
+  .chips{display:none}
+  .drawer{top:auto;bottom:0;left:0;right:0;width:auto;max-height:46vh;
+    border-radius:12px 12px 0 0;transform:translateY(16px);z-index:24;
+    background:rgba(9,12,19,.97)}
+  .drawer.on{transform:none}
+  body.drawer-open .legend,body.drawer-open .reset{opacity:0;pointer-events:none}
+  .dr-title{font-size:17px}
+  .dr-head{padding:11px 14px 9px}
+  .syshud{top:10px;left:auto;right:12px;transform:none;text-align:right;max-width:40vw}
+  .syshud.on{animation:none}
+  .sh-k{font-size:7px;letter-spacing:.3em;margin-bottom:3px}
+  .sh-k::before,.sh-k::after{content:none}
+  .sh-n{font-size:15px}
+  .sh-n em{font-size:12px}
+  .sh-s{display:none}
+  .reset{left:auto;right:10px;bottom:14px;transform:none;padding:8px 14px;font-size:9.5px}
+}
 </style>
 </head>
 <body>
@@ -302,7 +344,12 @@ const svg=d3.select("#graph"), root=svg.select(".zoomroot"), starG=svg.select(".
 let W=innerWidth,H=innerHeight;
 svg.attr("viewBox",[0,0,W,H]);
 
-(function(){let s="";for(let i=0;i<150;i++){const x=Math.random()*W,y=Math.random()*H,r=Math.random()*1.1+.2,d=(Math.random()*5).toFixed(2);s+=`<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${r.toFixed(2)}" style="animation-delay:${d}s"/>`;}starG.html(s);})();
+/* lite tier: phones & tablets — skip the expensive SVG filters */
+const LITE=Math.min(W,H)<=700||((navigator.maxTouchPoints||0)>0&&Math.max(W,H)<1400);
+const isMobile=()=>W<=860;
+document.documentElement.classList.toggle("lite",LITE);
+
+(function(){let s="";for(let i=0;i<(LITE?55:150);i++){const x=Math.random()*W,y=Math.random()*H,r=Math.random()*1.1+.2,d=(Math.random()*5).toFixed(2);s+=`<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${r.toFixed(2)}" style="animation-delay:${d}s"/>`;}starG.html(s);})();
 
 svg.append("defs").html(`<filter id="glow" x="-90%" y="-90%" width="280%" height="280%">
   <feGaussianBlur stdDeviation="4.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
@@ -324,7 +371,7 @@ const byId=new Map(nodes.map(d=>[d.id,d]));
 const nodeIndex=new Map(nodes.map((d,i)=>[d.id,i]));
 
 const ext=d3.extent(nodes,d=>d.count);
-const rScale=d3.scaleSqrt().domain(ext).range([5,42]);
+const rScale=d3.scaleSqrt().domain(ext).range(LITE?[4,26]:[5,42]);
 const cExt=d3.extent(links,l=>l.weight);
 const lW=d3.scaleSqrt().domain(cExt).range([.4,3.4]);
 const LABEL_MIN=d3.quantile(nodes.map(d=>d.count).sort(d3.ascending),.84);
@@ -353,7 +400,7 @@ const hullLine=d3.line().curve(d3.curveCatmullRomClosed.alpha(.8));
 const link=root.append("g").attr("stroke-linecap","round").selectAll("line")
   .data(links).join("line").attr("class","link").attr("stroke-width",d=>lW(d.weight));
 
-const node=root.append("g").attr("filter","url(#glow)").selectAll("circle")
+const node=root.append("g").attr("filter",LITE?null:"url(#glow)").selectAll("circle")
   .data(nodes).join("circle").attr("class","node")
   .attr("r",0).attr("fill",d=>color(grp(d)))
   .attr("stroke","rgba(255,255,255,.18)").attr("stroke-width",.6)
@@ -366,6 +413,7 @@ const label=root.append("g").selectAll("text")
 
 const hullLabG=root.append("g");
 const pingG=root.append("g").attr("class","pings");
+let pingSel=null;
 let hullSel=hullG.selectAll("path"), hullLab=hullLabG.selectAll("g");
 const commSize=i=>nodes.filter(n=>grp(n)===i).length;
 
@@ -373,6 +421,7 @@ node.transition().duration(900).delay((d,i)=>200+i*9).attr("r",d=>rScale(d.count
 link.style("stroke-opacity",0).transition().duration(800).delay(900).style("stroke-opacity",null);
 
 function drawHulls(){
+  if(curKeep)return;            /* hulls are hidden during focus — skip the work */
   hullSel.attr("d",i=>{
     const pts=nodes.filter(n=>grp(n)===i).map(n=>[n.x,n.y]);
     if(!pts.length)return null;
@@ -392,12 +441,13 @@ function drawHulls(){
   });
 }
 
+let tickN=0;
 sim.on("tick",()=>{
   link.attr("x1",d=>d.source.x).attr("y1",d=>d.source.y).attr("x2",d=>d.target.x).attr("y2",d=>d.target.y);
   node.attr("cx",d=>d.x).attr("cy",d=>d.y);
   label.attr("x",d=>d.x).attr("y",d=>d.y);
-  pingG.selectAll("circle").attr("cx",d=>d.n.x).attr("cy",d=>d.n.y);
-  drawHulls();
+  if(pingSel)pingSel.attr("cx",d=>d.n.x).attr("cy",d=>d.n.y);
+  if(tickN++%(LITE?3:2)===0)drawHulls();   /* hull blobs lag a frame or two — invisible at this blur */
 });
 
 const zoom=d3.zoom().scaleExtent([.3,5]).on("zoom",e=>root.attr("transform",e.transform));
@@ -414,15 +464,18 @@ function applyHL(keep,accent){
   if(!keep){node.style("opacity",1);label.style("opacity",d=>d.count>=LABEL_MIN?.92:0);
     link.style("stroke",null).style("stroke-opacity",null);
     node.attr("stroke","rgba(255,255,255,.18)").attr("stroke-width",.6);
-    hullSel.attr("fill-opacity",.05).attr("stroke-opacity",.16);
-    hullLab.style("opacity",1).style("pointer-events","auto");return;}
+    hullSel.style("display",null).attr("fill-opacity",.05).attr("stroke-opacity",.16);
+    hullLab.style("display",null);
+    drawHulls();return;}
   node.style("opacity",d=>keep.has(d.id)?1:.07);
   node.attr("stroke",d=>d.id===accent?"#fff":"rgba(255,255,255,.18)").attr("stroke-width",d=>d.id===accent?1.6:.6);
   label.style("opacity",d=>keep.has(d.id)?.96:0);
   link.style("stroke",l=>(keep.has(l.source.id)&&keep.has(l.target.id))?color(grp(byId.get(l.source.id))):null)
       .style("stroke-opacity",l=>(keep.has(l.source.id)&&keep.has(l.target.id))?.42:.02);
-  hullSel.attr("fill-opacity",.025).attr("stroke-opacity",.07);
-  hullLab.style("opacity",.06).style("pointer-events","none");
+  /* fully hide hulls while focused: avoids per-tick gaussian-blur repaints
+     and the hover-transition flicker of blobs sweeping under the cursor */
+  hullSel.style("display","none");
+  hullLab.style("display","none");
 }
 function hoverNode(d){ if(focused)return; const k=nbrIds(d.id); k.add(d.id); setHighlight(k,d.id); showDetail(d); }
 function unhover(){ if(focused)return; setHighlight(null); hideDetail(); }
@@ -472,7 +525,7 @@ function showPaperLoc(ks){
   const kwNodes=ks.map(ix=>nodes[ix]).filter(Boolean);
   if(!kwNodes.length)return;
   applyHL(new Set(kwNodes.map(n=>n.id)),null);
-  pingG.selectAll("circle")
+  pingSel=pingG.selectAll("circle")
     .data(kwNodes.flatMap(n=>[{n,ring:false},{n,ring:true}]))
     .join("circle")
     .attr("class",d=>d.ring?"ring":"halo")
@@ -481,7 +534,7 @@ function showPaperLoc(ks){
     .attr("stroke",d=>color(grp(d.n)));
 }
 function hidePaperLoc(){
-  pingG.selectAll("circle").remove();
+  pingG.selectAll("circle").remove();pingSel=null;
   applyHL(curKeep,curAccent);
 }
 drList.addEventListener("mouseover",e=>{
@@ -502,12 +555,13 @@ function openDrawer(title,col,papers,subHtml){
   drPapers=papers;drShown=0;drList.innerHTML="";
   drTitle.textContent=title;drTitle.style.color=col;
   drSub.innerHTML=subHtml||`<b>${papers.length}</b> papers · click a title to open on CVF`;
-  drawer.classList.add("on");
+  drawer.classList.add("on");document.body.classList.add("drawer-open");
   if(PAPERS===null){drList.innerHTML='<div class="pp"><a>loading papers…</a></div>';
     const t=setInterval(()=>{if(PAPERS!==null){clearInterval(t);drList.innerHTML="";renderMore();}},120);}
   else renderMore();
 }
-function closeDrawer(){drawer.classList.remove("on");pingG.selectAll("circle").remove();hoverRow=null;}
+function closeDrawer(){drawer.classList.remove("on");document.body.classList.remove("drawer-open");
+  pingG.selectAll("circle").remove();pingSel=null;hoverRow=null;}
 document.getElementById("dr-close").onclick=e=>{e.stopPropagation();clearFocus();};
 drMore.onclick=renderMore;
 
@@ -516,9 +570,12 @@ const resetBtn=document.getElementById("reset"), matchEl=document.getElementById
 function fit(keepIds){
   const pts=nodes.filter(n=>keepIds.has(n.id)); if(!pts.length)return;
   const xs=d3.extent(pts,p=>p.x), ys=d3.extent(pts,p=>p.y);
-  const pad=120, bw=Math.max(60,xs[1]-xs[0]), bh=Math.max(60,ys[1]-ys[0]);
-  const k=Math.min(2.2,.85/Math.max(bw/(W-pad*2-340),bh/(H-pad*2)));
-  const tx=(W-340)/2-k*(xs[0]+xs[1])/2, ty=H/2-k*(ys[0]+ys[1])/2;
+  const mob=isMobile();
+  /* mobile: drawer is a bottom sheet, so fit into the upper half at full width */
+  const effW=W-(mob?0:340), effH=mob?H*.5:H, pad=mob?40:120;
+  const bw=Math.max(60,xs[1]-xs[0]), bh=Math.max(60,ys[1]-ys[0]);
+  const k=Math.min(2.2,.85/Math.max(bw/(effW-pad*2),bh/(effH-pad*2)));
+  const tx=effW/2-k*(xs[0]+xs[1])/2, ty=effH/2-k*(ys[0]+ys[1])/2;
   svg.transition().duration(750).call(zoom.transform,d3.zoomIdentity.translate(tx,ty).scale(k));
 }
 function markFocused(n){focused=true;resetBtn.classList.add("on");matchEl.textContent=n;}
@@ -541,6 +598,7 @@ function exitSystem(){
   if(!systemNode)return;
   systemNode.fx=null;systemNode.fy=null;systemNode=null;
   orbitG.selectAll("*").interrupt().remove();
+  sim.alphaDecay(.017);
   baseForces();sim.alpha(.55).restart();
 }
 function enterSystem(d){
@@ -548,10 +606,11 @@ function enterSystem(d){
   systemNode=d;
   const nb=adj.get(d.id);                       /* sorted by weight desc */
   const keep=new Set(nb.map(o=>o.id));keep.add(d.id);
-  const CX=(W-390)/2, CY=H*0.55;
-  const R=Math.max(250,Math.min((W-440)/2,H/2-90));
+  const mob=isMobile();
+  const CX=mob?W/2:(W-390)/2, CY=mob?H*.27:H*0.55;
+  const R=mob?Math.max(110,Math.min(W/2-26,H*.22)):Math.max(250,Math.min((W-440)/2,H/2-90));
   const wmax=nb.length?nb[0].w:1, wmin=nb.length?nb[nb.length-1].w:1;
-  const rr=d3.scaleSqrt().domain([wmax,wmin===wmax?wmin-.01:wmin]).range([Math.min(170,R*.5),R]);
+  const rr=d3.scaleSqrt().domain([wmax,wmin===wmax?wmin-.01:wmin]).range([Math.min(mob?80:170,R*.5),R]);
   const TGT=new Map();
   nb.forEach((o,i)=>{const a=i*GOLD-Math.PI/2,r=rr(o.w);
     TGT.set(o.id,[CX+Math.cos(a)*r,CY+Math.sin(a)*r]);});
@@ -560,7 +619,8 @@ function enterSystem(d){
      .force("charge",d3.forceManyBody().strength(n=>keep.has(n.id)?-70:0).distanceMax(420))
      .force("ax",d3.forceX(n=>TGT.has(n.id)?TGT.get(n.id)[0]:anchor(grp(n))[0]).strength(n=>TGT.has(n.id)?.5:.03))
      .force("ay",d3.forceY(n=>TGT.has(n.id)?TGT.get(n.id)[1]:anchor(grp(n))[1]).strength(n=>TGT.has(n.id)?.5:.03));
-  sim.alpha(.9).restart();
+  /* strong targets converge fast — decay quicker so the page stops repainting sooner */
+  sim.alphaDecay(.05).alpha(.9).restart();
   /* orbit rings */
   const col=color(grp(d));
   orbitG.selectAll("*").interrupt().remove();
@@ -642,8 +702,8 @@ function buildLegend(){
 }
 function buildGroups(){
   hullSel=hullG.selectAll("path").data(d3.range(NG())).join("path")
-    .attr("class","hull").attr("filter","url(#hullblur)")
-    .attr("fill",i=>color(i)).attr("fill-opacity",.05)
+    .attr("class","hull").attr("filter",LITE?null:"url(#hullblur)")
+    .attr("fill",i=>color(i)).attr("fill-opacity",LITE?.04:.05)
     .attr("stroke",i=>color(i)).attr("stroke-opacity",.16).attr("stroke-width",1.2)
     .on("click",(e,i)=>{e.stopPropagation();openCluster(i);});
   hullLab=hullLabG.selectAll("g").data(d3.range(NG())).join(
