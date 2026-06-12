@@ -801,11 +801,16 @@ addEventListener("resize",()=>{
   const BUCKET=18e4, bk=()=>Math.floor(Date.now()/BUCKET);
   const bot=!!navigator.webdriver;          /* don't count headless/CI loads */
   let lastBk=-1;
+  async function lookupCC(){
+    try{const g=await J("https://ipapi.co/json/");if(g&&/^[A-Z]{2}$/.test(g.country_code||""))return g.country_code;}catch(e){}
+    try{const g=await J("https://api.country.is/");if(g&&/^[A-Z]{2}$/.test(g.country||""))return g.country;}catch(e){}
+    return null;
+  }
   async function count(){
     if(bot||sessionStorage.getItem("cvpr_c"))return;
     try{sessionStorage.setItem("cvpr_c","1");}catch(e){}
     try{await hit("total");}catch(e){}
-    J("https://ipwho.is/").then(g=>{if(g&&g.success&&/^[A-Z]{2}$/.test(g.country_code||""))hit("geo_"+g.country_code);}).catch(()=>{});
+    lookupCC().then(cc=>{if(cc)hit("geo_"+cc);});
   }
   async function beat(){
     if(bot)return;
@@ -853,9 +858,20 @@ addEventListener("resize",()=>{
   }
   async function geo(){
     try{
-      const vals=await Promise.all(CCS.map(c=>get("geo_"+c)));
-      const entries=CCS.map((c,i)=>[c,vals[i].value||0]).filter(x=>x[1]>0)
-        .sort((a,b)=>b[1]-a[1]);
+      /* cached 10 min so reloads don't refire 24 counter reads (rate limit) */
+      let entries=null;
+      try{const c=JSON.parse(localStorage.getItem("cvpr_geo")||"null");
+          if(c&&Date.now()-c.t<6e5)entries=c.e;}catch(e){}
+      if(!entries){
+        const vals=[];
+        for(let i=0;i<CCS.length;i+=8){       /* batches of 8, spaced out */
+          vals.push(...await Promise.all(CCS.slice(i,i+8).map(c=>get("geo_"+c))));
+          if(i+8<CCS.length)await new Promise(r=>setTimeout(r,900));
+        }
+        entries=CCS.map((c,i)=>[c,vals[i].value||0]).filter(x=>x[1]>0)
+          .sort((a,b)=>b[1]-a[1]);
+        if(entries.length)try{localStorage.setItem("cvpr_geo",JSON.stringify({t:Date.now(),e:entries}));}catch(e){}
+      }
       el("st-geo").innerHTML=entries.slice(0,4)
         .map(([c,v])=>`<span class="st-cc">${FLAG(c)} ${v.toLocaleString()}</span>`).join("");
       drawMap(entries);
