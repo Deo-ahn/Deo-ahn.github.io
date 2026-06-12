@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <style>
 :root{
   --bg:#070910; --ink:#eceadf; --muted:#8c93a4; --dim:#565d70;
@@ -75,6 +76,11 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
 @keyframes stp{0%,100%{opacity:.45}50%{opacity:1}}
 .st-geo{display:flex;gap:10px;flex-wrap:wrap;margin-top:7px;font-size:9px;color:var(--dim);letter-spacing:.04em}
 .st-cc{display:inline-flex;gap:4px;align-items:center}
+.st-map{display:block;margin-top:9px}
+.st-map .land{fill:rgba(236,234,223,.055);stroke:rgba(236,234,223,.10);stroke-width:.5}
+.st-map .vdot{fill:var(--c2)}
+.st-map .vring{fill:none;stroke:var(--c2);stroke-opacity:.35;stroke-width:1;
+  transform-box:fill-box;transform-origin:center;animation:ping 2.4s ease-out infinite}
 .modesw{display:flex;border:1px solid rgba(255,209,102,.38);border-radius:22px;overflow:hidden;
   margin-bottom:13px;box-shadow:0 0 16px rgba(255,209,102,.12), inset 0 0 10px rgba(255,209,102,.05)}
 .mso{flex:1;text-align:center;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
@@ -214,6 +220,7 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
   /* stats: plain text only on small screens */
   .stats{margin-top:7px}
   .st-geo{display:none}
+  .st-map{display:none!important}
   .st-line{font-size:8px;letter-spacing:.05em}
   .st-dot{width:5px;height:5px}
   .drawer{top:auto;bottom:0;left:0;right:0;width:auto;max-height:46vh;
@@ -256,6 +263,7 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
   <div class="stats" id="stats" style="display:none">
     <div class="st-line"><span class="st-dot"></span><span><b id="st-total">–</b> visitors&nbsp;·&nbsp;<b id="st-live">–</b> online</span></div>
     <div class="st-geo" id="st-geo"></div>
+    <svg class="st-map" id="st-map" width="238" height="118" viewBox="0 0 238 118" style="display:none"></svg>
   </div>
 </div>
 
@@ -813,13 +821,44 @@ addEventListener("resize",()=>{
       el("stats").style.display="";
     }catch(e){el("stats").style.display="none";}
   }
+  const CCS=["KR","US","CN","JP","DE","GB","FR","IN","CA","TW","SG","AU",
+             "HK","NL","CH","IT","ES","SE","BR","RU","IL","AE","TH","VN"];
+  const CENT={KR:[127.9,36.5],US:[-98.6,39.8],CN:[104.2,35.9],JP:[138.3,36.2],DE:[10.4,51.2],
+    GB:[-2.5,54],FR:[2.5,46.6],IN:[79.6,22.9],CA:[-106.3,56.1],TW:[121,23.7],SG:[103.8,1.4],
+    AU:[133.8,-25.3],HK:[114.2,22.3],NL:[5.3,52.2],CH:[8.2,46.8],IT:[12.8,42.8],ES:[-3.7,40.3],
+    SE:[15,62],BR:[-52.9,-10.8],RU:[99,61.5],IL:[35,31.4],AE:[54,24],TH:[101,15.8],VN:[107.8,16.2]};
+  let landFeat=null;
+  async function drawMap(entries){
+    const svg=el("st-map"); if(!svg)return;
+    if(innerWidth<=860||!entries.length){svg.style.display="none";return;}
+    try{
+      if(!landFeat){
+        const topo=await J("https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json");
+        landFeat=topojson.feature(topo,topo.objects.land);
+      }
+      const proj=d3.geoNaturalEarth1().fitSize([238,118],landFeat);
+      const s=d3.select(svg); s.selectAll("*").remove();
+      s.append("path").attr("class","land").attr("d",d3.geoPath(proj)(landFeat));
+      const max=Math.max(...entries.map(e=>e[1]));
+      const rs=d3.scaleSqrt().domain([1,Math.max(2,max)]).range([1.5,4.5]);
+      entries.forEach(([c,v],i)=>{
+        const p=CENT[c]&&proj(CENT[c]); if(!p)return;
+        if(i===0)s.append("circle").attr("class","vring").attr("cx",p[0]).attr("cy",p[1]).attr("r",rs(v)+2.5);
+        s.append("circle").attr("class","vdot").attr("cx",p[0]).attr("cy",p[1]).attr("r",rs(v))
+          .attr("fill-opacity",.55+.45*v/max)
+          .append("title").text(`${c} · ${v.toLocaleString()}`);
+      });
+      svg.style.display="";
+    }catch(e){svg.style.display="none";}
+  }
   async function geo(){
     try{
-      const CCS=["KR","US","CN","JP","DE","GB","FR","IN","CA","TW","SG","AU"];
       const vals=await Promise.all(CCS.map(c=>get("geo_"+c)));
-      const top=CCS.map((c,i)=>[c,vals[i].value||0]).filter(x=>x[1]>0)
-        .sort((a,b)=>b[1]-a[1]).slice(0,4);
-      el("st-geo").innerHTML=top.map(([c,v])=>`<span class="st-cc">${FLAG(c)} ${v.toLocaleString()}</span>`).join("");
+      const entries=CCS.map((c,i)=>[c,vals[i].value||0]).filter(x=>x[1]>0)
+        .sort((a,b)=>b[1]-a[1]);
+      el("st-geo").innerHTML=entries.slice(0,4)
+        .map(([c,v])=>`<span class="st-cc">${FLAG(c)} ${v.toLocaleString()}</span>`).join("");
+      drawMap(entries);
     }catch(e){}
   }
   count().then(beat).then(refresh);
