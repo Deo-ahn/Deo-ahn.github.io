@@ -66,6 +66,15 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
 
 .legend{left:30px;bottom:28px;padding:15px 17px 16px;border-radius:3px;min-width:235px;max-width:280px}
 .legend .lt{font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--dim);margin-bottom:11px}
+.stats{margin-top:13px}
+.st-line{display:flex;align-items:center;gap:7px;font-size:9.5px;letter-spacing:.07em;
+  color:var(--muted);text-transform:uppercase}
+.st-line b{color:var(--ink);font-weight:500}
+.st-dot{width:6px;height:6px;border-radius:50%;background:#7ddf8f;box-shadow:0 0 8px #7ddf8f;
+  animation:stp 2.2s ease-in-out infinite;flex:0 0 auto}
+@keyframes stp{0%,100%{opacity:.45}50%{opacity:1}}
+.st-geo{display:flex;gap:10px;flex-wrap:wrap;margin-top:7px;font-size:9px;color:var(--dim);letter-spacing:.04em}
+.st-cc{display:inline-flex;gap:4px;align-items:center}
 .modesw{display:flex;border:1px solid rgba(255,209,102,.38);border-radius:22px;overflow:hidden;
   margin-bottom:13px;box-shadow:0 0 16px rgba(255,209,102,.12), inset 0 0 10px rgba(255,209,102,.05)}
 .mso{flex:1;text-align:center;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
@@ -191,7 +200,7 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
   .eyebrow{font-size:7.5px;letter-spacing:.26em;margin-bottom:5px}
   .readout{font-size:8.5px;margin-top:5px;line-height:1.5}
   .detail{display:none}
-  .search{top:104px;left:12px;right:12px;width:auto}
+  .search{top:114px;left:12px;right:12px;width:auto}
   .search-row{padding:10px 13px}
   #q{font-size:12px}
   .search-hint{display:none}
@@ -202,6 +211,11 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
   .lname{font-size:9.5px}.lcount{font-size:8.5px}
   .mso{font-size:8.5px;padding:7px 2px}
   .chips{display:none}
+  /* stats: plain text only on small screens */
+  .stats{margin-top:7px}
+  .st-geo{display:none}
+  .st-line{font-size:8px;letter-spacing:.05em}
+  .st-dot{width:5px;height:5px}
   .drawer{top:auto;bottom:0;left:0;right:0;width:auto;max-height:46vh;
     border-radius:12px 12px 0 0;transform:translateY(16px);z-index:24;
     background:rgba(9,12,19,.97)}
@@ -226,8 +240,8 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
   .eyebrow{display:none}
   .masthead{top:12px;max-width:80vw}
   h1{font-size:17px}
-  .search{top:92px}
-  body.kb .drawer{top:140px}
+  .search{top:102px}
+  body.kb .drawer{top:150px}
 }
 </style>
 </head>
@@ -239,6 +253,10 @@ h1 em{font-style:italic;font-weight:300;color:var(--c1)}
   <p class="eyebrow">Keyword Co-occurrence Topology</p>
   <h1>CVPR&nbsp;2026<br><em>Research Constellation</em></h1>
   <p class="readout"><b id="r-papers">—</b> papers<span class="sep">/</span><b id="r-keys">—</b> keywords<span class="sep">/</span><b id="r-links">—</b> co-occurrences</p>
+  <div class="stats" id="stats" style="display:none">
+    <div class="st-line"><span class="st-dot"></span><span><b id="st-total">–</b> visitors&nbsp;·&nbsp;<b id="st-live">–</b> online</span></div>
+    <div class="st-geo" id="st-geo"></div>
+  </div>
 </div>
 
 <div class="panel search">
@@ -763,6 +781,52 @@ addEventListener("resize",()=>{
   if(!wChanged&&(navigator.maxTouchPoints||0)>0)return;
   if(!systemNode)baseForces();
   sim.alpha(.3).restart();});
+
+/* ---------- visitor stats (serverless: Abacus counters + ipwho.is geo) ---------- */
+(function(){
+  const API="https://abacus.jasoncameron.dev", NS="deoahn-cvpr2026";
+  const el=id=>document.getElementById(id);
+  const J=u=>fetch(u).then(r=>r.json());
+  const hit=k=>J(`${API}/hit/${NS}/${k}`);
+  const get=k=>J(`${API}/get/${NS}/${k}`).catch(()=>({value:0}));
+  const FLAG=c=>String.fromCodePoint(...[...c].map(ch=>0x1F1A5+ch.charCodeAt(0)));
+  const BUCKET=18e4, bk=()=>Math.floor(Date.now()/BUCKET);
+  const bot=!!navigator.webdriver;          /* don't count headless/CI loads */
+  let lastBk=-1;
+  async function count(){
+    if(bot||sessionStorage.getItem("cvpr_c"))return;
+    try{sessionStorage.setItem("cvpr_c","1");}catch(e){}
+    try{await hit("total");}catch(e){}
+    J("https://ipwho.is/").then(g=>{if(g&&g.success&&/^[A-Z]{2}$/.test(g.country_code||""))hit("geo_"+g.country_code);}).catch(()=>{});
+  }
+  async function beat(){
+    if(bot)return;
+    const b=bk(); if(b===lastBk)return; lastBk=b;
+    try{await hit("live_"+b);}catch(e){}
+  }
+  async function refresh(){
+    try{
+      const b=bk();
+      const [t,l1,l2]=await Promise.all([get("total"),get("live_"+b),get("live_"+(b-1))]);
+      el("st-total").textContent=(t.value||0).toLocaleString();
+      el("st-live").textContent=Math.max(l1.value||0,l2.value||0,bot?0:1);
+      el("stats").style.display="";
+    }catch(e){el("stats").style.display="none";}
+  }
+  async function geo(){
+    try{
+      const CCS=["KR","US","CN","JP","DE","GB","FR","IN","CA","TW","SG","AU"];
+      const vals=await Promise.all(CCS.map(c=>get("geo_"+c)));
+      const top=CCS.map((c,i)=>[c,vals[i].value||0]).filter(x=>x[1]>0)
+        .sort((a,b)=>b[1]-a[1]).slice(0,4);
+      el("st-geo").innerHTML=top.map(([c,v])=>`<span class="st-cc">${FLAG(c)} ${v.toLocaleString()}</span>`).join("");
+    }catch(e){}
+  }
+  count().then(beat).then(refresh);
+  setTimeout(geo,2500);                      /* after papers.json kicks off */
+  setInterval(()=>{beat().then(refresh);},6e4);
+  setInterval(geo,3e5);
+})();
 </script>
 </body>
 </html>
