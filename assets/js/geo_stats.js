@@ -12,13 +12,15 @@
   var BUCKET=18e4, bk=function(){return Math.floor(Date.now()/BUCKET);};
   var bot=!!navigator.webdriver, lastBk=-1;
   var CCS=["KR","US","CN","JP","DE","GB","FR","IN","CA","TW","SG","AU","HK","NL","CH","IT","ES","SE","BR","RU","IL","AE","TH","VN"];
+  // cropped viewBox: drop empty top padding + Antarctica so the map is compact
+  var VB="0 18 "+MAP.w+" 388";
 
   // build the widget DOM
   host.innerHTML=
     '<div class="ed-geo-line"><span class="ed-geo-dot"></span>'+
     '<span><b id="ed-geo-total">\u2013</b> visitors&nbsp;&middot;&nbsp;<b id="ed-geo-live">\u2013</b> online</span></div>'+
     '<div class="ed-geo-flags" id="ed-geo-flags"></div>'+
-    '<svg class="ed-geo-map" viewBox="0 0 '+MAP.w+' '+MAP.h+'" preserveAspectRatio="xMidYMid meet" aria-hidden="true">'+
+    '<svg class="ed-geo-map" viewBox="'+VB+'" preserveAspectRatio="xMidYMid meet" aria-hidden="true">'+
     '<path class="ed-geo-land" d="'+MAP.path+'"/><g id="ed-geo-dots"></g></svg>';
   var el=function(id){return document.getElementById(id);};
 
@@ -32,10 +34,20 @@
   }
   function count(){
     if(bot)return Promise.resolve();
-    try{if(sessionStorage.getItem("edgeo_c"))return Promise.resolve();
-        sessionStorage.setItem("edgeo_c","1");}catch(e){}
-    return hit("total").catch(function(){}).then(function(){
-      lookupCC().then(function(cc){if(cc)hit("geo_"+cc);});});
+    var p=Promise.resolve();
+    // total: once per browser session
+    try{
+      if(!sessionStorage.getItem("edgeo_c")){sessionStorage.setItem("edgeo_c","1");p=hit("total").catch(function(){});}
+    }catch(e){p=hit("total").catch(function(){});}
+    // geo: retry on each load until it actually succeeds once this session
+    try{
+      if(!sessionStorage.getItem("edgeo_g")){
+        lookupCC().then(function(cc){
+          if(cc){hit("geo_"+cc);try{sessionStorage.setItem("edgeo_g","1");}catch(e){}}
+        });
+      }
+    }catch(e){}
+    return p;
   }
   function beat(){
     if(bot)return Promise.resolve();
