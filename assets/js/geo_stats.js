@@ -68,9 +68,9 @@
     var max=entries[0][1];
     entries.forEach(function(e,i){
       var c=e[0],v=e[1],p=MAP.coords[c]; if(!p)return;
-      var r=5+10*Math.sqrt(v/max);
+      var r=3+5*Math.sqrt(v/max);
       if(i===0){var ring=document.createElementNS("http://www.w3.org/2000/svg","circle");
-        ring.setAttribute("cx",p[0]);ring.setAttribute("cy",p[1]);ring.setAttribute("r",r+5);
+        ring.setAttribute("cx",p[0]);ring.setAttribute("cy",p[1]);ring.setAttribute("r",r+4);
         ring.setAttribute("class","ed-geo-ring");g.appendChild(ring);}
       var dot=document.createElementNS("http://www.w3.org/2000/svg","circle");
       dot.setAttribute("cx",p[0]);dot.setAttribute("cy",p[1]);dot.setAttribute("r",r);
