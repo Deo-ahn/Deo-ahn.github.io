@@ -7,9 +7,9 @@ cv:
   image: ""
   summary: >
     Ph.D. candidate at Korea University and student researcher at KIST AI·Robotics.
-    Research focuses on video understanding, contextual dynamics, and efficient AI
-    systems for social good, with recent emphasis on VLM-guided video anomaly
-    detection.
+    Research interests center on video understanding, contextual dynamics, and
+    efficient AI systems for social good, with recent emphasis on video anomaly
+    understanding and vision language models.
 
   social_networks:
     - network: GitHub
@@ -21,13 +21,13 @@ cv:
     Education:
       - institution: Korea University
         location: Seoul, Republic of Korea
-        url: https://bcs.korea.ac.kr/
+        url: https://bce.korea.ac.kr/bce/index.do
         area: Brain & Cognitive Engineering
         studyType: Ph.D.
         start_date: 2023-03
         end_date: Present
         highlights:
-          - Video anomaly detection with a focus on modeling human-inspired contextual understanding in video.
+          - Study contextual video understanding inspired by human cognitive processes.
 
       - institution: Kwangwoon University
         location: Seoul, Republic of Korea
@@ -46,7 +46,7 @@ cv:
         start_date: 2013-03
         end_date: 2015-08
         highlights:
-          - Transferred in Mar 2013 from the National Institute for Lifelong Education (B.Eng. in Computer Engineering coursework, 2011 – 2013).
+          - Transferred in March 2013 from the National Institute for Lifelong Education after completing B.Eng. coursework in Computer Engineering from March 2011 to February 2013.
 
     Experience:
       - company: Korea Institute of Science and Technology (KIST)
@@ -54,35 +54,35 @@ cv:
         location: Seoul, Republic of Korea
         start_date: 2023-01
         end_date: Present
-        summary: Video anomaly understanding · Surveillance video · DNN
+        summary: KIST AI·Robotics Institute · Vision Intelligence Group
         highlights:
-          - Modeled contextual dynamics by integrating RGB appearance, motion dynamics, and scene information, enabling the model to better capture anomaly concepts through their relationships.
+          - Develop public safety video systems spanning action recognition, contextual anomaly detection, and vision language models that explain anomalous behavior.
 
       - company: Korea Institute of Science and Technology (KIST)
         position: Research Intern
         location: Seoul, Republic of Korea
         start_date: 2022-01
         end_date: 2023-02
-        summary: Video anomaly understanding in surveillance videos · DNN
+        summary: KIST AI·Robotics Institute · Vision Intelligence Group · Began surveillance video research through urban public safety projects and national research programs.
 
       - company: The Korea Transport Institute (KOTI)
         position: Researcher
         location: Sejong, Republic of Korea
         start_date: 2021-10
         end_date: 2021-12
-        summary: Autonomous bus development · Project coordination
+        summary: Contributed to autonomous bus development through SLAM, control center systems, policy research, and coordination.
 
     Research Grants & Projects:
       - company: Real-Time Intelligent Surveillance for Public Safety
-        position: National R&D · context-aware video anomaly detection
-        location: "~$24M · 5-year program"
+        position: National R&D · video anomaly detection that uses context
+        location: "~$24M · five year program"
         summary: MSIT & MOTIE · with Yonsei University and the Korean National Police Agency
         highlights:
-          - Analyzes ~1,000 cameras from city-scale CCTV control centers for crime-related anomalies; field-validated in Anyang City, Korea.
+          - Analyzes about 1,000 cameras from city scale CCTV control centers for crime related anomalies and was validated in Anyang City, Korea.
 
       - company: Mobile Platform for Active Safety Services
-        position: Government R&D · mobile-platform safety solution
-        location: "~$9.5M · 5-year program"
+        position: Government R&D · safety services using mobile platforms
+        location: "~$9.5M · five year program"
         summary: Korean National Police Agency & MOTIE
 
       - company: Anomaly Detection in Correctional Facilities
@@ -96,20 +96,20 @@ cv:
         awarder: KIST AI·Robotics Institute
         summary: In recognition of outstanding research achievements during 2025.
 
-      - title: Excellent Paper Award — Graduate School
+      - title: Excellent Paper Award, Graduate School
         date: 2025-02-01
         awarder: Korea University
         summary: For outstanding research performance and publication of an excellent paper during doctoral studies.
 
       - title: Outstanding Oral Presentation Award
         date: 2024-11-01
-        awarder: KIST Academia–Research Convergence Conference
+        awarder: KIST Academia and Research Convergence Conference
         summary: For the presentation "Multi-Aspect Contextual Dynamics for Anomaly Detection in Surveillance Videos."
 
       - title: Division Commander's Commendation
         date: 2021-07-01
         awarder: Capital Mechanized Infantry Division
-        summary: For a combat-development proposal on reconnaissance drone AI improvement and AI/big-data-based acoustic detection.
+        summary: For a combat development proposal on reconnaissance drone AI improvement and acoustic detection using AI and big data.
 
     Publications:
       - title: "Look Closer: Action-Guided Dense Visual Dynamics for Proficiency Estimation"
@@ -121,7 +121,17 @@ cv:
           - Choi Heeseung
           - Kim Ig-Jae
           - Kim Haksub
-        publisher: CVPR 2026 Workshop on Multimodal Human Motion Analysis (Accepted — Pitch & Poster)
+        publisher: CVPRW 2026, Multimodal Human Motion Analysis (Accepted, Pitch and Poster Presentation)
+        releaseDate: 2026
+
+      - title: "BUSTER: Adaptive Sampling for VLM-Guided Unsupervised Video Anomaly Detection"
+        authors:
+          - Ahn Deokhyun
+          - Choi Yonghun
+          - Han Jae-Ho
+          - Kim Ig-Jae
+          - Kim Haksub
+        publisher: British Machine Vision Conference (BMVC), Accepted
         releaseDate: 2026
 
       - title: Learning Robust Representations for Few-Shot Action Recognition with Frame-Level Ambiguities
@@ -135,17 +145,7 @@ cv:
         publisher: Manuscript in Preparation
         releaseDate: 2026
 
-      - title: "BUSTER: Adaptive Sampling for VLM-Guided Unsupervised Video Anomaly Detection"
-        authors:
-          - Ahn Deokhyun
-          - Choi Yonghun
-          - Han Jae-Ho
-          - Kim Ig-Jae
-          - Kim Haksub
-        publisher: BMVC 2026 (Accepted)
-        releaseDate: 2026
-
-      - title: Where and What — Contextual Dynamics-Aware Anomaly Detection in Surveillance Videos
+      - title: "Where and What: Contextual Dynamics-Aware Anomaly Detection in Surveillance Videos"
         authors:
           - Ahn Deokhyun
           - Jo Yongjin
@@ -155,7 +155,7 @@ cv:
           - Kim Haksub
         publisher: IEEE Transactions on Image Processing
         releaseDate: 2025
-        summary: IF 13.7 · top 2.2% in Electrical & Electronic Engineering.
+        summary: IF 13.7 · Top 2.2% in Electrical & Electronic Engineering.
 
       - title: "A Foundational Research Framework for Real-World Abandoned Object Detection: Train-Free Baseline and a Standardized Benchmark"
         authors:
@@ -190,7 +190,7 @@ cv:
 
     Teaching:
       - company: Kwangwoon University
-        position: Teaching Assistant — Senior Capstone Project
+        position: Teaching Assistant, Senior Capstone Project
         location: Seoul, Republic of Korea
         start_date: 2018-09
         end_date: 2018-12
@@ -199,7 +199,7 @@ cv:
           - Assisted in managing and supporting the Capstone Design Project as a TA for 50+ students.
 
       - company: Kwangwoon University
-        position: Teaching Assistant — Computer Architecture
+        position: Teaching Assistant, Computer Architecture
         location: Seoul, Republic of Korea
         start_date: 2017-03
         end_date: 2017-06

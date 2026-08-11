@@ -2,573 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Deokhyun Ahn — CV</title>
+    <title>Deokhyun Ahn | CV</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
 
-    <style>
-      :root {
-        --bg: #faf9f6;
-        --paper: #ffffff;
-        --ink: #14130f;
-        --muted: #6b6a64;
-        --hair: #e4e2db;
-        --hair-strong: #c9c6bd;
-        --accent: #2a4a7f;
-        --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
-        --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        background: var(--bg);
-        color: var(--ink);
-        font-family: var(--sans);
-        font-size: 15px;
-        line-height: 1.55;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-      }
-
-      .stage {
-        min-height: 100vh;
-        padding: 56px 24px 96px;
-        display: flex;
-        justify-content: center;
-      }
-
-      .page {
-        width: 100%;
-        max-width: 860px;
-        background: var(--paper);
-        border: 1px solid var(--hair);
-        border-radius: 2px;
-        padding: 72px 80px 80px;
-        box-shadow:
-          0 1px 0 rgba(0, 0, 0, 0.02),
-          0 24px 60px -28px rgba(20, 19, 15, 0.18),
-          0 8px 24px -16px rgba(20, 19, 15, 0.1);
-        position: relative;
-      }
-
-      /* ───────── Header ───────── */
-      header.masthead {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        align-items: end;
-        gap: 32px;
-        padding-bottom: 28px;
-        border-bottom: 1px solid var(--hair-strong);
-        margin-bottom: 36px;
-      }
-      .name {
-        font-family: var(--serif);
-        font-weight: 400;
-        font-size: 52px;
-        line-height: 1;
-        letter-spacing: -0.02em;
-        margin: 0 0 14px;
-        font-variation-settings: "opsz" 60;
-      }
-      .name em {
-        font-style: italic;
-        font-weight: 300;
-        color: inherit;
-      }
-      .role {
-        font-family: var(--sans);
-        font-size: 13px;
-        color: var(--muted);
-        letter-spacing: 0.02em;
-        margin: 0;
-      }
-      .role .dot {
-        display: inline-block;
-        width: 3px;
-        height: 3px;
-        border-radius: 50%;
-        background: var(--hair-strong);
-        margin: 0 8px;
-        vertical-align: middle;
-        transform: translateY(-2px);
-      }
-      .contact {
-        font-family: var(--mono);
-        font-size: 11.5px;
-        line-height: 1.7;
-        color: var(--muted);
-        text-align: right;
-        letter-spacing: 0.01em;
-      }
-      .contact a {
-        color: var(--ink);
-        text-decoration: none;
-        border-bottom: 1px solid var(--hair-strong);
-        transition:
-          border-color 0.15s,
-          color 0.15s;
-      }
-      .contact a:hover {
-        color: var(--accent);
-        border-color: var(--accent);
-      }
-      .role .social {
-        display: inline-flex;
-        gap: 6px;
-        margin-left: 10px;
-        vertical-align: middle;
-        transform: translateY(-1px);
-      }
-      .role .social a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 20px;
-        height: 20px;
-        border: 1px solid var(--hair-strong);
-        border-radius: 2px;
-        color: var(--muted);
-        transition:
-          color 0.15s,
-          border-color 0.15s,
-          background 0.15s;
-      }
-      .role .social a:hover {
-        color: var(--accent);
-        border-color: var(--accent);
-        background: color-mix(in srgb, var(--accent) 6%, transparent);
-      }
-
-      .contact .label {
-        color: var(--muted);
-        text-transform: uppercase;
-        font-size: 9.5px;
-        letter-spacing: 0.14em;
-        margin-right: 6px;
-      }
-      .contact .social {
-        display: flex;
-        gap: 8px;
-        justify-content: flex-end;
-        margin-top: 6px;
-      }
-      .contact .social a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 26px;
-        height: 26px;
-        border: 1px solid var(--hair-strong);
-        border-radius: 2px;
-        color: var(--ink);
-        transition:
-          color 0.15s,
-          border-color 0.15s,
-          background 0.15s;
-      }
-      .contact .social a:hover {
-        color: var(--accent);
-        border-color: var(--accent);
-        background: color-mix(in srgb, var(--accent) 6%, transparent);
-      }
-
-      /* ───────── Sections ───────── */
-      section.block {
-        margin-bottom: 36px;
-      }
-      section.block:last-child {
-        margin-bottom: 0;
-      }
-
-      h2.section-title {
-        font-family: var(--sans);
-        font-size: 10.5px;
-        font-weight: 600;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: var(--ink);
-        margin: 0 0 20px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid var(--hair);
-        display: flex;
-        align-items: center;
-        gap: 14px;
-      }
-      h2.section-title::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: transparent;
-      }
-      h2.section-title .num {
-        font-family: var(--mono);
-        font-size: 10px;
-        color: var(--muted);
-        font-weight: 400;
-        letter-spacing: 0.05em;
-      }
-
-      /* Research interests intro */
-      .interest-line {
-        font-family: var(--serif);
-        font-style: italic;
-        font-size: 19px;
-        line-height: 1.4;
-        color: var(--ink);
-        margin: 0 0 14px;
-        letter-spacing: -0.005em;
-      }
-      .interest-body {
-        font-size: 14px;
-        line-height: 1.65;
-        color: #2a2924;
-        margin: 0;
-        max-width: 64ch;
-        text-wrap: pretty;
-      }
-
-      .keywords {
-        list-style: none;
-        padding: 0;
-        margin: 16px 0 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px 6px;
-      }
-      .keywords li {
-        font-family: var(--mono);
-        font-size: 10.5px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--ink);
-        border: 1px solid var(--hair-strong);
-        padding: 4px 10px;
-        border-radius: 2px;
-        background: var(--paper);
-      }
-      .keywords li::before {
-        content: "•";
-        color: var(--accent);
-        margin-right: 6px;
-        font-size: 12px;
-        line-height: 1;
-        vertical-align: middle;
-      }
-
-      /* Two-column row layout */
-      .row {
-        display: grid;
-        grid-template-columns: 152px 1fr;
-        gap: 28px;
-        padding: 14px 0;
-        border-top: 1px dashed var(--hair);
-      }
-      .row:first-of-type {
-        border-top: none;
-        padding-top: 4px;
-      }
-
-      .date {
-        font-family: var(--mono);
-        font-size: 11px;
-        color: var(--muted);
-        line-height: 1.6;
-        padding-top: 3px;
-        letter-spacing: 0.01em;
-      }
-      .date strong {
-        display: block;
-        color: var(--ink);
-        font-weight: 500;
-        margin-bottom: 1px;
-      }
-
-      .row-body h3 {
-        font-family: var(--serif);
-        font-weight: 500;
-        font-size: 17px;
-        margin: 0 0 2px;
-        letter-spacing: -0.005em;
-        color: var(--ink);
-      }
-      .row-body .org {
-        font-size: 13.5px;
-        color: var(--ink);
-        margin: 0 0 2px;
-      }
-      .row-body .meta {
-        font-size: 12px;
-        color: var(--muted);
-        margin: 0 0 8px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px 10px;
-      }
-      .row-body .meta .pipe {
-        color: var(--hair-strong);
-      }
-      .row-body ul {
-        margin: 6px 0 0;
-        padding: 0;
-        list-style: none;
-      }
-      .row-body li {
-        font-size: 13px;
-        line-height: 1.55;
-        color: #34322c;
-        padding-left: 14px;
-        position: relative;
-        margin-bottom: 3px;
-      }
-      .row-body li::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 9px;
-        width: 5px;
-        height: 1px;
-        background: var(--hair-strong);
-      }
-      .tag {
-        display: inline-block;
-        font-family: var(--mono);
-        font-size: 9.5px;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--muted);
-        border: 1px solid var(--hair-strong);
-        padding: 1px 6px;
-        border-radius: 2px;
-        margin-left: 6px;
-        vertical-align: middle;
-        transform: translateY(-1px);
-      }
-      .tag.accent {
-        color: var(--accent);
-        border-color: color-mix(in srgb, var(--accent) 30%, var(--hair-strong));
-      }
-
-      /* Publications */
-      .pubs {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        counter-reset: pub;
-      }
-      .pubs li {
-        display: grid;
-        grid-template-columns: 32px 1fr auto;
-        gap: 16px;
-        padding: 12px 0;
-        border-top: 1px dashed var(--hair);
-        font-size: 13px;
-        line-height: 1.5;
-      }
-      .pubs li:first-child {
-        border-top: none;
-      }
-      .pub-idx {
-        font-family: var(--mono);
-        font-size: 11px;
-        color: var(--muted);
-        padding-top: 2px;
-      }
-      .pub-body {
-        color: #2a2924;
-      }
-      .pub-body .authors {
-        color: var(--ink);
-      }
-      .pub-body .authors .me {
-        font-weight: 600;
-      }
-      .pub-body .title {
-        font-family: var(--serif);
-        font-style: italic;
-        font-size: 14px;
-        color: var(--ink);
-        display: block;
-        margin: 2px 0;
-        line-height: 1.4;
-      }
-      .pub-body .venue {
-        font-size: 12px;
-        color: var(--muted);
-      }
-      .pub-body .venue strong {
-        color: var(--ink);
-        font-weight: 500;
-      }
-      .pub-status {
-        font-family: var(--mono);
-        font-size: 9.5px;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--muted);
-        border: 1px solid var(--hair-strong);
-        padding: 2px 7px;
-        border-radius: 2px;
-        height: fit-content;
-        margin-top: 4px;
-        white-space: nowrap;
-      }
-      .pub-status.accent {
-        color: var(--accent);
-        border-color: color-mix(in srgb, var(--accent) 30%, var(--hair-strong));
-      }
-      .pub-status.published {
-        color: #2a6b3a;
-        border-color: color-mix(in srgb, #2a6b3a 25%, var(--hair-strong));
-      }
-
-      /* Skills */
-      .skills {
-        display: grid;
-        grid-template-columns: 152px 1fr;
-        gap: 28px 28px;
-      }
-      .skills .skill-label {
-        font-family: var(--mono);
-        font-size: 11px;
-        color: var(--muted);
-        padding-top: 3px;
-        letter-spacing: 0.01em;
-      }
-      .skills .skill-items {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        border-top: 1px dashed var(--hair);
-        padding-top: 14px;
-      }
-      .skills > div:nth-child(-n + 2) {
-        /* first row no border via .skill-items, handled below */
-      }
-      .skills .skill-label.first {
-        border-top: none;
-        padding-top: 4px;
-      }
-      .skills .skill-items.first {
-        border-top: none;
-        padding-top: 4px;
-      }
-      .chip {
-        font-family: var(--sans);
-        font-size: 12px;
-        color: var(--ink);
-        border: 1px solid var(--hair-strong);
-        padding: 3px 9px;
-        border-radius: 2px;
-        background: var(--paper);
-      }
-
-      /* Awards */
-      .awards .row-body h3 {
-        font-size: 15.5px;
-      }
-      .awards .row-body .quote {
-        font-family: var(--serif);
-        font-style: italic;
-        color: var(--muted);
-        font-size: 13px;
-        margin: 4px 0 0;
-        padding-left: 10px;
-        border-left: 1px solid var(--hair);
-      }
-
-      /* Footer */
-      footer.foot {
-        margin-top: 48px;
-        padding-top: 18px;
-        border-top: 1px solid var(--hair);
-        font-family: var(--mono);
-        font-size: 10px;
-        color: var(--muted);
-        letter-spacing: 0.05em;
-        display: flex;
-        justify-content: space-between;
-      }
-
-      /* ───────── Print ───────── */
-      @media print {
-        @page {
-          size: A4;
-          margin: 14mm;
-        }
-        #tweaks-root {
-          display: none;
-        }
-        html,
-        body {
-          background: white;
-          font-size: 10.5pt;
-        }
-        .stage {
-          padding: 0;
-          min-height: auto;
-        }
-        .page {
-          max-width: none;
-          padding: 0;
-          border: none;
-          box-shadow: none;
-          border-radius: 0;
-        }
-        .name {
-          font-size: 38pt;
-        }
-        .row {
-          break-inside: avoid;
-        }
-        .pubs li {
-          break-inside: avoid;
-        }
-      }
-
-      @media (max-width: 720px) {
-        .page {
-          padding: 36px 24px;
-        }
-        header.masthead {
-          grid-template-columns: 1fr;
-        }
-        .contact {
-          text-align: left;
-        }
-        .name {
-          font-size: 40px;
-        }
-        .row,
-        .skills {
-          grid-template-columns: 1fr;
-          gap: 6px;
-        }
-        .row {
-          padding: 14px 0;
-        }
-        .pubs li {
-          grid-template-columns: 24px 1fr;
-        }
-        .pub-status {
-          grid-column: 2;
-          justify-self: start;
-          margin-top: 4px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="../assets/css/cv.css" />
   </head>
   <body>
     <div class="stage">
@@ -579,9 +16,9 @@
             <h1 class="name">Deokhyun <em>Ahn</em></h1>
             <p class="role">Ph.D. Candidate · Brain &amp; Cognitive Engineering</p>
             <p class="role" style="margin-top: 4px">
-              Korea University
+              <a href="https://bce.korea.ac.kr/bce/index.do">Korea University</a>
               <span class="dot"></span>
-              KIST AI·Robotics
+              <a href="https://www.kist.re.kr/">KIST AI·Robotics</a>
               <span class="social">
                 <a href="https://www.linkedin.com/in/deokhyun-ahn/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
                   <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true">
@@ -610,6 +47,7 @@
             <div><span class="label">Tel</span>+82 10 3733 3254</div>
             <div><span class="label">Lab</span><a href="mailto:dhan@kist.re.kr">dhan@kist.re.kr</a></div>
             <div><span class="label">Univ</span><a href="mailto:dhahn@korea.ac.kr">dhahn@korea.ac.kr</a></div>
+            <div><span class="label">Web</span><a href="https://deo-ahn.github.io/">deo-ahn.github.io</a></div>
             <div><span class="label">Loc</span>Seoul, Republic of Korea</div>
           </address>
         </header>
@@ -619,10 +57,10 @@
           <h2 class="section-title"><span class="num">01</span>Research Interests</h2>
           <p class="interest-line">Video understanding, contextual dynamics, and efficient AI systems for social good.</p>
           <p class="interest-body">
-            My research focuses on video understanding, contextual dynamics, and efficient AI systems for social good. Starting from sensing-based
-            applications, including a SLAM-based smart helmet for firefighters and indoor drone trajectory tracking, I became interested in reliable
-            real-world systems. I now study how video models can move beyond RGB and motion cues to capture contextual interactions, and recently I
-            have focused on VLM-guided video anomaly detection for surveillance, with emphasis on target-domain transfer and efficient sampling.
+            My research interests center on video understanding, contextual dynamics, and efficient AI systems for social good. Beginning with sensing
+            applications, including an ultrasonic SLAM helmet for firefighters and indoor drone tracking, I became interested in dependable systems
+            for real settings. I now study video anomaly understanding, action recognition, and vision language models that explain anomalous behavior
+            reliably and efficiently.
           </p>
           <ul class="keywords" aria-label="Research keywords">
             <li>Video Intelligence</li>
@@ -637,37 +75,37 @@
           <h2 class="section-title"><span class="num">02</span>Education</h2>
 
           <div class="row">
-            <div class="date"><strong>Mar 2023 — Present</strong>Seoul, KR</div>
+            <div class="date"><strong>Mar 2023 – Present</strong>Seoul, KR</div>
             <div class="row-body">
               <h3>Ph.D., Brain &amp; Cognitive Engineering</h3>
               <p class="org">Korea University</p>
               <ul>
-                <li>Video anomaly detection with a focus on modeling human-inspired contextual understanding in video.</li>
+                <li>Study contextual video understanding inspired by human cognitive processes.</li>
               </ul>
             </div>
           </div>
 
           <div class="row">
-            <div class="date"><strong>Aug 2015 — Feb 2020</strong>Seoul, KR</div>
+            <div class="date"><strong>Aug 2015 – Feb 2020</strong>Seoul, KR</div>
             <div class="row-body">
               <h3>M.Eng., Electronic Engineering</h3>
               <p class="org">Kwangwoon University</p>
               <ul>
-                <li>Thesis — <em>A Study on Passive Target Tracking in Three-Dimensional Indoor Environment by Using Deep Neural Network</em>.</li>
+                <li>Thesis: <em>A Study on Passive Target Tracking in Three-Dimensional Indoor Environment by Using Deep Neural Network</em>.</li>
                 <li>Completed 19 months of mandatory military service.</li>
               </ul>
             </div>
           </div>
 
           <div class="row">
-            <div class="date"><strong>Mar 2013 — Aug 2015</strong>Seoul, KR</div>
+            <div class="date"><strong>Mar 2013 – Aug 2015</strong>Seoul, KR</div>
             <div class="row-body">
               <h3>B.Eng., Electronic Engineering <span class="tag">Transfer</span></h3>
               <p class="org">Kwangwoon University</p>
               <ul>
                 <li>
-                  Transferred in Mar 2013 from National Institute for Lifelong Education, Ministry of Education — B.Eng. in Computer Engineering
-                  coursework, Mar 2011 – Feb 2013.
+                  Transferred in March 2013 from the National Institute for Lifelong Education after completing B.Eng. coursework in Computer
+                  Engineering from March 2011 to February 2013.
                 </li>
               </ul>
             </div>
@@ -679,35 +117,35 @@
           <h2 class="section-title"><span class="num">03</span>Research &amp; Work Experience</h2>
 
           <div class="row">
-            <div class="date"><strong>Jan 2023 — Present</strong>Seoul, KR</div>
+            <div class="date"><strong>Jan 2023 – Present</strong>Seoul, KR</div>
             <div class="row-body">
               <h3>Student Researcher <span class="tag accent">Current</span></h3>
-              <p class="org">Korea Institute of Science and Technology (KIST)</p>
-              <p class="meta">Video anomaly understanding · Surveillance video · DNN</p>
+              <p class="org">KIST AI·Robotics Institute · Vision Intelligence Group</p>
+              <p class="meta">Video anomaly understanding · Surveillance video · Vision language models</p>
               <ul>
                 <li>
-                  Modeled contextual dynamics by integrating RGB appearance, motion dynamics, and scene information — enabling the model to better
-                  capture anomaly concepts through their relationships. <span style="color: var(--muted)">[1] [2] [3] [4]</span>
+                  Develop public safety video systems spanning action recognition, contextual anomaly detection, and vision language models that
+                  explain anomalous behavior. <span style="color: var(--muted)">[1] [2] [3] [4] [5]</span>
                 </li>
               </ul>
             </div>
           </div>
 
           <div class="row">
-            <div class="date"><strong>Jan 2022 — Feb 2023</strong>Seoul, KR</div>
+            <div class="date"><strong>Jan 2022 – Feb 2023</strong>Seoul, KR</div>
             <div class="row-body">
               <h3>Research Intern</h3>
-              <p class="org">Korea Institute of Science and Technology (KIST)</p>
-              <p class="meta">Video anomaly understanding in surveillance videos &amp; DNN</p>
+              <p class="org">KIST AI·Robotics Institute · Vision Intelligence Group</p>
+              <p class="meta">Began surveillance video research through urban public safety projects and national research programs.</p>
             </div>
           </div>
 
           <div class="row">
-            <div class="date"><strong>Oct 2021 — Dec 2021</strong>Sejong, KR</div>
+            <div class="date"><strong>Oct 2021 – Dec 2021</strong>Sejong, KR</div>
             <div class="row-body">
               <h3>Researcher</h3>
               <p class="org">The Korea Transport Institute</p>
-              <p class="meta">Autonomous bus development · Project coordination</p>
+              <p class="meta">Contributed to autonomous bus development through SLAM, control center systems, policy research, and coordination.</p>
             </div>
           </div>
         </section>
@@ -717,22 +155,22 @@
           <h2 class="section-title"><span class="num">04</span>Research Grants &amp; Projects</h2>
 
           <div class="row">
-            <div class="date"><strong>~$24M</strong>5-year program</div>
+            <div class="date"><strong>~$24M</strong>Five year program</div>
             <div class="row-body">
               <h3>Real-Time Intelligent Surveillance for Public Safety <span class="tag accent">National R&amp;D</span></h3>
               <p class="org">MSIT &amp; MOTIE · with Yonsei University and the Korean National Police Agency</p>
               <p class="meta">
-                Context-aware video anomaly detection across city-scale CCTV control centers (~1,000 cameras); field-validated in Anyang City.
+                Video anomaly detection that uses context across city scale CCTV control centers with about 1,000 cameras, validated in Anyang City.
               </p>
             </div>
           </div>
 
           <div class="row">
-            <div class="date"><strong>~$9.5M</strong>5-year program</div>
+            <div class="date"><strong>~$9.5M</strong>Five year program</div>
             <div class="row-body">
               <h3>Mobile Platform for Active Safety Services</h3>
               <p class="org">Korean National Police Agency &amp; MOTIE</p>
-              <p class="meta">Government R&amp;D · mobile-platform-based solution for proactive public-safety services.</p>
+              <p class="meta">Government research program using mobile platforms for proactive public safety services.</p>
             </div>
           </div>
 
@@ -755,34 +193,34 @@
               <div class="pub-body">
                 <span class="authors"><span class="me">Ahn D.</span>, Kim H., Han J.-H., Ham B., Choi H., Kim I.-J., Kim H.</span>
                 <span class="title">Look Closer: Action-Guided Dense Visual Dynamics for Proficiency Estimation.</span>
-                <span class="venue"><strong>CVPR 2026 Workshop on Multimodal Human Motion Analysis</strong> · Pitch &amp; Poster</span>
+                <span class="venue"><strong>CVPRW 2026 · Multimodal Human Motion Analysis</strong> · Pitch and Poster Presentation</span>
               </div>
               <span class="pub-status accent">Accepted</span>
             </li>
             <li>
               <span class="pub-idx">[2]</span>
               <div class="pub-body">
-                <span class="authors"><span class="me">Ahn D.</span>, Jo Y., Lee U.-S., Park H., Han J.-H., Kim H.</span>
-                <span class="title">Learning Robust Representations for Few-Shot Action Recognition with Frame-Level Ambiguities.</span>
-                <span class="venue"><strong>Manuscript in Preparation</strong></span>
+                <span class="authors"><span class="me">Ahn D.</span>, Choi Y., Han J.-H., Kim I.-J., Kim H.</span>
+                <span class="title">BUSTER: Adaptive Sampling for VLM-Guided Unsupervised Video Anomaly Detection.</span>
+                <span class="venue"><strong>British Machine Vision Conference (BMVC)</strong>, 2026</span>
               </div>
-              <span class="pub-status accent">In Preparation</span>
+              <span class="pub-status accent">Accepted</span>
             </li>
             <li>
               <span class="pub-idx">[3]</span>
               <div class="pub-body">
-                <span class="authors"><span class="me">Ahn D.</span>, Choi Y., Han J.-H., Kim I.-J., Kim H.</span>
-                <span class="title">BUSTER: Adaptive Sampling for VLM-Guided Unsupervised Video Anomaly Detection.</span>
-                <span class="venue"><strong>BMVC 2026</strong></span>
+                <span class="authors"><span class="me">Ahn D.</span>, Jo Y., Lee U.-S., Park H., Han J.-H., Kim H.</span>
+                <span class="title">Learning Robust Representations for Few-Shot Action Recognition with Frame-Level Ambiguities.</span>
+                <span class="venue"><strong>Manuscript in Preparation</strong>, 2026</span>
               </div>
-              <span class="pub-status accent">Accepted</span>
+              <span class="pub-status accent">In Preparation</span>
             </li>
             <li>
               <span class="pub-idx">[4]</span>
               <div class="pub-body">
                 <span class="authors"><span class="me">Ahn D.</span>, Jo Y., Kim D., Nam G. P., Han J.-H., Kim H.</span>
                 <span class="title">Where and What: Contextual Dynamics-Aware Anomaly Detection in Surveillance Videos.</span>
-                <span class="venue"><strong>IEEE Transactions on Image Processing</strong>, 2025 · IF 13.7 · top 2.2% in E.E. Eng.</span>
+                <span class="venue"><strong>IEEE Transactions on Image Processing</strong>, 2025 · IF 13.7 · Top 2.2% in E.E. Eng.</span>
               </div>
               <span class="pub-status published">Published</span>
             </li>
@@ -835,7 +273,7 @@
           <div class="row">
             <div class="date"><strong>Feb 2025</strong></div>
             <div class="row-body">
-              <h3>Excellent Paper Award — Graduate School</h3>
+              <h3>Excellent Paper Award, Graduate School</h3>
               <p class="org">Korea University</p>
               <p class="quote">For outstanding research performance and publication of an excellent paper during doctoral studies.</p>
             </div>
@@ -845,7 +283,7 @@
             <div class="date"><strong>Nov 2024</strong></div>
             <div class="row-body">
               <h3>Outstanding Oral Presentation Award</h3>
-              <p class="org">KIST Academia-Research Convergence Conference</p>
+              <p class="org">KIST Academia and Research Convergence Conference</p>
               <p class="quote">For the presentation “Multi-Aspect Contextual Dynamics for Anomaly Detection in Surveillance Videos.”</p>
             </div>
           </div>
@@ -855,7 +293,9 @@
             <div class="row-body">
               <h3>Division Commander's Commendation</h3>
               <p class="org">Capital Mechanized Infantry Division</p>
-              <p class="quote">For a combat development proposal on reconnaissance drone AI improvement and AI/big-data-based acoustic detection.</p>
+              <p class="quote">
+                For a combat development proposal on reconnaissance drone AI improvement and acoustic detection using AI and big data.
+              </p>
             </div>
           </div>
         </section>
@@ -865,7 +305,7 @@
           <h2 class="section-title"><span class="num">07</span>Teaching</h2>
 
           <div class="row">
-            <div class="date"><strong>Sep — Dec 2018</strong></div>
+            <div class="date"><strong>Sep – Dec 2018</strong></div>
             <div class="row-body">
               <h3>Senior Capstone Project</h3>
               <p class="org">Kwangwoon University · Instructor: Prof. Youngok Kim</p>
@@ -876,7 +316,7 @@
           </div>
 
           <div class="row">
-            <div class="date"><strong>Mar — Jun 2017</strong></div>
+            <div class="date"><strong>Mar – Jun 2017</strong></div>
             <div class="row-body">
               <h3>Computer Architecture</h3>
               <p class="org">Kwangwoon University · Instructor: Prof. Youngok Kim</p>
@@ -933,170 +373,5 @@
         </footer>
       </article>
     </div>
-
-    <!-- ───────────────────────────────────────────────── Tweaks ───────────────────────────────────────────────── -->
-    <script
-      src="https://unpkg.com/react@18.3.1/umd/react.development.js"
-      integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
-      integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"
-      integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"
-      crossorigin="anonymous"
-    ></script>
-    <script type="text/babel" src="tweaks-panel.jsx"></script>
-
-    <div id="tweaks-root"></div>
-
-    <script type="text/babel">
-      const CV_DEFAULTS = /*EDITMODE-BEGIN*/ {
-        palette: "warm",
-        accent: "#2a4a7f",
-        serif: "Newsreader",
-        showNumbers: true,
-        density: "comfortable",
-      }; /*EDITMODE-END*/
-
-      const PALETTES = {
-        warm: { bg: "#faf9f6", paper: "#ffffff", ink: "#14130f", muted: "#6b6a64", hair: "#e4e2db", hairStrong: "#c9c6bd" },
-        cool: { bg: "#f6f7fa", paper: "#ffffff", ink: "#0f131a", muted: "#5d6675", hair: "#dfe3eb", hairStrong: "#c2c8d3" },
-        mono: { bg: "#f5f5f5", paper: "#ffffff", ink: "#0a0a0a", muted: "#666666", hair: "#e5e5e5", hairStrong: "#c9c9c9" },
-        cream: { bg: "#f3ede0", paper: "#fdfbf4", ink: "#1f1a10", muted: "#7a6f54", hair: "#e2d8c2", hairStrong: "#c8bb9d" },
-        midnight: { bg: "#13151a", paper: "#1c1f26", ink: "#ecedf0", muted: "#8a8f9b", hair: "#2a2e37", hairStrong: "#3b414d" },
-      };
-
-      const ACCENTS = ["#2a4a7f", "#9a3324", "#2f6b3a", "#7a5400", "#000000"];
-      const SERIFS = ["Newsreader", "Source Serif 4", "Cormorant Garamond", "EB Garamond"];
-
-      function App() {
-        const [t, setTweak] = window.useTweaks(CV_DEFAULTS);
-
-        React.useEffect(() => {
-          const p = PALETTES[t.palette] || PALETTES.warm;
-          const r = document.documentElement.style;
-          r.setProperty("--bg", p.bg);
-          r.setProperty("--paper", p.paper);
-          r.setProperty("--ink", p.ink);
-          r.setProperty("--muted", p.muted);
-          r.setProperty("--hair", p.hair);
-          r.setProperty("--hair-strong", p.hairStrong);
-          r.setProperty("--accent", t.accent);
-          r.setProperty("--serif", `'${t.serif}', Georgia, serif`);
-        }, [t.palette, t.accent, t.serif]);
-
-        React.useEffect(() => {
-          document.querySelectorAll(".section-title .num").forEach((n) => {
-            n.style.display = t.showNumbers ? "" : "none";
-          });
-        }, [t.showNumbers]);
-
-        React.useEffect(() => {
-          const root = document.documentElement.style;
-          if (t.density === "compact") {
-            root.setProperty("--row-pad", "10px");
-          } else {
-            root.setProperty("--row-pad", "14px");
-          }
-          document.querySelectorAll(".row").forEach((el) => {
-            el.style.paddingTop = t.density === "compact" ? "10px" : "14px";
-            el.style.paddingBottom = t.density === "compact" ? "10px" : "14px";
-          });
-        }, [t.density]);
-
-        // Load font dynamically if needed
-        React.useEffect(() => {
-          const id = "tweak-serif-font";
-          let link = document.getElementById(id);
-          if (!link) {
-            link = document.createElement("link");
-            link.id = id;
-            link.rel = "stylesheet";
-            document.head.appendChild(link);
-          }
-          const family = t.serif.replace(/ /g, "+");
-          link.href = `https://fonts.googleapis.com/css2?family=${family}:ital,wght@0,300..700;1,300..600&display=swap`;
-        }, [t.serif]);
-
-        const { TweaksPanel, TweakSection, TweakRadio, TweakSelect, TweakColor, TweakToggle } = window;
-
-        return (
-          <TweaksPanel title="Tweaks">
-            <TweakSection title="Palette">
-              <TweakRadio
-                value={t.palette}
-                onChange={(v) => setTweak("palette", v)}
-                options={[
-                  { value: "warm", label: "Warm" },
-                  { value: "cool", label: "Cool" },
-                  { value: "mono", label: "Mono" },
-                ]}
-              />
-              <TweakSelect
-                label="More palettes"
-                value={t.palette}
-                onChange={(v) => setTweak("palette", v)}
-                options={[
-                  { value: "warm", label: "Warm paper" },
-                  { value: "cool", label: "Cool gray" },
-                  { value: "mono", label: "Pure mono" },
-                  { value: "cream", label: "Cream / vintage" },
-                  { value: "midnight", label: "Midnight (dark)" },
-                ]}
-              />
-            </TweakSection>
-
-            <TweakSection title="Accent">
-              <TweakColor value={t.accent} onChange={(v) => setTweak("accent", v)} options={ACCENTS} />
-            </TweakSection>
-
-            <TweakSection title="Display serif">
-              <TweakSelect value={t.serif} onChange={(v) => setTweak("serif", v)} options={SERIFS.map((s) => ({ value: s, label: s }))} />
-            </TweakSection>
-
-            <TweakSection title="Layout">
-              <TweakToggle label="Show section numbers" value={t.showNumbers} onChange={(v) => setTweak("showNumbers", v)} />
-              <TweakRadio
-                label="Density"
-                value={t.density}
-                onChange={(v) => setTweak("density", v)}
-                options={[
-                  { value: "comfortable", label: "Comfortable" },
-                  { value: "compact", label: "Compact" },
-                ]}
-              />
-            </TweakSection>
-
-            <TweakSection title="Export">
-              <button
-                onClick={() => window.print()}
-                style={{
-                  width: "100%",
-                  padding: "8px 12px",
-                  fontFamily: "Geist Mono, monospace",
-                  fontSize: 11,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  background: "transparent",
-                  border: "1px solid currentColor",
-                  borderRadius: 2,
-                  color: "inherit",
-                  cursor: "pointer",
-                }}
-              >
-                Print / Save as PDF
-              </button>
-            </TweakSection>
-          </TweaksPanel>
-        );
-      }
-
-      ReactDOM.createRoot(document.getElementById("tweaks-root")).render(<App />);
-    </script>
   </body>
 </html>
