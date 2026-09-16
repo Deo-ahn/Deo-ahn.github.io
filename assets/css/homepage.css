@@ -457,6 +457,26 @@ svg.icon-fill {
   line-height: 1.45;
 }
 
+.profile-availability {
+  margin: 14px 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.profile-cv-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 4px 10px;
+  font-size: 1rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.profile-cv-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .social-links {
   display: flex;
   gap: 13px;
@@ -496,6 +516,38 @@ svg.icon-fill {
 
 .about-copy strong {
   font-weight: 700;
+}
+
+.research-keywords {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.research-keywords h2 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.research-keywords ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.research-keywords li {
+  max-width: 100%;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--alternate);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .split-section {

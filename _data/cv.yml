@@ -6,10 +6,11 @@ cv:
   location: Seoul, Republic of Korea
   image: ""
   summary: >
-    Ph.D. candidate at Korea University and student researcher at KIST AI·Robotics.
-    Research interests center on video understanding, contextual dynamics, and
-    efficient AI systems for social good, with recent emphasis on video anomaly
-    understanding and vision language models.
+    Ph.D. candidate at Korea University (expected February 2027) and student
+    researcher at KIST AI·Robotics. Research focuses on video anomaly detection
+    and understanding, adaptive video sampling, action recognition, and efficient
+    vision-language models, with an emphasis on temporal context and reliable
+    explanations for public-safety video. Available from March 2027.
 
   social_networks:
     - network: GitHub
@@ -27,6 +28,7 @@ cv:
         start_date: 2023-03
         end_date: Present
         highlights:
+          - "Expected graduation: February 2027."
           - Study contextual video understanding inspired by human cognitive processes.
 
       - institution: Kwangwoon University

@@ -61,7 +61,12 @@ const searchClose = document.querySelector(".search-close");
 const siteSearchInput = document.querySelector("#site-search-input");
 const searchResults = document.querySelector(".search-results");
 const sectionSearchEntries = [
-  { id: "about", title: "Home", detail: "Profile and research overview" },
+  {
+    id: "about",
+    title: "Home",
+    detail: "Profile and research keywords",
+    text: document.querySelector("#research-keywords")?.textContent ?? "",
+  },
   {
     id: "research",
     title: "Featured Research",
