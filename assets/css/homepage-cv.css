@@ -1,0 +1,158 @@
+/* CV structure only: typography, colors, navigation and themes come from homepage.css. */
+.cv-heading h1 {
+  margin: 0 0 24px;
+  font-size: 31px;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.cv-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+}
+
+.cv-page a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.cv-intro h2 {
+  margin: 0 0 10px;
+  font-size: 39px;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.cv-intro p {
+  margin: 0 0 18px;
+}
+
+.cv-intro .cv-role {
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.cv-contact,
+.cv-section-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 24px 0 0;
+  padding: 0;
+  font-size: 1rem;
+  list-style: none;
+}
+
+.cv-section-links {
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.cv-entry {
+  min-width: 0;
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+
+.cv-entry + .cv-entry {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+
+.cv-entry-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.cv-entry h3 {
+  flex: 1 1 320px;
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+.cv-entry p {
+  margin: 8px 0 0;
+}
+
+.cv-entry-heading .cv-date {
+  margin: 0;
+}
+
+.cv-date,
+.cv-meta,
+.cv-authors {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.cv-organization,
+.cv-venue {
+  color: var(--accent);
+}
+
+.cv-highlights {
+  margin: 12px 0 0;
+  padding-left: 22px;
+}
+
+.cv-highlights li + li {
+  margin-top: 6px;
+}
+
+.cv-contact a {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 760px) {
+  .cv-heading h1 {
+    font-size: 27px;
+  }
+
+  .cv-intro h2 {
+    font-size: 32px;
+  }
+
+  .cv-entry {
+    font-size: 1rem;
+  }
+
+  .cv-entry h3 {
+    flex-basis: 100%;
+    font-size: 20px;
+  }
+}
+
+@media print {
+  .site-header,
+  .search-overlay,
+  .skip-link,
+  .cv-download,
+  .cv-section-links {
+    display: none;
+  }
+
+  html[data-theme] {
+    --background: #ffffff;
+    --alternate: #ffffff;
+    --text: #313131;
+    --heading: #313131;
+    --muted: #555555;
+    --accent: #1565c0;
+    --line: #e3e6e8;
+  }
+
+  .cv-page .home-section {
+    padding: 20px 0;
+  }
+
+  .cv-entry {
+    break-inside: avoid;
+  }
+}

@@ -1,0 +1,121 @@
+{% assign cv = site.data.cv.cv %}
+<div class="cv-page">
+  <section class="home-section about-section" aria-labelledby="cv-title">
+    <div class="page-shell split-section">
+      <header class="section-title cv-heading">
+        <h1 id="cv-title">Curriculum vitae</h1>
+        <a class="cv-download" href="{{ page.cv_pdf | relative_url }}">
+          <svg aria-hidden="true">
+            <use href="#icon-file"></use>
+          </svg>
+          Download PDF
+        </a>
+      </header>
+      <div class="cv-intro">
+        <h2>{{ cv.name }}</h2>
+        <p class="cv-role">{{ cv.label }}</p>
+        <p>{{ cv.summary }}</p>
+        <ul class="cv-contact" aria-label="Contact details">
+          <li>{{ cv.location }}</li>
+          <li>
+            <a href="mailto:{{ cv.email }}">{{ cv.email }}</a>
+          </li>
+          <li>
+            <a href="tel:{{ cv.phone | remove: ' ' }}">{{ cv.phone }}</a>
+          </li>
+          {% for social in cv.social_networks %}
+            {% case social.network %}
+              {% when 'GitHub' %}
+                <li><a href="https://github.com/{{ social.username }}">GitHub</a></li>
+              {% when 'LinkedIn' %}
+                <li><a href="https://www.linkedin.com/in/{{ social.username }}/">LinkedIn</a></li>
+            {% endcase %}
+          {% endfor %}
+        </ul>
+        <nav class="cv-section-links" aria-label="CV sections">
+          {% for section in cv.sections %}
+            <a href="#cv-{{ section[0] | slugify }}">{{ section[0] }}</a>
+          {% endfor %}
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  {% for section in cv.sections %}
+    {% assign section_id = section[0] | slugify | prepend: 'cv-' %}
+    {% assign stripe = forloop.index0 | modulo: 2 %}
+    <section
+      id="{{ section_id }}"
+      class="home-section cv-section{% if stripe == 0 %} alternate-section{% endif %}"
+      aria-labelledby="{{ section_id }}-title"
+    >
+      <div class="page-shell split-section">
+        <header class="section-title">
+          <h2 id="{{ section_id }}-title">{{ section[0] }}</h2>
+        </header>
+        <div class="cv-entries">
+          {% for entry in section[1] %}
+            <article class="cv-entry">
+              <div class="cv-entry-heading">
+                <h3>
+                  {% if entry.institution %}
+                    {{ entry.studyType }} in {{ entry.area }}
+                  {% else %}
+                    {{ entry.title | default: entry.position | default: entry.name }}
+                  {% endif %}
+                </h3>
+                {% if entry.start_date %}
+                  <p class="cv-date">{{ entry.start_date }} – {{ entry.end_date }}</p>
+                {% elsif entry.date %}
+                  <p class="cv-date">{{ entry.date | date: '%B %Y' }}</p>
+                {% elsif entry.releaseDate %}
+                  <p class="cv-date">{{ entry.releaseDate }}</p>
+                {% endif %}
+              </div>
+              {% assign organization = entry.institution | default: entry.company | default: entry.awarder %}
+              {% if organization %}
+                <p class="cv-organization">
+                  {% if entry.url -%}
+                    <a href="{{ entry.url }}">{{ organization }}</a>
+                  {%- else -%}
+                    {{- organization -}}
+                  {%- endif %}
+                </p>
+              {% endif %}
+              {% if entry.location %}
+                <p class="cv-meta">{{ entry.location }}</p>
+              {% endif %}
+              {% if entry.authors %}
+                <p class="cv-authors">{{ entry.authors | join: ', ' }}</p>
+              {% endif %}
+              {% if entry.publisher %}
+                <p class="cv-venue">{{ entry.publisher }}</p>
+              {% endif %}
+              {% if entry.summary %}
+                <p class="cv-summary">{{ entry.summary }}</p>
+              {% endif %}
+              {% if entry.highlights %}
+                <ul class="cv-highlights">
+                  {% for highlight in entry.highlights %}
+                    <li>{{ highlight }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+              {% if entry.level %}
+                <p class="cv-meta">{{ entry.level }}</p>
+              {% endif %}
+              {% if entry.keywords %}
+                {% assign keywords = entry.keywords | split: ',' %}
+                <ul class="research-keyword-list" aria-label="{{ entry.name | escape }} keywords">
+                  {% for keyword in keywords %}
+                    <li>{{ keyword | strip }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endfor %}
+</div>

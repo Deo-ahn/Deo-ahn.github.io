@@ -91,7 +91,18 @@ const publicationSearchEntries = publications.map((publication) => ({
   text: publication.textContent,
   publication: true,
 }));
-const siteSearchEntries = [...sectionSearchEntries, ...publicationSearchEntries];
+const isCvPage = Boolean(document.querySelector(".cv-page"));
+const cvSearchEntries = [...document.querySelectorAll(".cv-section")].map((section) => ({
+  id: section.id,
+  title: section.querySelector("h2")?.textContent.trim() ?? "CV section",
+  detail: "Curriculum vitae",
+  text: section.textContent,
+}));
+const homeSearchEntries = sectionSearchEntries.map((entry) => ({
+  ...entry,
+  href: isCvPage ? `${document.body.dataset.homeUrl ?? "/"}#${entry.id}` : `#${entry.id}`,
+}));
+const siteSearchEntries = [...cvSearchEntries, ...homeSearchEntries, ...publicationSearchEntries];
 
 function renderSiteSearch() {
   if (!searchResults) return;
@@ -113,7 +124,7 @@ function renderSiteSearch() {
     const link = document.createElement("a");
     const detail = document.createElement("small");
     link.className = "search-result";
-    link.href = `#${entry.id}`;
+    link.href = entry.href ?? `#${entry.id}`;
     link.append(document.createTextNode(entry.title));
     detail.textContent = entry.detail;
     link.append(detail);

@@ -530,7 +530,8 @@ svg.icon-fill {
   font-weight: 500;
 }
 
-.research-keywords ul {
+.research-keywords ul,
+.research-keyword-list {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -539,7 +540,8 @@ svg.icon-fill {
   list-style: none;
 }
 
-.research-keywords li {
+.research-keywords li,
+.research-keyword-list li {
   max-width: 100%;
   padding: 5px 10px;
   border: 1px solid var(--line);
