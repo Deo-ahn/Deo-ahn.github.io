@@ -160,6 +160,12 @@ header.masthead {
   text-decoration: none;
 }
 
+.graduation {
+  margin-top: 5px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
 .role .dot {
   display: inline-block;
   width: 3px;
@@ -269,6 +275,14 @@ h2.section-title .num {
   color: var(--ink);
   font-size: 13.5px;
   line-height: 1.58;
+}
+
+.interest-body + .interest-body {
+  margin-top: 9px;
+}
+
+.interest-body a {
+  text-decoration: none;
 }
 
 .keywords {

@@ -5,12 +5,24 @@ cv:
   phone: "+82 10 3733 3254"
   location: Seoul, Republic of Korea
   image: ""
-  summary: >
-    Ph.D. candidate at Korea University (expected February 2027) and student
-    researcher at KIST AI·Robotics. Research focuses on video anomaly detection
-    and understanding, adaptive video sampling, action recognition, and efficient
-    vision-language models, with an emphasis on temporal context and reliable
-    explanations for public-safety video. Available from March 2027.
+  expected_graduation: March 2027
+  summary: |
+    I am a Ph.D. candidate in [Brain & Cognitive Engineering at Korea University](https://bce.korea.ac.kr/bce/index.do) and a student researcher at [KIST AI·Robotics](https://www.kist.re.kr/). I study reliable and efficient video understanding: identifying anomalous behavior, understanding its temporal context, and explaining it with visual evidence.
+
+    My work connects video anomaly detection and understanding, adaptive video sampling, action recognition, and vision-language models (VLMs). Through public-safety research at KIST, I work on contextual anomaly detection and behavior analysis for real-world surveillance video.
+
+    Recent work includes BUSTER for VLM-guided anomaly detection with adaptive sampling, [Where and What](https://ieeexplore.ieee.org/document/11217333) for contextual anomaly detection, and [Look Closer](https://skill-lens.net/) for action-guided proficiency estimation.
+
+    Current focus: why vision-language models hallucinate in video anomaly understanding, and how selective visual verification can make their explanations more faithful.
+  research_keywords:
+    - Video understanding
+    - Video anomaly detection & understanding
+    - Adaptive video sampling
+    - Efficient vision-language models
+    - VLM hallucination & reliability
+    - Temporal & contextual reasoning
+    - Action recognition & human motion analysis
+    - Video surveillance & public safety
 
   social_networks:
     - network: GitHub
@@ -28,7 +40,7 @@ cv:
         start_date: 2023-03
         end_date: Present
         highlights:
-          - "Expected graduation: February 2027."
+          - "Expected graduation: March 2027."
           - Study contextual video understanding inspired by human cognitive processes.
 
       - institution: Kwangwoon University
@@ -240,4 +252,4 @@ cv:
     Interests:
       - name: Video Intelligence
         icon: fa-solid fa-video
-        keywords: "Video Understanding, Video Anomaly Detection, Video Action Recognition, Contextual Dynamics, Efficient AI Systems"
+        keywords: "Video understanding, Video anomaly detection & understanding, Adaptive video sampling, Efficient vision-language models, VLM hallucination & reliability, Temporal & contextual reasoning, Action recognition & human motion analysis, Video surveillance & public safety"

@@ -18,7 +18,7 @@
   outline-offset: 4px;
 }
 
-.cv-intro h2 {
+.cv-intro > h2 {
   margin: 0 0 10px;
   font-size: 39px;
   font-weight: 300;
@@ -115,7 +115,7 @@
     font-size: 27px;
   }
 
-  .cv-intro h2 {
+  .cv-intro > h2 {
     font-size: 32px;
   }
 

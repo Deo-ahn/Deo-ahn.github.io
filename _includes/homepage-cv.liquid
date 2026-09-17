@@ -14,7 +14,16 @@
       <div class="cv-intro">
         <h2>{{ cv.name }}</h2>
         <p class="cv-role">{{ cv.label }}</p>
-        <p>{{ cv.summary }}</p>
+        <p class="cv-role">Expected graduation: {{ cv.expected_graduation }} · Available from March 2027</p>
+        <div class="cv-summary-intro">{{ cv.summary | markdownify }}</div>
+        <div class="research-keywords" aria-labelledby="cv-keywords-title">
+          <h2 id="cv-keywords-title">Research keywords</h2>
+          <ul>
+            {% for keyword in cv.research_keywords %}
+              <li>{{ keyword }}</li>
+            {% endfor %}
+          </ul>
+        </div>
         <ul class="cv-contact" aria-label="Contact details">
           <li>{{ cv.location }}</li>
           <li>
