@@ -6,8 +6,11 @@ cv:
   location: Seoul, Republic of Korea
   image: ""
   expected_graduation: March 2027
+  research_headline: Reliable and efficient video understanding for social good.
   summary: |
-    I am a Ph.D. candidate in [Brain & Cognitive Engineering at Korea University](https://bce.korea.ac.kr/bce/index.do) and a student researcher at [KIST AI·Robotics](https://www.kist.re.kr/). I study reliable and efficient video understanding: identifying anomalous behavior, understanding its temporal context, and explaining it with visual evidence.
+    Research for social good has always been my first priority, and it will continue to guide my work. I am a Ph.D. candidate in [Brain & Cognitive Engineering at Korea University](https://bce.korea.ac.kr/bce/index.do) and a student researcher at [KIST AI·Robotics](https://www.kist.re.kr/).
+
+    My early work on sensing applications, including an ultrasonic SLAM helmet for firefighters and indoor drone tracking, shaped my commitment to dependable systems for real-world needs. I now study reliable and efficient video understanding: identifying anomalous behavior, understanding its temporal context, and explaining it with visual evidence.
 
     My work connects video anomaly detection and understanding, adaptive video sampling, action recognition, and vision-language models (VLMs). Through public-safety research at KIST, I work on contextual anomaly detection and behavior analysis for real-world surveillance video.
 

@@ -15,6 +15,9 @@
         <h2>{{ cv.name }}</h2>
         <p class="cv-role">{{ cv.label }}</p>
         <p class="cv-role">Expected graduation: {{ cv.expected_graduation }} · Available from March 2027</p>
+        <p>
+          <strong>{{ cv.research_headline }}</strong>
+        </p>
         <div class="cv-summary-intro">{{ cv.summary | markdownify }}</div>
         <div class="research-keywords" aria-labelledby="cv-keywords-title">
           <h2 id="cv-keywords-title">Research keywords</h2>

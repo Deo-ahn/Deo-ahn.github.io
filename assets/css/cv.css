@@ -713,10 +713,6 @@ footer.foot {
     break-inside: avoid;
   }
 
-  .awards {
-    break-before: page;
-  }
-
   .pub-body .authors,
   .pub-body .venue {
     font-size: 7.1pt;
