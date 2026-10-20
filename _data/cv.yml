@@ -5,7 +5,8 @@ cv:
   phone: "+82 10 3733 3254"
   location: Seoul, Republic of Korea
   image: ""
-  expected_graduation: March 2027
+  expected_graduation: August 2027
+  available_from: March 2027
   research_headline: Reliable and efficient video understanding for social good.
   summary: |
     Research for social good has always been my first priority, and it will continue to guide my work. I am a Ph.D. candidate in [Brain & Cognitive Engineering at Korea University](https://bce.korea.ac.kr/bce/index.do) and a student researcher at [KIST AI·Robotics](https://www.kist.re.kr/).
@@ -43,7 +44,7 @@ cv:
         start_date: 2023-03
         end_date: Present
         highlights:
-          - "Expected graduation: March 2027."
+          - "Expected graduation: August 2027."
           - Study contextual video understanding inspired by human cognitive processes.
 
       - institution: Kwangwoon University
