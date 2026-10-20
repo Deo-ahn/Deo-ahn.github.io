@@ -15,8 +15,9 @@ layout: homepage
         Student Researcher
       </p>
       <p class="profile-availability">
-        Ph.D. expected March 2027<br>
-        Available from March 2027
+        Ph.D. expected {{ site.data.cv.cv.expected_graduation -}}
+        <br>
+        Available from {{ site.data.cv.cv.available_from }}
       </p>
       <p class="profile-affiliation">
         <a href="https://bce.korea.ac.kr/bce/index.do">Korea University</a><br>
@@ -396,7 +397,7 @@ layout: homepage
       <article class="timeline-card">
         <p class="timeline-role">Ph.D. Candidate in Brain &amp; Cognitive Engineering</p>
         <h3>Korea University</h3>
-        <p class="timeline-meta">Mar 2023 – Present · Expected March 2027 · Seoul</p>
+        <p class="timeline-meta">Mar 2023 – Present · Expected {{ site.data.cv.cv.expected_graduation }} · Seoul</p>
         <ul>
           <li>
             Study whether ideas inspired by human cognitive processes can lead to better deep neural networks and new insights into video
