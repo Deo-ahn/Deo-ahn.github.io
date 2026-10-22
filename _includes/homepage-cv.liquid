@@ -70,7 +70,9 @@
             <article class="cv-entry">
               <div class="cv-entry-heading">
                 <h3>
-                  {% if entry.institution %}
+                  {% if entry.degrees %}
+                    {{ entry.institution }}
+                  {% elsif entry.institution %}
                     {{ entry.studyType }} in {{ entry.area }}
                   {% else %}
                     {{ entry.title | default: entry.position | default: entry.name }}
@@ -85,7 +87,7 @@
                 {% endif %}
               </div>
               {% assign organization = entry.institution | default: entry.company | default: entry.awarder %}
-              {% if organization %}
+              {% if organization and entry.degrees == null %}
                 <p class="cv-organization">
                   {% if entry.url -%}
                     <a href="{{ entry.url }}">{{ organization }}</a>
@@ -97,6 +99,11 @@
               {% if entry.location %}
                 <p class="cv-meta">{{ entry.location }}</p>
               {% endif %}
+              {% for degree in entry.degrees %}
+                <p class="cv-summary">
+                  <strong>{{ degree.studyType }} in {{ degree.area }}</strong>, {{ degree.graduation }}
+                </p>
+              {% endfor %}
               {% if entry.authors %}
                 <p class="cv-authors">{{ entry.authors | join: ', ' }}</p>
               {% endif %}

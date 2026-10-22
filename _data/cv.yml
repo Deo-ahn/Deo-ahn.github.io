@@ -49,22 +49,16 @@ cv:
 
       - institution: Kwangwoon University
         location: Seoul, Republic of Korea
-        area: Electronic Engineering
-        studyType: M.Eng.
-        start_date: 2015-08
-        end_date: 2020-02
+        degrees:
+          - studyType: M.Eng.
+            area: Electronic Engineering
+            graduation: February 2020
+          - studyType: B.Eng.
+            area: Electronic Engineering
+            graduation: August 2015
         highlights:
           - "Thesis: A Study on Passive Target Tracking in Three-Dimensional Indoor Environment by Using Deep Neural Network."
           - Completed 19 months of mandatory military service.
-
-      - institution: Kwangwoon University
-        location: Seoul, Republic of Korea
-        area: Electronic Engineering (Transfer)
-        studyType: B.Eng.
-        start_date: 2013-03
-        end_date: 2015-08
-        highlights:
-          - Transferred in March 2013 from the National Institute for Lifelong Education after completing B.Eng. coursework in Computer Engineering from March 2011 to February 2013.
 
     Experience:
       - company: Korea Institute of Science and Technology (KIST)
