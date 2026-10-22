@@ -75,6 +75,8 @@ cv:
         summary: KIST AI·Robotics Institute · Vision Intelligence Group
         highlights:
           - Develop public safety video systems spanning action recognition, contextual anomaly detection, and vision language models that explain anomalous behavior.
+          - Developed research prototypes and integrated them into a real-world monitoring system.
+          - Served as frontend team lead for the monitoring system, contributing directly to implementation and coordinating the team's development work.
 
       - company: Korea Institute of Science and Technology (KIST)
         position: Research Intern
@@ -160,7 +162,7 @@ cv:
           - Park Haesol
           - Han Jae-Ho
           - Kim Haksub
-        publisher: IEEE Access (Submitted)
+        publisher: IEEE Access (Accepted)
         releaseDate: 2026
 
       - title: "Where and What: Contextual Dynamics-Aware Anomaly Detection in Surveillance Videos"
