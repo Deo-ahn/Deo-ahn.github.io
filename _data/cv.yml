@@ -175,7 +175,10 @@ cv:
           - Kim Haksub
         publisher: IEEE Transactions on Image Processing
         releaseDate: 2025
-        summary: IF 13.7 · Top 2.2% in Electrical & Electronic Engineering.
+        # Verified 2026-10-22; 2025 metrics released in June 2026.
+        # JIF: https://open.ieee.org/wp-content/uploads/IEEE-Title-List-September-2026.pdf
+        # Category Top % (rank / category total): https://scholar.pusan.ac.kr/journals/12249/
+        summary: JIF 15.3 · Top 2.17% in Electrical & Electronic Engineering (2025 JCR).
 
       - title: "A Foundational Research Framework for Real-World Abandoned Object Detection: Train-Free Baseline and a Standardized Benchmark"
         authors:
