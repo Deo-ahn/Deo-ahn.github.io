@@ -1,39 +1,20 @@
-// Render the maintained HTML CV with its local fonts, print CSS and clickable links.
+// Build the downloadable CV from docs/cv.tex (Jake's Resume).
+// Usage: node bin/export_cv.cjs [output.pdf] [path/to/tectonic]
+// Requires Tectonic; the first build downloads its LaTeX packages and fonts.
 const fs = require("node:fs/promises");
 const path = require("node:path");
-const { pathToFileURL } = require("node:url");
-const { chromium } = require("@playwright/test");
+const { execFileSync } = require("node:child_process");
 
 async function main() {
   const root = path.resolve(__dirname, "..");
   const output = path.resolve(root, process.argv[2] ?? "output/pdf/cv.pdf");
-  const executablePath = process.argv[3];
+  const tectonic = process.argv[3] ?? process.env.TECTONIC_BIN ?? "tectonic";
+  const build = path.join(root, "output/pdf/latex");
+  await fs.mkdir(build, { recursive: true });
+  execFileSync(tectonic, ["--keep-logs", "--outdir", build, path.join(root, "docs/cv.tex")], { stdio: "inherit" });
   await fs.mkdir(path.dirname(output), { recursive: true });
-  const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
-  try {
-    const page = await browser.newPage();
-    const errors = [];
-    page.on("pageerror", (error) => errors.push(error.message));
-    page.on("requestfailed", (request) => errors.push(`${request.url()}: ${request.failure()?.errorText}`));
-    await page.goto(pathToFileURL(path.join(root, "docs/CV.html")).href, { waitUntil: "load" });
-    await page.emulateMedia({ media: "print" });
-    await page.evaluate(() => document.fonts.ready);
-    if (errors.length) throw new Error(errors.join("\n"));
-    await page.pdf({
-      path: output,
-      format: "A4",
-      preferCSSPageSize: true,
-      printBackground: true,
-      tagged: true,
-      displayHeaderFooter: true,
-      headerTemplate: "<div></div>",
-      footerTemplate:
-        '<div style="font:8px Arial,sans-serif;color:#68717d;width:100%;text-align:right;padding:0 13mm;box-sizing:border-box"><span class="pageNumber"></span> / <span class="totalPages"></span></div>',
-    });
-    console.log(`Rendered CV: ${output}`);
-  } finally {
-    await browser.close();
-  }
+  await fs.copyFile(path.join(build, "cv.pdf"), output);
+  console.log(`Rendered CV: ${output}`);
 }
 
 main().catch((error) => {

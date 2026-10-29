@@ -1,0 +1,296 @@
+% Deokhyun Ahn's downloadable CV, adapted from Jake's Resume.
+% Template: https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs
+% Based on https://github.com/jakegut/resume and https://github.com/sb2nov/resume
+%
+% MIT License
+% Copyright (c) 2020 Jake Gutierrez
+%
+% Permission is hereby granted, free of charge, to any person obtaining a copy
+% of this software and associated documentation files (the "Software"), to deal
+% in the Software without restriction, including without limitation the rights
+% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+% copies of the Software, and to permit persons to whom the Software is
+% furnished to do so, subject to the following conditions:
+%
+% The above copyright notice and this permission notice shall be included in all
+% copies or substantial portions of the Software.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+% SOFTWARE.
+%
+% Canonical PDF source. Build with: node bin/export_cv.cjs assets/pdf/cv.pdf
+% The website's /cv/ page continues to use _data/cv.yml.
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage[margin=0.5in,footskip=20pt]{geometry}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{needspace}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{\scriptsize Deokhyun Ahn \textbar\ Curriculum Vitae}
+\fancyfoot[R]{\scriptsize\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Jake's Resume: half-inch margins, serif type, small-cap section headings.
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\setlength{\parindent}{0pt}
+\setlength{\footskip}{20pt}
+\titleformat{\section}
+  {\vspace{-4pt}\scshape\raggedright\large}
+  {}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
+\hypersetup{
+  pdftitle={Deokhyun Ahn | Curriculum Vitae},
+  pdfauthor={Deokhyun Ahn},
+  pdfsubject={Research in reliable and efficient video understanding for social good},
+  pdfkeywords={Video understanding, Video anomaly detection, Vision-language models}
+}
+
+\newcommand{\resumeItem}[1]{\item\small{#1\vspace{-2pt}}}
+\newcommand{\resumeSubheading}[4]{%
+  \Needspace{5\baselineskip}
+  \vspace{-2pt}\item
+  \begin{tabularx}{\linewidth}[t]{@{}Xr@{}}
+    \textbf{#1} & #2 \\
+    \textit{\small #3} & \textit{\small #4} \\
+  \end{tabularx}\vspace{-7pt}
+}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in,label={},itemsep=8pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.18in,label=\textbullet,itemsep=2pt,topsep=5pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeParagraph}[1]{{\small #1\par}\vspace{5pt}}
+\newcommand{\publication}[3]{%
+  \item\begin{minipage}[t]{\linewidth}
+    \small\textbf{#1}\par
+    #2\par
+    \textit{#3}
+  \end{minipage}
+}
+
+\begin{document}
+
+\begin{center}
+  \textbf{\Huge Deokhyun Ahn} \\ \vspace{3pt}
+  \small Ph.D. Candidate, Brain \& Cognitive Engineering \\
+  \href{https://bce.korea.ac.kr/bce/index.do}{Korea University}
+  $|$ \href{https://www.kist.re.kr/}{KIST AI\textperiodcentered Robotics}
+  $|$ Seoul, Republic of Korea \\ \vspace{3pt}
+  +82 10 3733 3254 $|$
+  \href{mailto:dhan@kist.re.kr}{\underline{dhan@kist.re.kr}} $|$
+  \href{mailto:dhahn@korea.ac.kr}{\underline{dhahn@korea.ac.kr}} \\
+  \href{https://deo-ahn.github.io/}{\underline{deo-ahn.github.io}} $|$
+  \href{https://www.linkedin.com/in/deokhyun-ahn/}{\underline{LinkedIn}} $|$
+  \href{https://scholar.google.com/citations?user=5VDH7PgAAAAJ&hl=ko}{\underline{Google Scholar}} \\ \vspace{3pt}
+  Expected graduation: August 2027 $|$ Available for employment from March 2027
+\end{center}
+
+\section{Research Interests}
+\resumeParagraph{\textbf{Reliable and efficient video understanding for social good.}}
+\resumeParagraph{Research for social good has always been my first priority, and it will continue to guide my work.
+I am a Ph.D. candidate in \href{https://bce.korea.ac.kr/bce/index.do}{Brain \& Cognitive Engineering at Korea University}
+and a student researcher at \href{https://www.kist.re.kr/}{KIST AI\textperiodcentered Robotics}.}
+\resumeParagraph{My early work on sensing applications, including an ultrasonic SLAM helmet for firefighters and
+indoor drone tracking, shaped my commitment to dependable systems for real-world needs. I now study reliable
+and efficient video understanding: identifying anomalous behavior, understanding its temporal context, and
+explaining it with visual evidence.}
+\resumeParagraph{My work connects video anomaly detection and understanding, adaptive video sampling, action
+recognition, and vision-language models (VLMs). Through public-safety research at KIST, I work on contextual
+anomaly detection and behavior analysis for real-world surveillance video.}
+\resumeParagraph{Recent work includes \href{https://deo-ahn.github.io/buster/}{BUSTER} for VLM-guided anomaly
+detection with adaptive sampling, \href{https://ieeexplore.ieee.org/document/11217333}{Where and What} for contextual
+anomaly detection, and \href{https://skill-lens.net/}{Look Closer} for action-guided proficiency estimation.}
+\resumeParagraph{\textbf{Current focus:} why vision-language models hallucinate in video anomaly understanding,
+and how selective visual verification can make their explanations more faithful.}
+\resumeParagraph{\textbf{Research keywords:} Video understanding; Video anomaly detection \& understanding;
+Adaptive video sampling; Efficient vision-language models; VLM hallucination \& reliability;
+Temporal \& contextual reasoning; Action recognition \& human motion analysis;
+Video surveillance \& public safety.}
+
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Korea University}{Mar 2023 -- Present}
+    {Ph.D. Candidate, Brain \& Cognitive Engineering}{Seoul, KR}
+    \resumeItemListStart
+      \resumeItem{Expected graduation: August 2027.}
+      \resumeItem{Study contextual video understanding inspired by human cognitive processes.}
+    \resumeItemListEnd
+  \item
+    \begin{tabularx}{\linewidth}[t]{@{}Xr@{}}
+      \textbf{Kwangwoon University} & Seoul, KR \\
+      \textit{\small M.Eng. in Electronic Engineering} & \textit{\small February 2020} \\
+      \textit{\small B.Eng. in Electronic Engineering} & \textit{\small August 2015}
+    \end{tabularx}\vspace{-7pt}
+    \resumeItemListStart
+      \resumeItem{Thesis: \emph{A Study on Passive Target Tracking in Three-Dimensional Indoor Environment by Using Deep Neural Network}.}
+      \resumeItem{Completed 19 months of mandatory military service.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\newpage
+\section{Research \& Work Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Student Researcher}{Jan 2023 -- Present}
+    {KIST AI\textperiodcentered Robotics Institute \textbar\ Vision Intelligence Group}{Seoul, KR}
+    \resumeItemListStart
+      \resumeItem{Video anomaly understanding; Surveillance video; Vision language models.}
+      \resumeItem{Develop public safety video systems spanning action recognition, contextual anomaly detection,
+      and vision language models that explain anomalous behavior. [1] [2] [3] [4] [5]}
+      \resumeItem{Developed research prototypes and integrated them into a real-world monitoring system.}
+      \resumeItem{Served as frontend team lead for the monitoring system, contributing directly to implementation
+      and coordinating the team's development work.}
+    \resumeItemListEnd
+  \resumeSubheading
+    {Research Intern}{Jan 2022 -- Feb 2023}
+    {KIST AI\textperiodcentered Robotics Institute \textbar\ Vision Intelligence Group}{Seoul, KR}
+    \resumeItemListStart
+      \resumeItem{Began surveillance video research through urban public safety projects and national research programs.}
+    \resumeItemListEnd
+  \resumeSubheading
+    {Researcher}{Oct 2021 -- Dec 2021}
+    {The Korea Transport Institute}{Sejong, KR}
+    \resumeItemListStart
+      \resumeItem{Contributed to autonomous bus development through SLAM, control center systems, policy research, and coordination.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Selected Publications}
+\begin{enumerate}[leftmargin=0.28in,label={[\arabic*]},itemsep=9pt,parsep=0pt]
+  \publication
+    {\href{https://skill-lens.net/}{Look Closer: Action-Guided Dense Visual Dynamics for Proficiency Estimation.}}
+    {\textbf{Ahn D.}, Kim H., Han J.-H., Ham B., Choi H., Kim I.-J., Kim H.}
+    {CVPRW 2026 \textbar\ Multimodal Human Motion Analysis \textbar\ Accepted; Pitch and Poster Presentation}
+  \publication
+    {\href{https://deo-ahn.github.io/buster/}{BUSTER: Adaptive Sampling for VLM-Guided Unsupervised Video Anomaly Detection.}}
+    {\textbf{Ahn D.}, Choi Y., Han J.-H., Kim I.-J., Kim H.}
+    {British Machine Vision Conference (BMVC), 2026 \textbar\ Accepted}
+  \publication
+    {Learning Robust Representations for Few-Shot Action Recognition with Frame-Level Ambiguities.}
+    {\textbf{Ahn D.}, Jo Y., Lee U.-S., Park H., Han J.-H., Kim H.}
+    {IEEE Access, 2026 \textbar\ Accepted}
+  \publication
+    {\href{https://ieeexplore.ieee.org/document/11217333}{Where and What: Contextual Dynamics-Aware Anomaly Detection in Surveillance Videos.}}
+    {\textbf{Ahn D.}, Jo Y., Kim D., Nam G. P., Han J.-H., Kim H.}
+    {IEEE Transactions on Image Processing, 2025 \textbar\ Published\\
+    JIF 15.3 \textbar\ Top 2.17\% in E.E. Eng. (2025 JCR)}
+  \publication
+    {A Foundational Research Framework for Real-World Abandoned Object Detection: Train-Free Baseline and a Standardized Benchmark.}
+    {Kim D., \textbf{Ahn D.}, Jo Y., Park H., Lee S., Kim H.}
+    {Expert Systems with Applications, 2025 \textbar\ 130658 \textbar\ Published}
+  \publication
+    {A Passive Tracking System Based on Geometric Constraints in Adaptive Wireless Sensor Networks.}
+    {Zhou B., \textbf{Ahn D.}, Lee J., Sun C., Ahmed S., Kim Y.}
+    {Sensors, 18(10), 3276, 2018 \textbar\ Published}
+  \publication
+    {2D Indoor Map Building Scheme Using Ultrasonic Module.}
+    {\textbf{Ahn D.}, Kim N. M., Park J. H., Kim Y. O.}
+    {J. Korean Inst. Comm. and Info. Sci., 41(8), 986--994, 2016 \textbar\ Published}
+\end{enumerate}
+
+\newpage
+\section{Research Grants \& Projects}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Real-Time Intelligent Surveillance for Public Safety}{\textasciitilde\$24M}
+    {National R\&D}{Five year program}
+    \resumeItemListStart
+      \resumeItem{MSIT \& MOTIE; with Yonsei University and the Korean National Police Agency.}
+      \resumeItem{Video anomaly detection that uses context across city scale CCTV control centers with about
+      1,000 cameras, validated in Anyang City.}
+    \resumeItemListEnd
+  \resumeSubheading
+    {Mobile Platform for Active Safety Services}{\textasciitilde\$9.5M}
+    {Korean National Police Agency \& MOTIE}{Five year program}
+    \resumeItemListStart
+      \resumeItem{Government research program using mobile platforms for proactive public safety services.}
+    \resumeItemListEnd
+  \resumeSubheading
+    {Anomaly Detection in Correctional Facilities}{New initiative}
+    {KIST AI\textperiodcentered Robotics}{}
+    \resumeItemListStart
+      \resumeItem{Detecting inmate anomalous behavior in custodial environments.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Awards \& Honors}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {AIR Outstanding Research Award}{Dec 2025}
+    {KIST AI\textperiodcentered Robotics Institute}{}
+    \resumeItemListStart
+      \resumeItem{In recognition of outstanding research achievements during 2025.}
+    \resumeItemListEnd
+  \resumeSubheading
+    {Excellent Paper Award, Graduate School}{Feb 2025}
+    {Korea University}{}
+    \resumeItemListStart
+      \resumeItem{For outstanding research performance and publication of an excellent paper during doctoral studies.}
+    \resumeItemListEnd
+  \resumeSubheading
+    {Outstanding Oral Presentation Award}{Nov 2024}
+    {KIST Academia and Research Convergence Conference}{}
+    \resumeItemListStart
+      \resumeItem{For the presentation ``Multi-Aspect Contextual Dynamics for Anomaly Detection in Surveillance Videos.''}
+    \resumeItemListEnd
+  \resumeSubheading
+    {Division Commander's Commendation}{Jul 2021}
+    {Capital Mechanized Infantry Division}{}
+    \resumeItemListStart
+      \resumeItem{For a combat development proposal on reconnaissance drone AI improvement and acoustic
+      detection using AI and big data.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Teaching}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Senior Capstone Project}{Sep -- Dec 2018}
+    {Kwangwoon University \textbar\ Instructor: Prof. Youngok Kim}{Teaching Assistant}
+    \resumeItemListStart
+      \resumeItem{Assisted in managing and supporting the Capstone Design Project as a TA for 50+ students.}
+    \resumeItemListEnd
+  \resumeSubheading
+    {Computer Architecture}{Mar -- Jun 2017}
+    {Kwangwoon University \textbar\ Instructor: Prof. Youngok Kim}{Teaching Assistant}
+    \resumeItemListStart
+      \resumeItem{Graded assignments and provided feedback for 30+ students with Q\&A sessions.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in,label={},itemsep=3pt]
+  \small
+  \item \textbf{Programming:} Python, C, Java, Git, Linux
+  \item \textbf{Machine Learning:} PyTorch, TensorFlow, Keras, NumPy, Pandas, Matplotlib
+  \item \textbf{Sensors:} Ultrasonic, Beacon, RF, Wi-Fi, 3-axis Accelerometer
+  \item \textbf{Embedded \& IoT:} Raspberry Pi, Arduino
+\end{itemize}
+
+\vfill
+\hfill{\scriptsize Updated October 2026}
+\end{document}
