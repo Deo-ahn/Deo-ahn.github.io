@@ -1,4 +1,4 @@
-// Build the downloadable CV from docs/cv.tex (Jake's Resume).
+// Build the downloadable CV from docs/cv.tex and the supplied docs/resume.cls.
 // Usage: node bin/export_cv.cjs [output.pdf] [path/to/tectonic]
 // Requires Tectonic; the first build downloads its LaTeX packages and fonts.
 const fs = require("node:fs/promises");
