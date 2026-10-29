@@ -65,7 +65,7 @@ permissions:
 jobs:
   deploy:
     # available images: https://github.com/actions/runner-images#available-images
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Ruby 3.3.5 is unavailable on newer runner images.
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
