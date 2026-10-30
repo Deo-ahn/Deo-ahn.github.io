@@ -126,18 +126,6 @@ cv:
         summary: For a combat development proposal on reconnaissance drone AI improvement and acoustic detection using AI and big data.
 
     Publications:
-      - title: "Look Closer: Action-Guided Dense Visual Dynamics for Proficiency Estimation"
-        authors:
-          - Ahn Deokhyun
-          - Kim Hyukjin
-          - Han Jae-Ho
-          - Ham Bumsub
-          - Choi Heeseung
-          - Kim Ig-Jae
-          - Kim Haksub
-        publisher: CVPRW 2026, Multimodal Human Motion Analysis (Accepted, Pitch and Poster Presentation)
-        releaseDate: 2026
-
       - title: "BUSTER: Adaptive Sampling for VLM-Guided Unsupervised Video Anomaly Detection"
         authors:
           - Ahn Deokhyun
@@ -157,6 +145,18 @@ cv:
           - Han Jae-Ho
           - Kim Haksub
         publisher: IEEE Access (Accepted)
+        releaseDate: 2026
+
+      - title: "Look Closer: Action-Guided Dense Visual Dynamics for Proficiency Estimation"
+        authors:
+          - Ahn Deokhyun
+          - Kim Hyukjin
+          - Han Jae-Ho
+          - Ham Bumsub
+          - Choi Heeseung
+          - Kim Ig-Jae
+          - Kim Haksub
+        publisher: CVPRW 2026, Multimodal Human Motion Analysis (Accepted, Pitch and Poster Presentation)
         releaseDate: 2026
 
       - title: "Where and What: Contextual Dynamics-Aware Anomaly Detection in Surveillance Videos"
