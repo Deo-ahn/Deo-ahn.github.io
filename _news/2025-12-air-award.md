@@ -6,4 +6,4 @@ related_posts: false
 tag: Award
 ---
 
-Received the **AIR Outstanding Research Award** from KIST AI·Robotics Institute, in recognition of research achievements during 2025.
+Received the **AIR Outstanding Research Award** from the AI Robotics Institute at the Korea Institute of Science and Technology (KIST), in recognition of research achievements during 2025.
