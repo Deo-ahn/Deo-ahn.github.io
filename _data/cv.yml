@@ -9,11 +9,11 @@ cv:
   available_from: March 2027
   research_headline: Reliable and efficient video understanding for social good.
   summary: |
-    Research for social good has always been my first priority, and it will continue to guide my work. I am a Ph.D. candidate in [Brain & Cognitive Engineering at Korea University](https://bce.korea.ac.kr/bce/index.do) and a student researcher at [KIST AI·Robotics](https://www.kist.re.kr/).
+    Research for social good has always been my first priority, and it will continue to guide my work. I am a Ph.D. candidate in [Brain & Cognitive Engineering at Korea University](https://bce.korea.ac.kr/bce/index.do) and a student researcher at [Korea Institute of Science and Technology (KIST)](https://www.kist.re.kr/).
 
     My early work on sensing applications, including an ultrasonic SLAM helmet for firefighters and indoor drone tracking, shaped my commitment to dependable systems for real-world needs. I now study reliable and efficient video understanding: identifying anomalous behavior, understanding its temporal context, and explaining it with visual evidence.
 
-    My work connects video anomaly detection and understanding, adaptive video sampling, action recognition, and vision-language models (VLMs). Through public-safety research at KIST, I work on contextual anomaly detection and behavior analysis for real-world surveillance video.
+    My work connects video anomaly detection and understanding, adaptive video sampling, action recognition, and vision-language models (VLMs). Through public-safety research at the Korea Institute of Science and Technology (KIST), I work on contextual anomaly detection and behavior analysis for real-world surveillance video.
 
     Recent work includes BUSTER for VLM-guided anomaly detection with adaptive sampling, [Where and What](https://ieeexplore.ieee.org/document/11217333) for contextual anomaly detection, and [Look Closer](https://skill-lens.net/) for action-guided proficiency estimation.
 
@@ -66,7 +66,7 @@ cv:
         location: Seoul, Republic of Korea
         start_date: 2023-01
         end_date: Present
-        summary: KIST AI·Robotics Institute · Vision Intelligence Group
+        summary: AI Robotics Institute · Vision Intelligence Group
         highlights:
           - Develop public safety video systems spanning action recognition, contextual anomaly detection, and vision language models that explain anomalous behavior.
           - Developed research prototypes and integrated them into a real-world monitoring system.
@@ -77,7 +77,7 @@ cv:
         location: Seoul, Republic of Korea
         start_date: 2022-01
         end_date: 2023-02
-        summary: KIST AI·Robotics Institute · Vision Intelligence Group · Began surveillance video research through urban public safety projects and national research programs.
+        summary: AI Robotics Institute · Vision Intelligence Group · Began surveillance video research through urban public safety projects and national research programs.
 
       - company: The Korea Transport Institute (KOTI)
         position: Researcher
@@ -101,13 +101,13 @@ cv:
 
       - company: Anomaly Detection in Correctional Facilities
         position: New initiative
-        location: KIST AI·Robotics
+        location: Korea Institute of Science and Technology (KIST)
         summary: Detecting inmate anomalous behavior in custodial environments.
 
     Awards:
       - title: AIR Outstanding Research Award
         date: 2025-12-01
-        awarder: KIST AI·Robotics Institute
+        awarder: Korea Institute of Science and Technology (KIST), AI Robotics Institute
         summary: In recognition of outstanding research achievements during 2025.
 
       - title: Excellent Paper Award, Graduate School
