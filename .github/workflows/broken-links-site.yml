@@ -16,9 +16,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: gh-pages
+          path: _site
       - name: Link Checker 🔗
         uses: lycheeverse/lychee-action@v2.0.2
         with:
           fail: true
           # only check local links
-          args: --offline --verbose --no-progress './**/*.html'
+          args: --offline --remap '_site(/?.*)/assets/(.*) _site/assets/$2' --verbose --no-progress '_site/**/*.html'
