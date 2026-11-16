@@ -21,6 +21,47 @@ const publicationSearch = document.querySelector("#publication-search-input");
 const publicationEmpty = document.querySelector(".publication-empty");
 let activePublicationTopic = "all";
 
+function animateAuthorText(element, text, done) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    element.textContent = text;
+    done?.();
+    return;
+  }
+
+  let cursorPosition = 0;
+  const textAdder = window.setInterval(() => {
+    element.textContent = text.substring(0, cursorPosition + 1);
+    cursorPosition += 1;
+    if (cursorPosition === text.length) {
+      window.clearInterval(textAdder);
+      done?.();
+    }
+  }, 10);
+}
+
+document.querySelectorAll(".more-authors").forEach((element) => {
+  let expanded = false;
+
+  const toggleAuthors = () => {
+    const targetText = expanded ? element.dataset.collapsed : element.dataset.expanded;
+    expanded = !expanded;
+    element.removeAttribute("title");
+    element.setAttribute("aria-expanded", String(expanded));
+    animateAuthorText(element, targetText, () => {
+      if (!expanded) element.setAttribute("title", `click to view ${targetText}`);
+    });
+  };
+
+  element.setAttribute("aria-expanded", "false");
+  element.addEventListener("click", toggleAuthors);
+  element.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      toggleAuthors();
+    }
+  });
+});
+
 function updatePublications() {
   const query = publicationSearch?.value.trim().toLocaleLowerCase() ?? "";
   let visibleCount = 0;

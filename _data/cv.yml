@@ -128,76 +128,76 @@ cv:
     Publications:
       - title: "BUSTER: Adaptive Sampling for VLM-Guided Unsupervised Video Anomaly Detection"
         authors:
-          - Ahn Deokhyun
-          - Choi Yonghun
-          - Han Jae-Ho
-          - Kim Ig-Jae
-          - Kim Haksub
+          - Deokhyun Ahn
+          - Yonghun Choi
+          - Jae-Ho Han
+          - Ig-Jae Kim
+          - Haksub Kim
         publisher: British Machine Vision Conference (BMVC), Accepted
         releaseDate: 2026
 
       - title: Learning Robust Representations for Few-Shot Action Recognition with Frame-Level Ambiguities
         authors:
-          - Ahn Deokhyun
-          - Jo Yongjin
-          - Lee Ui-Seok
-          - Park Haesol
-          - Han Jae-Ho
-          - Kim Haksub
-        publisher: IEEE Access (Accepted)
+          - Deokhyun Ahn
+          - Yongjin Jo
+          - Ui-Seok Lee
+          - Haesol Park
+          - Jae-Ho Han
+          - Haksub Kim
+        publisher: IEEE Access (Published)
         releaseDate: 2026
 
       - title: "Look Closer: Action-Guided Dense Visual Dynamics for Proficiency Estimation"
         authors:
-          - Ahn Deokhyun
-          - Kim Hyukjin
-          - Han Jae-Ho
-          - Ham Bumsub
-          - Choi Heeseung
-          - Kim Ig-Jae
-          - Kim Haksub
+          - Deokhyun Ahn
+          - Hyukjin Kim
+          - Jae-Ho Han
+          - Bumsub Ham
+          - Heeseung Choi
+          - Ig-Jae Kim
+          - Haksub Kim
         publisher: CVPRW 2026, Multimodal Human Motion Analysis (Accepted, Pitch and Poster Presentation)
         releaseDate: 2026
 
       - title: "Where and What: Contextual Dynamics-Aware Anomaly Detection in Surveillance Videos"
         authors:
-          - Ahn Deokhyun
-          - Jo Yongjin
-          - Kim DongBum
-          - Nam Gi Pyo
-          - Han Jae-Ho
-          - Kim Haksub
+          - Deokhyun Ahn
+          - Yongjin Jo
+          - DongBum Kim
+          - Gi Pyo Nam
+          - Jae-Ho Han
+          - Haksub Kim
         publisher: IEEE Transactions on Image Processing
         releaseDate: 2025
 
       - title: "A Foundational Research Framework for Real-World Abandoned Object Detection: Train-Free Baseline and a Standardized Benchmark"
         authors:
-          - Kim DongBum
-          - Ahn Deokhyun
-          - Jo Yongjin
-          - Park Haesol
-          - Lee Sangyoun
-          - Kim Haksub
+          - DongBum Kim
+          - Deokhyun Ahn
+          - Yongjin Jo
+          - Haesol Park
+          - Sangyoun Lee
+          - Haksub Kim
         publisher: Expert Systems with Applications
         releaseDate: 2025
 
       - title: A Passive Tracking System Based on Geometric Constraints in Adaptive Wireless Sensor Networks
         authors:
-          - Zhou Biao
-          - Ahn Deokhyun
-          - Lee J.
-          - Sun C.
-          - Ahmed S.
-          - Kim Youngok
+          - Biao Zhou
+          - Deokhyun Ahn
+          - Jungpyo Lee
+          - Chao Sun
+          - Sabbir Ahmed
+          - Youngok Kim
         publisher: Sensors, 18(10), 3276
         releaseDate: 2018
 
       - title: 2D Indoor Map Building Scheme Using Ultrasonic Module
         authors:
-          - Ahn Deokhyun
-          - Kim Nammoon
-          - Park Ji-Hye
-          - Kim Youngok
+          - Deokhyun Ahn
+          - Nammoon Kim
+          - Ji-Hye Park
+          - Youngok Kim
         publisher: J. Korean Inst. Comm. and Info. Sci., 41(8), 986–994
         releaseDate: 2016
 

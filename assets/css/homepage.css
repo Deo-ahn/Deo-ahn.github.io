@@ -787,6 +787,19 @@ html[data-theme="dark"] .publication-copy .venue {
   color: var(--text);
 }
 
+.publication-copy .more-authors {
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+}
+
+.publication-copy .more-authors:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .publication-empty {
   margin: 30px 0;
   color: var(--muted);
