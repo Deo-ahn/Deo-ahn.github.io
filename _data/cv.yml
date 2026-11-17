@@ -7,17 +7,15 @@ cv:
   image: ""
   expected_graduation: August 2027
   available_from: March 2027
-  research_headline: Reliable and efficient video understanding for social good.
+  research_headline: Research Interests
   summary: |
-    Research for social good has always been my first priority, and it will continue to guide my work. I am a Ph.D. candidate in [Brain & Cognitive Engineering at Korea University](https://bce.korea.ac.kr/bce/index.do) and a student researcher at [Korea Institute of Science and Technology (KIST)](https://www.kist.re.kr/).
+    My research focuses on video understanding, drawing inspiration from human cognitive processes, with the long-term goal of contributing to social good.
 
-    My early work on sensing applications, including an ultrasonic SLAM helmet for firefighters and indoor drone tracking, shaped my commitment to dependable systems for real-world needs. I now study reliable and efficient video understanding: identifying anomalous behavior, understanding its temporal context, and explaining it with visual evidence.
+    - **Human Behavior and Event Understanding:** Studying how human actions unfold over time and how scene context and interactions inform the interpretation of events.
 
-    My work connects video anomaly detection and understanding, adaptive video sampling, action recognition, and vision-language models (VLMs). Through public-safety research at the Korea Institute of Science and Technology (KIST), I work on contextual anomaly detection and behavior analysis for real-world surveillance video.
+    - **Efficient Video-Language Understanding:** Developing adaptive video sampling and evidence selection methods to retain task-relevant information for recognizing and explaining events.
 
-    Recent work includes BUSTER for VLM-guided anomaly detection with adaptive sampling, [Where and What](https://ieeexplore.ieee.org/document/11217333) for contextual anomaly detection, and [Look Closer](https://skill-lens.net/) for action-guided proficiency estimation.
-
-    Current focus: why vision-language models hallucinate in video anomaly understanding, and how selective visual verification can make their explanations more faithful.
+    - **Evidence-Grounded Video Reasoning:** Investigating when vision-language models overlook visual evidence or produce unsupported event descriptions, and exploring visual verification to improve factual reliability.
   research_keywords:
     - Video understanding
     - Video anomaly detection & understanding
